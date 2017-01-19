@@ -1,0 +1,34 @@
+<?php
+$start=time();
+include_once '../func.inc.php';
+
+$conn=connect();
+$result=mysqli_query($conn,"SELECT UID FROM kuume_user WHERE AKTIV=1");
+
+while ($row = mysqli_fetch_array($result)) {
+    $query="SELECT COUNT( DISTINCT HOST ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 72 HOUR";
+    $bla=mysqli_fetch_array(mysqli_query($conn, $query));
+    if($bla[ZAHL]>=3){
+         echo getUser($conn, $row[UID])." hat $bla[ZAHL] Geolocations";
+         document_alert("User $row[UID] (".getUser($conn, $row[UID]).") hat mehr als 3 Geolocations innerhalb von 72 Stunden verwendet", "Charlie (Crownjob C)", 4,"$bla[ZAHL]");       
+    }
+    $query="SELECT COUNT( DISTINCT IP ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 72 HOUR";
+    $bla=mysqli_fetch_array(mysqli_query($conn, $query));
+    if($bla[ZAHL]>=3){
+                 echo getUser($conn, $row[UID])." hat $bla[ZAHL] IPs";
+                 document_alert("User $row[UID] (".getUser($conn, $row[UID]).") hat mehr als 3 IPs innerhalb von 72 Stunden verwendet", "Charlie (Crownjob C)", 4,"$bla[ZAHL]");
+    }
+    $query="SELECT COUNT( DISTINCT AGENT ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 72 HOUR";
+    $bla=mysqli_fetch_array(mysqli_query($conn, $query));
+    if($bla[ZAHL]>=5){
+                 echo getUser($conn, $row[UID])." hat $bla[ZAHL] Agents";
+                 document_alert("User $row[UID] (".getUser($conn, $row[UID]).") hat mehr als 5 Useragents (Browsers) innerhalb von 72 Stunden verwendet", "Charlie (Crownjob C)", 4,"$bla[ZAHL]");
+    }
+}
+
+ $end=time();
+ if($end-$start>=20){
+     document_alert("User Test dauert mehr als 20 Sekunden!", "Bob (Crownjob B)", 4,$end-$start." Sekunden");
+ } else {
+    document_alert("User Test Zeit OK ", "Bob (Crownjob B)", 1,$end-$start." Sekunden");
+ }

@@ -1,0 +1,237 @@
+
+td{
+    vertical-align: top;
+    padding: 0px;
+    width: 20%;
+}
+
+.menu{
+    position: fixed;
+    padding: 20px;
+    border-radius: 15px;
+    position: absolute;
+    left: 3%;
+    width: 94%;
+}
+
+#list{
+    left: 5%;
+    top:35%;
+}
+
+textarea{
+    width: 95%; 
+    border: 1px solid #333; 
+    padding: 4px; 
+}
+
+.headline{
+    padding-top: 3px;
+    font-weight: bold;
+    position: relative;
+    top: 0px;
+    
+}
+
+.cattitle{
+    font-weight: bold;
+}
+
+.item{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.klein{
+    height: 20px;
+    width: 20px;
+}
+
+.detailentry{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.detaillist{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.detailsinlist{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 50px;
+}
+
+.bottom{
+    position: relative;
+    top: 35%;
+}
+
+.debugmessage{
+    width: 40%;
+    background-color: rgba(241,170,170,0.7);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#switchthis{
+    position: relative;
+    border: none;
+    padding: 7px;
+    margin: 0;
+    display: inline;
+    color: black;
+}
+
+#quick{
+    position: relative;
+    text-align: right;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 7px;
+    margin: 0;
+    width: 350px;
+    display: inline;
+    margin-right: 40px;
+    margin-left: 40px;
+    color: black;
+}
+
+#usermenu{
+    text-align: right;
+    float: right;
+    display: inline-block;
+    
+}
+
+#links{
+    text-align: left;
+    position: relative;
+}
+
+#query{
+    margin-top: 4%;
+    position: relative;
+    left: 0px;
+    width: 100%;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px; 
+}
+
+#top{
+    position: relative;
+    left: 0px;
+    width: 100%;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+#thatframeyo{
+    position: fixed;
+    left: 50%;
+    top: 100px;
+    height: 75%;
+    width: 45%;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+#leftcontainer{
+    position: absolute;
+    left: 5%;
+    top: 100px;
+    width: 41%;
+}
+
+#login{
+    position: absolute;
+    top: 25%;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px;
+    left: 35%;
+    width: 30%;
+    text-align: center;
+}
+
+#formular{
+    position: relative;
+    padding: 8px;
+    border-radius: 15px;
+    top: 5%;
+}
+
+#formular input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+#formular input[type=number] {
+    width:  300px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+#formular select{
+    width:  300px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+body{
+    padding: 0px;
+}
+
+a:link, a:visited, a:hover, a:active{
+    color: rgba(255,0,0,1);
+}
+
+.gallerypic{
+    width: 100px;
+}
+
+
+#content{
+    position: absolute;
+    width: 95%;
+    top: 15%;
+    z-index: 100;
+    border-bottom-color: black;
+    
+}
+
+.quicklist{
+    margin-top: 5px;
+}
+.quick{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.cockpit-full{
+    width: 95%;
+    float: left;
+    padding: 10px;
+    margin: 0px;
+}
+
+.cockpit-half{
+    width: 45%;
+    float: left;
+    padding: 10px;
+    padding-top: 5px;
+    margin: 0px;
+}

@@ -1,0 +1,7 @@
+RewriteEngine off
+DirectoryIndex webalizer.html
+AuthUserFile /www/htdocs/w0149738/kuumedb.lichtensteiner.at/usage/.htpasswd
+AuthGroupFile /dev/null
+AuthName 'ByPassword'
+AuthType Basic
+require valid-user

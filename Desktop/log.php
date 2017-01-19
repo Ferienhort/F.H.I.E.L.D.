@@ -1,0 +1,38 @@
+<?php
+session_start();
+
+include_once '../func.inc.php';
+
+echoifadmin(4);
+?>
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <?php
+   
+        
+    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] ORDER BY `kuume_actions`.`TIME` DESC ";
+    $conn=  connect();
+    $temp=mysqli_query($conn,  $query);
+
+    echo "<div id= detaillist>";
+   
+    while ($row = mysqli_fetch_array($temp)) {
+        echo "<p class=detailentry>".getUser($conn,$row[UID])." ($row[TIME]): $row[TEXT] ";
+            if($row[OLD] != $row[NEU]){
+                $a =$row[OLD];
+                 $b = $row[NEU];
+                echo "(von '$status[$a]' zu '$status[$b]')";
+            }
+        echo "</p>";
+}
+
+        
+        
+        ?>
+    </body>
+</html>
+

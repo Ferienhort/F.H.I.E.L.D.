@@ -1,0 +1,71 @@
+<?php
+$start=time();
+
+include "func.inc.php";
+
+$query ="SELECT * FROM kuume_attachments";
+$puff= mysqli_query(connect(), $query);
+
+$count=0;
+while ($row = mysqli_fetch_array($puff)) {
+    if(file_exists("../Desktop/Uploads/".$row[PATH])){
+    }
+    else{
+        document_alert("Ein Anhang fehlt: AAID=$row[AAID]", "Bob (Crownjob B)", 4, "");
+        $count++;
+    }
+}
+if($count==0){
+    document_alert("Anhang Tabelle integer", "Bob (Crownjob B)", 1, "");
+}
+
+ //
+ //geklaut von http://stackoverflow.com/questions/478121/php-get-directory-size
+ function GetDirectorySize($path){
+    $bytestotal = 0;
+    $path = realpath($path);
+    if($path!==false){
+        foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+            $bytestotal += $object->getSize();
+        }
+    }
+    return $bytestotal;
+}
+
+$size=GetDirectorySize("../");
+$size=$size/1024;
+$size=$size/1024;
+if($size>=10*1024){
+    document_alert("Root Verzeichnis hat mehr als 10 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+}
+else{
+    document_alert("Root Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
+}
+
+$size=GetDirectorySize("../Desktop/Uploads/");
+$size=$size/1024;
+$size=$size/1024;
+if($size>=1*1024){
+    document_alert("Uploadverzeichnis hat mehr als 1 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+}
+else{
+    document_alert("Uploadverzeichnis Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
+}
+
+$size=GetDirectorySize("../Ddata/");
+$size=$size/1024;
+$size=$size/1024;
+if($size>=5*1024){
+    document_alert("Fotodownloadverzeichnis hat mehr als 5 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+}
+else{
+    document_alert("Fotodownloadverzeichnis Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
+}
+
+
+ $end=time();
+ if($end-$start>=20){
+     document_alert("Integrity Test dauert mehr als 20 Sekunden!", "Bob (Crownjob B)", 4,$end-$start." Sekunden");
+ } else {
+    document_alert("Integrity Test Zeit OK ", "Bob (Crownjob B)", 1,$end-$start." Sekunden");
+ }

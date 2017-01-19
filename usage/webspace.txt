@@ -1,0 +1,7 @@
+belegter Speicherplatz:
+htdocs	: 349368
+mysql	: 267
+	d0220110  -> 267
+pop	: 4
+	m0393f15  -> 4
+chroot	: 0

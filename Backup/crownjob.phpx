@@ -1,0 +1,45 @@
+<?php
+$start=time();
+
+include_once '../func.inc.php';
+$dir=scandir("Backups/Data",1);
+$dir[0]="Backups/Data/".$dir[0];
+
+    
+    $sql_file = 'Backups/Data/DB-Backup-'.date("Y-m-d-H-i").'.sql';
+    exec("mysqldump -u $username -p'$password' --allow-keywords --add-drop-table --complete-insert --quote-names $database > $sql_file", $output,$rest);
+        if(empty($output) && empty($rest)){
+        document_alert("Backup Erstellt", "Alice (Crownjob A)", 1,var_dump($output,$rest));
+    }
+    else{
+        document_alert("Kein Backup Erstellt", "Alice (Crownjob A)", 5,var_dump($output,$rest));
+        }
+
+        
+if(filesize($sql_file)<filesize($dir[0])){
+
+    document_alert("Neues Backup ist kleiner als Altes!", "Alice (Crownjob A)", 5,filesize($sql_file)."<".filesize($dir[0]));
+}
+if(filesize($sql_file)>1024*1024*10){
+    document_alert("DB Backup mehr als 10 MB ", "Alice (Crownjob A)", 5,round(filesize($sql_file)/(1024*1024),2). " MB");
+}
+else{
+    document_alert("DB schlank genug ", "Alice (Crownjob A)", 1,round(filesize($sql_file)/(1024*1024),2). " MB");
+}
+  
+    
+ if($backupdatadays!=0){
+ $sql_file = 'Backups/Data/DB-Backup-'.date("Y-m-d-H-i", time()-24*60*60*$backupdatadays).'.sql';   
+ if(file_exists($sql_file)){
+     unlink($sql_file);
+    document_alert("Ein Altes Backup vernichtet", "Alice (Crownjob A)", 3,"");
+    } 
+
+ }
+ 
+ $end=time();
+ if($end-$start>=20){
+        document_alert("DB Backup dauert mehr als 20 Sekunden!", "Alice (Crownjob A)", 5,$end-$start." Sekunden");
+ } else {
+        document_alert("DB Backup Zeit OK ", "Alice (Crownjmob A)", 1,$end-$start." Sekunden");
+ }

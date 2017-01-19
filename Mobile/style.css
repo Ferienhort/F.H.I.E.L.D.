@@ -1,0 +1,110 @@
+#login{
+    position: relative;
+    top: 15%;
+    background-color: rgba(200,200,200,1);
+    padding: 30px;
+        border-radius: 15px;
+}
+
+#formular{
+    position: relative;
+    background-color: rgba(200,200,200,1);
+    padding: 8px;
+    border-radius: 15px;
+    top: 5%;
+}
+
+#formular input[type=text] {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+#formular textarea{
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+    rows: 5;
+}
+#formular input[type=number] {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+#formular input[type=file] {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+#formular input[type=submit] {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+#formular input[type=checkbox] {
+        width:19px;
+    height:19px;
+   
+}
+#formular select{
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.blabla{
+    position: relative;
+    top: 5%;
+    background-color: rgba(230,230,230,1);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.nachricht{
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    
+}
+.titel{
+    font-weight: bold;
+}
+
+#logo{
+    width: 100%;
+    text-align: center;
+}
+
+body{
+    background-image: url(logo.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+.mobimenupix{
+    height: 40px;
+    float: right;
+}
+.mobimenu{ 
+}
+
+.gallerypic{
+    width: 80px;
+}
+
+#content{
+    position: absolute;
+    width: 95%;
+    top: 35%;
+    z-index: 100;
+    border-bottom-color: black;
+    
+}

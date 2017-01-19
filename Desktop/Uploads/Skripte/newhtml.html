@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body><form method="POST" action="generator.php"  target="_blank">
+            <div style="background-color: darkred; color: white; padding: 10px;"><b>WICHTIG: Dies ist ein Plan B.</b><br>
+            <p>Ein <u>Sektor</u> sind 50 aufeinanderfolgende Nummern. Nummern werden Sektorweise zugeordnet (sprich: ausschlie&szlig;lich in 50er Bl&ouml;cken ausgeben)</p>
+            
+            <p>Im config-File ist ein Array, welcher Sektor welchem Bereich zugeordnet ist, zus&auml;tzlich gibt es denn Breich <u>Sticker</u>. Das Skript liesst aus dem pseudo Bereich "Sticker" aus. Es beginnt am Anfang und pr&uuml;ft ob ein Sektor frei ist. <b>Es werden nur Sektoren ausgegeben, von denen <u>kein einziger Sticker</u> belegt ist</b></p>
+            
+            <p>Die Idee dahinter ist, dass das System denkt, dass jemand der bereits einen Sticker aus diesem Sektor verwendet hat, auch die restlichen Sticker aus diesem Sektor bereits hat und will damit eine doppelte Ausgabe vermeiden.</p>
+  
+            <p>Daher ist es von h&ouml;chster Wichtigkeit, die Sektoren beim "kleinschneiden" und ausgeben nicht zu vermischen! Unausgelastete Sektoren kosten uns nichts, Doppelbuchung viel.<b> Am Besten nur A4 Zettel ausgeben und die Leute selber zerschneiden lassen</b></p>
+            
+            <p>Der Spa&szlig; dauert auch noch sehr, sehr lange wegen der Verwendung einer externen (gratis) API. Die Erstellung ist auf <b>maximal 10 Sektoren begrenzt</b></p>
+                
+            <p>Die Nummern werden aus dem Sticker Bereich der Admin genommen</p>
+            <p style="text-align: right;"><input type="number" min="1" max="10" name="IamPissedThatIExist" require><input type="submit" value="Auf"></p>
+        </div>
+            </form>
+    </body>
+</html>
