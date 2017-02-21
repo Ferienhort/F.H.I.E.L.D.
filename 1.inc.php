@@ -1,26 +1,21 @@
 <?php
 
 //KATEGORIEN:
-//Gelten die selben Regel wie bei den Stati
+// Wichtig: Neue Kategorien müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
 $category = array("Foto","Audio", "Licht", "Computer","Anderes","Privat");
+//Welche Kategorien beim einloggen Automatisch aktiviert (selected) sind.
 $select_category=array(1,1,1,1,1,0);
 
-//Ablegestelle:
-//Gelten die selben Regel wie bei den Stati
+//ABLAGESTELLE:
+//Gelten die selben Regel wie bei den Kategorien
 $storage = array("Rabu", "Dachboden", "Villa","Ausw&auml;rts");
 $select_storage=array(0,0,0,0);
 
-//ZEIT FILTER
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-$time = array("36 Stunden","3 Tage", "1 Woche", "2 Wochen", "1 Monat");
-//Array mit STUNDEN der Zeit
-$time_ms=array(36,3*24, 7*24, 14*24, 30*24);
-$select_time= array(0,0,0,0,0);
 
 //LABELS
 //Für die Auswahl: Hier muss aich alles abgestimmt sein!
 //Selbe Logik wie oben....
+//DIESES FEATURE WURDE NIE FERTIG GESTELLT. ES GIBT NUR 1 LABEL, DAS SICH HIER BEARBETIEN LAeSST
 $label = array("Favorit");
 $select_label= array(0,0,0);
 $img_label=array("star.png","star_red.png","star_green.png");
@@ -33,11 +28,11 @@ $hours=16;
 $export_ordnung = array("IID", "CATEGORY", "STATUS", "NAME","YEAR_PURCHASED","VALUE","STORAGE");
 
 //INVENTUR
-//Abwieviel verschiedenen gescannten Objekten soll dies als Inventur wahrgenommen werden
+//Abwieviel verschiedenen gescannten Objekten soll der als Inventur wahrgenommen werden
 $inventory_minimum = 40;
 
 //USER LEVEL
-//IN ARBEIT: Userlevels: Jeder Nutzer hat ein Level (zwischen 0-10), fast alle Funktionen erfordern ein Mindestlevel.
+//Userlevels: Jeder Nutzer hat ein Level (zwischen 0-10), fast alle Funktionen erfordern ein Mindestlevel.
 //Die Userlevel können in der Oberfläche verändert werden, hier kann das Mindestlevel der Funktionen geändert werden
 //Die Zahlen in den eckigen Klammern [] am Ende bitte ignorieren.
 $zugriff = array(

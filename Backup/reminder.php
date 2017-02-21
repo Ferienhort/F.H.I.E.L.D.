@@ -5,7 +5,7 @@ require 'PHPMailer-master/PHPMailerAutoload.php';
 
 $groups_email=array(
 
-    "kuume" => array(1,"kuume@ferienhort.at","diana.kantner@hotmail.de","kindermann.lucas@gmail.com"),
+    "kuume" => array(1,"kuume@ferienhort.at"),
     "OH" => array(3,"allround-camp@ferienhort.at", "christoph.mrkvicka@ferienhort.at","oh@kuume.at")
 
 );
@@ -56,10 +56,9 @@ $mail->Body    = $mail->AltBody = $text;
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    document(connect(), 2, 0, "Erinnerungen verschickt" , 0, 0);
 } else {
     echo $text;
 }
 
 }
-
-document(connect(), 2, 0, "Erinnerungen verschickt" , 0, 0);

@@ -14,6 +14,7 @@ if(is_numeric($_POST[IID])==TRUE){
 $a=explode("#", $_POST[IID]);
 skript($a[0],$a[1]);
 
+$_POST[IID]=  str_replace("http://inventar.ferienhort.at/kuume.php?IID=","", $_POST[IID]);
 $_POST[IID]=  str_replace("\r\n",";", $_POST[IID]);
 $_POST[IID]=  str_replace(",",";", $_POST[IID]);
 if(strpos($_POST[IID], "++prefix:") !== FALSE){

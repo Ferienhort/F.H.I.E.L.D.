@@ -35,8 +35,8 @@ if($count==0){
 $size=GetDirectorySize("../");
 $size=$size/1024;
 $size=$size/1024;
-if($size>=10*1024){
-    document_alert("Root Verzeichnis hat mehr als 10 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+if($size>=1*1024){
+    document_alert("Root Verzeichnis hat mehr als 1 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
 }
 else{
     document_alert("Root Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
@@ -52,15 +52,6 @@ else{
     document_alert("Uploadverzeichnis Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
 }
 
-$size=GetDirectorySize("../Ddata/");
-$size=$size/1024;
-$size=$size/1024;
-if($size>=5*1024){
-    document_alert("Fotodownloadverzeichnis hat mehr als 5 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
-}
-else{
-    document_alert("Fotodownloadverzeichnis Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
-}
 
 
  $end=time();

@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_array($result)) {
 
  $end=time();
  if($end-$start>=20){
-     document_alert("User Test dauert mehr als 20 Sekunden!", "Bob (Crownjob B)", 4,$end-$start." Sekunden");
+     document_alert("User Test dauert mehr als 20 Sekunden!", "Charlie (Crownjob C)", 4,$end-$start." Sekunden");
  } else {
-    document_alert("User Test Zeit OK ", "Bob (Crownjob B)", 1,$end-$start." Sekunden");
+    document_alert("User Test Zeit OK ", "Charlie (Crownjob C)", 1,$end-$start." Sekunden");
  }

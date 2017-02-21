@@ -300,7 +300,7 @@ $buildingquery.= " LABEL IN(";
         if($_POST[not]!="FALSE"){
             $buildingquery.=" NOT ";
         }
-        $buildingquery.=" IN (SELECT IID FROM `kuume_actions` WHERE TEXT LIKE 'Scannt' AND TIME";
+        $buildingquery.=" IN (SELECT IID FROM `kuume_actions` WHERE TEXT LIKE '%Scannt%' AND TIME";
         $i=0;
         $temp=36;
     $buildingquery.=" <= ";
