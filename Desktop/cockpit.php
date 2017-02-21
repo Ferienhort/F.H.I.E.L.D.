@@ -134,16 +134,16 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER != 0
     }
     while($row=mysqli_fetch_array($result)){
         if(strpos($row[PRE], "Kommentiert") !== false && strpos($row[TEXT], "Kommentiert") !== false) {    
-        echo "<li>".getUser($conn,$row[UID])." hat einen Artikel kommentiert, nachdem du ihn kommentiert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+        echo "<li><b>[$row[IID]]</b> ".getUser($conn,$row[UID])." hat einen Artikel kommentiert, nachdem du ihn kommentiert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
         }
         elseif(strpos($row[PRE], "Kommentiert") !== false && strpos($row[TEXT], "Status") !== false) {    
-        echo "<li>".getUser($conn,$row[UID])." hat einen Artikelstatus ge&auml;ndert, nachdem du den Artikel kommentiert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+        echo "<li><b>[$row[IID]]</b> ".getUser($conn,$row[UID])." hat einen Artikelstatus ge&auml;ndert, nachdem du den Artikel kommentiert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
         }
         elseif(strpos($row[PRE], "Status") !== false && strpos($row[TEXT], "Kommentiert") !== false) {   
-        echo "<li>".getUser($conn,$row[UID])." hat einen Artikel kommentiert, dessen Status du ge&auml;ndert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+        echo "<li><b>[$row[IID]]</b> ".getUser($conn,$row[UID])." hat einen Artikel kommentiert, dessen Status du ge&auml;ndert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
         }
         elseif(strpos($row[PRE], "Status") !== false && strpos($row[TEXT], "Status") !== false) { 
-        echo "<li>".getUser($conn,$row[UID])." hat einen Status bearbeitet, den du ge&auml;ndert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+        echo "<li><b>[$row[IID]]</b> ".getUser($conn,$row[UID])." hat einen Status bearbeitet, den du ge&auml;ndert hast<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
         }
     }
     if(mysqli_num_rows($result)>0){
