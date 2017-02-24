@@ -22,7 +22,7 @@
          echo "<p class=nachricht>$message</p>";
      }
 
-    echo '<span class=titel>'.htmlentities($result[NAME]).' <i>('.$groups[$result[OWNER]-1].')</i></span><span class=mobimenu>';
+    echo '<span class=titel>'.  utf8_encode($result[NAME]).' <i>('.$groups[$result[OWNER]-1].')</i></span><span class=mobimenu>';
     if(checkthis(17))
             {
         echo "<a href=more.php?IID=$result[IID]><img class=mobimenupix src=img/Tools.gif></a>";

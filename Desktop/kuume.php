@@ -277,7 +277,7 @@ while ($row = mysqli_fetch_array($temp)) {
         if($row[LENDER]!="0"){
             echo "<b>[$row[LENDER]] </b>";
         }
-        echo $row[NAME]."</span> </span>";
+        echo ($row[NAME])."</span> </span>";
         echo "<span class=itemlinks>";
         echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png></a>";
          if(checkthis(3)){
