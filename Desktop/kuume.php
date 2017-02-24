@@ -59,9 +59,7 @@ if(checkthis(21)){
 echo "<a href=cockpit.php target='thatframeyo'> $_SESSION[NAME]'s &Uuml;bersicht </a>- ";
 if(checkthis(23)){
 }
-if(checkthis(1)){
-    echo "<a href=config.php target='thatframeyo'>Config</a> - ";
-}
+
 if(checkthis(20)){
     echo "<a href=scann.php target='thatframeyo'>Multiscan</a> - ";
 }
