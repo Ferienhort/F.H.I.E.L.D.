@@ -8,7 +8,7 @@ $conn=connect();
 
 if($_POST[ding_lender]!=""){
           $query= "UPDATE "
-            . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER=$_POST[ding_lender]"
+            . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER='$_POST[ding_lender]'"
             . " WHERE IID=$_POST[ding_iid]";
             mysqli_query($conn, $query );
                document($conn, $_SESSION[UID], $_POST[ding_iid],"Verliehen an $_POST[ding_lender]", -1, $_POST[ding_lender]);
@@ -20,7 +20,7 @@ if($_POST[ding_lender]!=""){
 
 if(isset($_POST[ding_lender_old])){
             $query= "UPDATE "
-            . "kuume_inventory  SET DATETIME_EDITED=NOW(), LENDER=0, DATETIME_LEND=0"
+            . "kuume_inventory  SET DATETIME_EDITED=NOW(), LENDER='0', DATETIME_LEND=0"
             . " WHERE IID=$_POST[ding_iid]";
             mysqli_query($conn, $query );
                document($conn, $_SESSION[UID], $_POST[ding_iid],"Retourniert", -1,0);
@@ -139,10 +139,10 @@ $img_label=array("star.png");
             echo $status[$result[STATUS]];
         }
        echo "<br>";
-     if($result[LENDER]==0 && checkthis(6)){
-        echo 'Verleih: <input type="number" pattern="[0-9]*" inputmode="numeric" min=100 max=999 name="ding_lender">'; 
+     if($result[LENDER]=="0" && checkthis(6)){
+        echo 'Verleih: <input type="text" name="ding_lender">'; 
         }
-    elseif($result[LENDER]!=0){
+    elseif($result[LENDER]!="0"){
         echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";

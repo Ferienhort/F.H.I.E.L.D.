@@ -51,10 +51,10 @@
             echo $status[$result[STATUS]];
         }
     
-        if($result[LENDER]==0 && checkthis(6)){
-        echo '<br>Verleih: <br><input type="number" pattern="[0-9]*" min=100 max=915 inputmode="numeric" name="ding_lender">'; 
+        if($result[LENDER]=="0" && checkthis(6)){
+        echo '<br>Verleih: <br><input type="text" name="ding_lender">'; 
         }
-        elseif($result[LENDER]!=0){
+        elseif($result[LENDER]!="0"){
         echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";

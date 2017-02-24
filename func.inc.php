@@ -158,7 +158,7 @@ function document($conn, $UID, $IID, $text, $old, $new){
        $text=rtrim($text, ';');
    }
     if($old==-1){
-        $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, LENDER, IP, HOST, AGENT) VALUES($IID, $UID, NOW(),'".mysqli_real_escape_string($conn,$text)."', 0, 0, $new, '$ip','$remoteaddr','$agent');";    
+        $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, LENDER, IP, HOST, AGENT) VALUES($IID, $UID, NOW(),'".mysqli_real_escape_string($conn,$text)."', 0, 0, '$new', '$ip','$remoteaddr','$agent');";    
     }
     else{
     $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, IP, HOST, AGENT) VALUES($IID, $UID, NOW(), '".mysqli_real_escape_string($conn,$text)."', $old, $new, '$ip','$remoteaddr','$agent');";

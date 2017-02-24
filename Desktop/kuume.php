@@ -246,87 +246,8 @@ $conn=connect();
 
 $buildingquery ="SELECT * FROM `kuume_inventory` WHERE";
 
-if($_POST[verliehen]==TRUE){
-    $buildingquery.=" LENDER != 0 AND ";
-}
+include 'build-query.php';
 
-$buildingquery.= " CATEGORY IN(";
-        
-    $i=0;
-    foreach($select_category as $cat){
-        if($cat==1){
-           $buildingquery.=$i.","; 
-        }
-        $i++;
-    }
-    $buildingquery.="2500000) AND";
-    
-$buildingquery.= " LABEL IN(";
-    
-    $i=0;
-    $a=0;
-    foreach($select_label as $cat){
-        if($cat==1){
-           $buildingquery.=($i+1).","; 
-           $a++;
-        }
-        $i++;
-    }
-    $i=0;
-    if($a==0){
-        $buildingquery.="$i,";
-        $i++;
-           foreach($label as $cat){
-                 $buildingquery.="$i,";
-                 $i++;
-           } 
-        }
-    $buildingquery.="2500000) AND STATUS IN(";
-    
-    $i=0;
-    foreach($select_status as $cat){
-        if($cat==1){
-           $buildingquery.=$i.","; 
-        }
-        $i++;
-    }
-    
-    $buildingquery.="2500000)";
-    
-    if($_POST[not]!="FAUL" && isset($_POST[not])){
-        $buildingquery.=" AND IID ";
-        if($_POST[not]!="FALSE"){
-            $buildingquery.=" NOT ";
-        }
-        $buildingquery.=" IN (SELECT IID FROM `kuume_actions` WHERE TEXT LIKE '%Scannt%' AND TIME";
-        $i=0;
-        $temp=36;
-    $buildingquery.=" <= ";
-     
-    if($_POST[date]==0 || !isset($_POST[date])){
-        $buildingquery.=" NOW() + INTERVAL 24 HOUR AND TIME >= NOW() - INTERVAL 36 HOUR )"; 
-     }
-     else
-     {
-        $buildingquery.=" str_to_date('$_POST[date]','%Y-%m-%d') + INTERVAL 48 HOUR AND TIME >= str_to_date('$_POST[date]','%Y-%m-%d') - INTERVAL 36 HOUR) ";   
-     }
-       
-     
-            
-    }
-
-$buildingquery.=" AND DATETIME_CATALOGED < ";
-
-     if($_POST[date]==0 || !isset($_POST[date])){
-        $buildingquery.=" NOW()"; 
-     }
-     else
-     {
-        $buildingquery.=" str_to_date('$_POST[date]','%Y-%m-%d') + INTERVAL 24 HOUR";   
-     }
-          
-$buildingquery  .= " AND OWNER=$_SESSION[NOW] ORDER BY `kuume_inventory`.`CATEGORY` ASC, `kuume_inventory`.`STATUS` ASC, `kuume_inventory`.`NAME` ASC";
-    
 $query=$buildingquery;
 message($query);
 document($conn, $_SESSION[UID],0,"Schnuppert: ".$groups[$_SESSION[NOW]-1],0,0);
@@ -353,7 +274,7 @@ while ($row = mysqli_fetch_array($temp)) {
                 echo "<img class=klein src=img/time.png>";
             } 
        // echo " <b>$row[IID]</b>";
-        if($row[LENDER]!=0){
+        if($row[LENDER]!="0"){
             echo "<b>[$row[LENDER]] </b>";
         }
         echo $row[NAME]."</span> </span>";

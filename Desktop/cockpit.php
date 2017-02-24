@@ -53,7 +53,8 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
             $nummern= explode(";", $nummern);
             foreach ($nummern as $value)
             {
-                $query="UPDATE kuume_inventory SET DATETIME_LEND=IF(LENDER!=$_POST[kind],NOW(),0),DATETIME_EDITED=NOW(), LENDER=IF(LENDER!=$_POST[kind],$_POST[kind],0) WHERE IID=$value AND OWNER=$_SESSION[NOW];";
+                $query="UPDATE kuume_inventory SET DATETIME_LEND=IF(LENDER NOT LIKE '$_POST[kind]',NOW(),0),DATETIME_EDITED=NOW(), LENDER=IF(LENDER NOT LIKE '$_POST[kind]','$_POST[kind]',0) WHERE IID=$value AND OWNER=$_SESSION[NOW];";
+                message($query);
                 $result=mysqli_query($conn,$query);
                 if(mysqli_affected_rows($conn)>0 && $_POST[kind]!=0){
                     document($conn, $_SESSION[UID], $value,"Verliehen an $_POST[kind]", -1, 0);
@@ -76,7 +77,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
      
      
      
-$result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER != 0 AND OWNER=$_SESSION[NOW]");
+$result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW]");
     if(mysqli_num_rows($result)>0){
          echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen";
          echo "<ul class=quicklist>";

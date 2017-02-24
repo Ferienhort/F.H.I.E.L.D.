@@ -13,7 +13,7 @@ $groups_email=array(
 foreach ($groups_email as $key)
 {
     
-    $result=mysqli_query(connect(), "SELECT * FROM `kuume_inventory`  WHERE LENDER !=0 AND OWNER = $key[0] ORDER BY LENDER");
+    $result=mysqli_query(connect(), "SELECT * FROM `kuume_inventory`  WHERE LENDER NOT LIKE '0' AND OWNER = $key[0] ORDER BY LENDER");
 
     if(mysqli_num_rows($result) === 0 ){
        continue;
