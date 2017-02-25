@@ -33,11 +33,14 @@ else{
     echo "  V.:$version ";
     if(checkthis(15)){
    echo "<span class=backup>";
-    if(!$dir=scandir("../Backup/Backups/Data",1)){
+   $dir=scandir("../Backup/Backups/Data",1);
+   
+    if(!is_array($dir)){
         echo "Kein Backup gefunden!";
     }
     else{
-         $dir=  explode("-", $dir[0]);
+        $dir=$dir[1];
+         $dir=explode("-", $dir);
     echo "<b>Letztes DB Backup:</b> $dir[4].$dir[3].$dir[2] um $dir[5]:".substr($dir[6],0,2);
     }
     echo "</span>";

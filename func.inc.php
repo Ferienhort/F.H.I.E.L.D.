@@ -86,6 +86,12 @@ function printStorage($aktuell){
 }
 
 function checkordie(){
+    
+    if(session_status()==1){
+    include 'index.php';
+    die();
+    }
+    
     if(isset($_SESSION[UID]) && $_SESSION[AKTIV]==1){  
     }
     else{
