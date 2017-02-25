@@ -191,7 +191,7 @@ echo "<form method=POST action=more.php id=formular enctype=multipart/form-data>
     echo " Name: <b>$result[NAME]</b><span class=mobimenu><a href=kuume.php?IID=$result[IID]&ANON=1><img src=img/BackMobile.gif class=mobimenupix></a><a href=index.html><img class=mobimenupix src=img/Homebutton.gif></a></span><br>";
 
     if($result[LENDER]=="0" && checkthis(6)){
-        echo '<br>Verleih: <br><input type="text" name="ding_lender"><br>'; 
+        echo '<br>Betreuerverleih: <br><input type="text" name="ding_lender"><br>'; 
         }
     elseif($result[LENDER]!="0"){
         echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
