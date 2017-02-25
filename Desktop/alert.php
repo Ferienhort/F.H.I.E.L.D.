@@ -5,7 +5,7 @@ include 'header.php';
 
 echoifadmin(22);
 
-$query="SELECT * FROM kuume_alerts ORDER BY DATETIME_IT_HAPPENED DESC";
+$query="SELECT * FROM kuume_alerts ORDER BY DATETIME_IT_HAPPENED DESC LIMIT 2000";
 
 $result=mysqli_query(connect(), $query);
 while($row=  mysqli_fetch_array($result)){

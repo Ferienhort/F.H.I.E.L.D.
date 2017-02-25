@@ -3,7 +3,7 @@ $start=time();
 include_once '../func.inc.php';
 
 $conn=connect();
-$result=mysqli_query($conn,"SELECT UID FROM kuume_user WHERE AKTIV=1");
+$result=mysqli_query($conn,"SELECT UID FROM kuume_user WHERE 1");
 
 while ($row = mysqli_fetch_array($result)) {
     $query="SELECT COUNT( DISTINCT HOST ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 72 HOUR";
