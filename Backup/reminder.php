@@ -1,6 +1,6 @@
 <?php
 require '../func.inc.php';
-require '../config-email.php';
+include '../config-email.inc.php';
 
 
 $groups_email=array(
