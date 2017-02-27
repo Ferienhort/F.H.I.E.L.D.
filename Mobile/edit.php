@@ -22,7 +22,7 @@
          echo "<p class=nachricht>$message</p>";
      }
 
-    echo '<span class=titel>'.htmlentities($result[NAME]).' <i>('.$groups[$result[OWNER]-1].')</i></span><span class=mobimenu>';
+    echo '<span class=titel>'.  utf8_encode($result[NAME]).' <i>('.$groups[$result[OWNER]-1].')</i></span><span class=mobimenu>';
     if(checkthis(17))
             {
         echo "<a href=more.php?IID=$result[IID]><img class=mobimenupix src=img/Tools.gif></a>";
@@ -51,10 +51,10 @@
             echo $status[$result[STATUS]];
         }
     
-        if($result[LENDER]==0 && checkthis(6)){
-        echo '<br>Verleih: <br><input type="number" pattern="[0-9]*" min=100 max=915 inputmode="numeric" name="ding_lender">'; 
+        if($result[LENDER]=="0" && checkthis(6)){
+        echo '<br>Verleih: <br><input type="text" name="ding_lender">'; 
         }
-        elseif($result[LENDER]!=0){
+        elseif($result[LENDER]!="0"){
         echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";

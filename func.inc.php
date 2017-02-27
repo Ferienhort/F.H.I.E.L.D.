@@ -86,6 +86,12 @@ function printStorage($aktuell){
 }
 
 function checkordie(){
+    
+    if(session_status()==1){
+    include 'index.php';
+    die();
+    }
+    
     if(isset($_SESSION[UID]) && $_SESSION[AKTIV]==1){  
     }
     else{
@@ -158,7 +164,7 @@ function document($conn, $UID, $IID, $text, $old, $new){
        $text=rtrim($text, ';');
    }
     if($old==-1){
-        $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, LENDER, IP, HOST, AGENT) VALUES($IID, $UID, NOW(),'".mysqli_real_escape_string($conn,$text)."', 0, 0, $new, '$ip','$remoteaddr','$agent');";    
+        $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, LENDER, IP, HOST, AGENT) VALUES($IID, $UID, NOW(),'".mysqli_real_escape_string($conn,$text)."', 0, 0, '$new', '$ip','$remoteaddr','$agent');";    
     }
     else{
     $query="INSERT INTO `kuume_actions` (IID, UID, TIME, TEXT, OLD, NEU, IP, HOST, AGENT) VALUES($IID, $UID, NOW(), '".mysqli_real_escape_string($conn,$text)."', $old, $new, '$ip','$remoteaddr','$agent');";
@@ -194,6 +200,9 @@ function document_alert($text,$user,$level,$output){
     include 'config.inc.php';
     $query="INSERT INTO kuume_alerts (`LEVEL`, `MESSAGE`, `DATETIME_IT_HAPPENED`, `BY`, `OUTPUT`) VALUES($level,'".mysqli_real_escape_string(connect(),$text)."', NOW(),'$user','".mysqli_real_escape_string(connect(),$output)."')";
     mysqli_query(connect(),$query);
+    if($level>3){
+    mailto("LEVEL $level Alert von $user  \r\n $text");
+    }
 }
 
 function eastereggs($i){
@@ -411,4 +420,19 @@ function findmyparent($i){
 function htmltocsv($string){
     $string = html_entity_decode ($string);
     return $string;
+}
+
+function mailto($text){
+    include 'config-email.inc.php';
+    
+    foreach ($adminemail as $value)
+{
+    if(!is_int($value)){
+        $mail->addAddress($value);
+    }
+}
+    
+$mail->Subject = 'FHIELD Alert';
+$mail->Body    = $mail->AltBody = $text;
+$mail->send();
 }

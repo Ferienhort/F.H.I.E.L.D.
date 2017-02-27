@@ -1,3 +1,5 @@
+
+
 <html>
     <head>
         <link rel="apple-touch-icon" sizes="57x57" href="Icon/apple-touch-icon-57x57.png">
@@ -20,8 +22,10 @@
 <meta name="msapplication-TileImage" content="Icon/mstile-144x144.png">
 <meta name="msapplication-config" content="Icon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1 "/>
+
          <link rel="stylesheet" type="text/css" href="style.css">
-         <meta charset="utf8_unicode_ci">
+
          <title> F.H.I.E.L.D. - FerienHort Inventar Export und Logistik‎ Datenbank</title>
         
     </head>
@@ -40,7 +44,7 @@
     <body>
         
         <?php
-        
+
 include_once '../func.inc.php';        
  $connect=  connect();       
  foreach($_GET as $a) {

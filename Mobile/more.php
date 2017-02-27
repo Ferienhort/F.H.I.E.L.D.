@@ -87,6 +87,7 @@ if(isset($_POST[IID])){
     
     
     }
+   
     
     $query= "SELECT * FROM kuume_inventory WHERE IID=$_POST[IID]";
     $result=mysqli_fetch_array(mysqli_query($conn,  mysqli_real_escape_string($conn, $query) ));
@@ -94,6 +95,8 @@ if(isset($_POST[IID])){
     $_POST[ding_inhalt]=  str_replace("\r\n",";",$_POST[ding_inhalt]);
     $_POST[ding_inhalt]=  str_replace(";;","",$_POST[ding_inhalt]);
 
+    
+    
     
     if(substr($_POST[ding_inhalt], 1)!=";"){
         $_POST[ding_inhalt]=";".$_POST[ding_inhalt];
@@ -138,6 +141,32 @@ if(isset($_POST[IID])){
         mysqli_query($conn,$query );
         document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Lagerstelle: $_POST[dings_wo_alt] => $_POST[dings_wo]", 0, 0);
     }
+    
+    
+    if($_POST[ding_lender]!=""){
+          $query= "UPDATE "
+            . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER='$_POST[ding_lender]'"
+            . " WHERE IID=$_POST[IID]";
+            mysqli_query($conn, $query );
+               document($conn, $_SESSION[UID], $_POST[IID],"Verliehen an $_POST[ding_lender]", -1, $_POST[ding_lender]);
+               if($faulheitlevelmehrals9000==TRUE){
+                   $message.="<br>";
+               }
+               $message.="Erfolgreich ausgliehen";
+         }
+    if(isset($_POST[ding_lender_old])){
+            $query= "UPDATE "
+            . "kuume_inventory  SET DATETIME_EDITED=NOW(), LENDER='0', DATETIME_LEND=0"
+            . " WHERE IID=$_POST[IID]";
+            mysqli_query($conn, $query );
+               document($conn, $_SESSION[UID], $_POST[IID],"Retourniert von $_POST[ding_lender_old]", -1, $_POST[ding_lender_old]);
+               if($faulheitlevelmehrals9000==TRUE){
+                   $message.="<br>";
+               }
+               $message.="Erfolgreich retourniert";
+               $faulheitlevelmehrals9000=TRUE;
+     }
+         
     $_GET[IID]=$_POST[IID];
     include 'kuume.php';
     die();
@@ -160,7 +189,22 @@ echo "<form method=POST action=more.php id=formular enctype=multipart/form-data>
  echo "IID: $result[IID]   ";
     echo "<br>";
     echo " Name: <b>$result[NAME]</b><span class=mobimenu><a href=kuume.php?IID=$result[IID]&ANON=1><img src=img/BackMobile.gif class=mobimenupix></a><a href=index.html><img class=mobimenupix src=img/Homebutton.gif></a></span><br>";
-if($result[YEAR_PURCHASED]!="0000"){
+
+    if($result[LENDER]=="0" && checkthis(6)){
+        echo '<br>Betreuerverleih: <br><input type="text" name="ding_lender"><br>'; 
+        }
+    elseif($result[LENDER]!="0"){
+        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]><br>";
+            }
+            else {
+                echo "<br>";
+            }
+        }
+    
+    
+    if($result[YEAR_PURCHASED]!="0000"){
      echo "Angeschafft: $result[YEAR_PURCHASED]<br>";
      }
  if(checkthis(26)){
