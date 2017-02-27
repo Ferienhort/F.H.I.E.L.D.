@@ -25,7 +25,7 @@ file_put_contents("Backups/Pix/Drei/$name",$imageData);
 
  $end=time();
  if($end-$start>=20){
-     document_alert("Zeichnent dauert mehr als 20 Sekunden!", "David (Crownjob D)", 4,$end-$start." Sekunden");
+     document_alert("Zeichnent dauert mehr als 20 Sekunden!", "David ", 4,$end-$start." Sekunden");
  } else {
-    document_alert("Zeichnen Zeit OK ", "David (Crownjob D)", 1,$end-$start." Sekunden");
+    document_alert("Zeichnen Zeit OK ", "David ", 1,$end-$start." Sekunden");
  }
