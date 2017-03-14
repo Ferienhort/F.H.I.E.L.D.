@@ -424,15 +424,13 @@ function htmltocsv($string){
 
 function mailto($text){
     include 'config-email.inc.php';
-    
     foreach ($adminemail as $value)
-{
+    {
     if(!is_int($value)){
         $mail->addAddress($value);
+        }
     }
-}
-    
-$mail->Subject = 'FHIELD Alert';
-$mail->Body    = $mail->AltBody = $text;
-$mail->send();
+    $mail->Subject = 'FHIELD Alert';
+    $mail->Body    = $mail->AltBody = $text;
+    $mail->send();
 }

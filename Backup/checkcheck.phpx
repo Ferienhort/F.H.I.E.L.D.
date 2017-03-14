@@ -11,12 +11,12 @@ while ($row = mysqli_fetch_array($puff)) {
     if(file_exists("../Desktop/Uploads/".$row[PATH])){
     }
     else{
-        document_alert("Ein Anhang fehlt: AAID=$row[AAID]", "Bob (Crownjob B)", 4, "");
+        document_alert("Ein Anhang fehlt: AAID=$row[AAID]", "Charlie", 4, "");
         $count++;
     }
 }
 if($count==0){
-    document_alert("Anhang Tabelle integer", "Bob (Crownjob B)", 1, "");
+    document_alert("Anhang Tabelle integer", "Charlie", 1, "");
 }
 
  //
@@ -35,28 +35,28 @@ if($count==0){
 $size=GetDirectorySize("../");
 $size=$size/1024;
 $size=$size/1024;
-if($size>=1*1024){
-    document_alert("Root Verzeichnis hat mehr als 1 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+if($size>=2*1024){
+    document_alert("Root Verzeichnis hat mehr als 2 GB! ", "Charlie", 5,round($size,2)." MB");
 }
 else{
-    document_alert("Root Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
+    document_alert("Root Verzeichnis OK ", "Charlie", 1,round($size,2)." MB");   
 }
 
 $size=GetDirectorySize("../Desktop/Uploads/");
 $size=$size/1024;
 $size=$size/1024;
 if($size>=1*1024){
-    document_alert("Uploadverzeichnis hat mehr als 1 GB! ", "Bob (Crownjob B)", 5,round($size,2)." MB");
+    document_alert("Uploadverzeichnis hat mehr als 1 GB! ", "Charlie", 5,round($size,2)." MB");
 }
 else{
-    document_alert("Uploadverzeichnis Verzeichnis OK ", "Bob (Crownjob B)", 1,round($size,2)." MB");   
+    document_alert("Uploadverzeichnis Verzeichnis OK ", "Charlie", 1,round($size,2)." MB");   
 }
 
 
 
  $end=time();
  if($end-$start>=20){
-     document_alert("Integrity Test dauert mehr als 20 Sekunden!", "Bob (Crownjob B)", 4,$end-$start." Sekunden");
+     document_alert("Integrity Test dauert mehr als 20 Sekunden!", "Charlie", 4,$end-$start." Sekunden");
  } else {
-    document_alert("Integrity Test Zeit OK ", "Bob (Crownjob B)", 1,$end-$start." Sekunden");
+    document_alert("Integrity Test Zeit OK ", "Charlie", 1,$end-$start." Sekunden");
  }

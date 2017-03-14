@@ -56,18 +56,19 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
                 $query="UPDATE kuume_inventory SET DATETIME_LEND=IF(LENDER NOT LIKE '$_POST[kind]',NOW(),0),DATETIME_EDITED=NOW(), LENDER=IF(LENDER NOT LIKE '$_POST[kind]','$_POST[kind]',0) WHERE IID=$value AND OWNER=$_SESSION[NOW];";
                 message($query);
                 $result=mysqli_query($conn,$query);
-                if(mysqli_affected_rows($conn)>0 && $_POST[kind]!=0){
-                    document($conn, $_SESSION[UID], $value,"Verliehen an $_POST[kind]", -1, 0);
+                message(mysqli_affected_rows($conn)." Reihen geupdatet");
+                if((mysqli_affected_rows($conn) == 1) && ($_POST[kind] == "0")){
+                    document($conn, $_SESSION[UID], $value, "Retourniert", -1,"$_POST[kind]");
                 }
-                if(mysqli_affected_rows($conn)>0 && $_POST[kind]==0){
-                    document($conn, $_SESSION[UID], $value,"Retourniert", -1,0);
+                if((mysqli_affected_rows($conn) == 1) && ($_POST[kind] != "0")){
+                    document($conn, $_SESSION[UID], $value, "Verliehen an $_POST[kind]", -1, $_POST[kind]);
                 }
             }
         }
-        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Schnellverleih >>";
-        echo "Nummer: <input type=text name=kind size=4>";
+        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Schnellverleih";
+        echo "<span style='float:right;'> Nummer: <input type=text name=kind size=4> </span>";
         echo "<br>";
-        echo "<textarea name=nummern rows=4 cols=50></textarea>";
+        echo "<textarea name=nummern rows=4 cols=50 style='width=100%'></textarea>";
         echo "<input type=submit value=Senden>";
         echo "</form>";
         echo "</div>";
