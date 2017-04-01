@@ -46,8 +46,16 @@ else{
     echo "</span>";
 }
 echo "</span>";
-echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">
-           Scan<input type="checkbox" name="Check" value="1"> inkl. Kommentare<input type="checkbox" name="kom" value="1"> </form>';
+echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">';
+
+if(checkthis(20)){
+    echo 'Scan<input type="checkbox" name="Check" value="1">';
+}
+
+if(checkthis(24)){
+    echo 'inkl. Kommentare<input type="checkbox" name="kom" value="1">';
+}
+    echo '</form>';
 echo "<span id=usermenu>";
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";
