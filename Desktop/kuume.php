@@ -267,7 +267,7 @@ while ($row = mysqli_fetch_array($temp)) {
         echo "<p class=cattitle> ".$category[$row[CATEGORY]]."</p>";
     }
         echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class= klein><span class=itemtitle> ";
-                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0){
+                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
                 echo "<img class=klein src=img/comment.png>";
             }
         if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
