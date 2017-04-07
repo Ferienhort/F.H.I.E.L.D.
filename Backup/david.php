@@ -24,8 +24,8 @@ file_put_contents("Backups/Pix/Drei/$name",$imageData);
 
 
  $end=time();
- if($end-$start>=20){
-     document_alert("Zeichnent dauert mehr als 20 Sekunden!", "David ", 4,$end-$start." Sekunden");
+ if($end-$start>=25){
+     document_alert("Zeichnent dauert mehr als 25 Sekunden!", "David ", 4,$end-$start." Sekunden");
  } else {
     document_alert("Zeichnen Zeit OK ", "David ", 1,$end-$start." Sekunden");
  }
