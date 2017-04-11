@@ -56,6 +56,43 @@ if(isset($_POST[IID])){
         }
   
     
+    if($_FILES["fileToUpload"]["name"]!=""){
+    $target_dir = "Uploads/PDF/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    if(isset($_FILES["fileToUpload"]["name"])) {
+    $check = strpos($_FILES["fileToUpload"]["name"],"pdf");
+    if($check !== false) {
+        $uploadOk = 1;
+         message($message);
+    } else {
+        $message= "Das ist kein PDF 1!";
+        $uploadOk = 0;
+        message($message);
+    }
+    }
+    if($imageFileType != "pdf" && $imageFileType != "PDF") {
+        $message= "Das ist kein PDF 2!";
+        $uploadOk = 0;
+         message($message);
+    }
+    
+    if ($uploadOk == 0) {
+        $message = "Fehler PDF 3!";
+        message($message);
+    } else {
+                $targetfolder =$target_dir.$_FILES['fileToUpload']['name'];
+                message("Checkpoint Charlie... $targetfolder");
+                
+                move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$targetfolder);
+                
+                
+                $query="INSERT INTO kuume_attachments (PATH, IID, TYPE, DATETIME_UPLOADED) VALUES('PDF/".mysqli_real_escape_string($conn,$_FILES["fileToUpload"]["name"])."',$_POST[IID],1,NOW());";
+                mysqli_query(connect(),$query);
+                document(connect(), $_SESSION[UID],$_POST[IID], "Anhang angeheftet", 0, 0);
+            }
+        }
     
     $query= "SELECT * FROM kuume_inventory WHERE IID=$_POST[IID]";
     $result=mysqli_fetch_array(mysqli_query($conn,  mysqli_real_escape_string($conn, $query) ));

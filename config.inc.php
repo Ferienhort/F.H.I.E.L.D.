@@ -45,7 +45,7 @@ $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
 $mobile_debug = FALSE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$desktop_debug = FALSE;
+$desktop_debug = TRUE;
 
 //BACK UPs
 //BackUp Interval der Datenbank in MINUTEN. Mindestens 10, Nie=0 DEPRECATED!
