@@ -88,6 +88,7 @@ if(isset($_POST[IID])){
                 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$targetfolder);
                 
                 
+                copy($targetfolder, "../Mobile/$targetfolder");
                 $query="INSERT INTO kuume_attachments (PATH, IID, TYPE, DATETIME_UPLOADED) VALUES('PDF/".mysqli_real_escape_string($conn,$_FILES["fileToUpload"]["name"])."',$_POST[IID],1,NOW());";
                 mysqli_query(connect(),$query);
                 document(connect(), $_SESSION[UID],$_POST[IID], "Anhang angeheftet", 0, 0);
