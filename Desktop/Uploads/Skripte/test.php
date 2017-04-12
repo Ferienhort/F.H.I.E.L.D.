@@ -1,1 +1,0 @@
-<a href="fdexport.php">Zugriffe des Fotodownloads Exportieren!</a>
