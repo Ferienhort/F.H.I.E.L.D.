@@ -184,14 +184,23 @@ $img_label=array("star.png");
         }
         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=0"))>0){ 
             echo "<p id=bilder><b>Anh&auml;nge</b><br><br>";
-            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID]");
+            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=0");
             while ($row=mysqli_fetch_array($sushi)) {
                 echo "<a href=javascript:display('$row[PATH]');><img src=Uploads/$row[PATH] class=gallerypic clas=gallerypic></a>";
             }
             echo "</p>";
         }
+        
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=1"))>0){ 
+            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=1 ORDER BY AAID");
+            while ($row=mysqli_fetch_array($sushi)) {
+            echo "<a href=Uploads/$row[PATH]>".  str_replace("PDF/","", $row[PATH])."</a><br>";
+            }
+        }
+        
+        
                 if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=2"))>0){ 
-            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] ORDER BY AAID");
+            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=2 ORDER BY AAID");
             while ($row=mysqli_fetch_array($sushi)) {
             echo "<iframe name=klein style='border: 0px;' id=klein src=Uploads/$row[PATH] width=95% height=".($row[SIZE]*100)."></iframe>";
             }

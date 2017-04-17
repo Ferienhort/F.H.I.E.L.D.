@@ -103,6 +103,13 @@
                 echo "<a href=javascript:display('$row[PATH]');><img src=Uploads/$row[PATH] class=gallerypic></a>";
             }
             echo "</p><br>";
+            }
+            
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=1"))>0){ 
+            $sushi=mysqli_query($conn, "SELECT * FROM kuume_attachments WHERE IID=$result[IID] AND TYPE=1 ORDER BY AAID");
+            while ($row=mysqli_fetch_array($sushi)) {
+            echo "<a href=Uploads/$row[PATH]>".  str_replace("PDF/","", $row[PATH])."</a><br>";
+            }
         }
         
         

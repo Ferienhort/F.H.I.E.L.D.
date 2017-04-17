@@ -9,6 +9,7 @@ echoifadmin(0);
 
 if(isset($_GET[IID])&&isset($_GET[ACCEPT])){
     mysqli_query(connect(),"DELETE FROM kuume_inventory WHERE IID=$_GET[IID]");
+    mysqli_query(connect(),"DELETE FROM kuume_attachments WHERE IID=$_GET[IID]");
     document(connect(), $_SESSION[UID],  $_GET[IID], "Entfernt",0,0);
     echo "<i>It's gone...</i>";
 }

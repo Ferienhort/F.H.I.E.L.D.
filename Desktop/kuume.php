@@ -46,8 +46,16 @@ else{
     echo "</span>";
 }
 echo "</span>";
-echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">
-           Scan<input type="checkbox" name="Check" value="1"> inkl. Kommentare<input type="checkbox" name="kom" value="1"> </form>';
+echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">';
+
+if(checkthis(20)){
+    echo 'Scan<input type="checkbox" name="Check" value="1">';
+}
+
+if(checkthis(24)){
+    echo 'inkl. Kommentare<input type="checkbox" name="kom" value="1">';
+}
+    echo '</form>';
 echo "<span id=usermenu>";
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";
@@ -88,17 +96,7 @@ if(isset($_POST[ichbinfaul])){
         $i++;
     }
     $i=0;
-    foreach($time as $cat){
-        $temp="time".$i;
-            if($_POST[time]==$i){
-                $select_time[$i]=1;
-            }
-            else{
-                $select_time[$i]=0;
-            }
-        $i++;
-    }
-    $i=0;
+
     foreach($label as $cat){
         $temp="label".$i;
         $select_label[$i]=$_POST[$temp];
@@ -217,7 +215,13 @@ if(isset($_POST[ichbinfaul])){
             }
         echo "> Details<br>";
         }
-        
+        if(checkthis(26)){
+            echo "<input type=checkbox name=bestellt value=TRUE";
+            if($_POST[bestellt]==TRUE){
+                echo " checked";
+            }
+            echo "> Nachbestellung<br>";
+        }
         ?><br>
           
         </td>
@@ -267,7 +271,7 @@ while ($row = mysqli_fetch_array($temp)) {
         echo "<p class=cattitle> ".$category[$row[CATEGORY]]."</p>";
     }
         echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class= klein><span class=itemtitle> ";
-                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0){
+                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
                 echo "<img class=klein src=img/comment.png>";
             }
         if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
