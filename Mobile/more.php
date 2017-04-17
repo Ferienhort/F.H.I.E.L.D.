@@ -133,6 +133,11 @@ if(isset($_POST[IID])){
         document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Prozent: $result[PERCENT] => $_POST[dings_prozent]", 0, 0);
         message("UPDATE kuume_inventory SET PROZENT='".mysqli_real_escape_string($conn,$_POST[dings_prozent])."' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
     }
+        if($result[ACTUAL]!=$_POST[dings_soll]){
+        mysqli_query($conn, "UPDATE kuume_inventory SET ACTUAL='".mysqli_real_escape_string($conn,$_POST[dings_soll])."' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
+        document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Soll: $result[ACTUAL] => $_POST[dings_soll]", 0, 0);
+        message("UPDATE kuume_inventory SET ACTUAL='".mysqli_real_escape_string($conn,$_POST[dings_soll])."' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
+    }
         if($_POST[dings_wo]!=$_POST[dings_wo_alt]){
         $query="UPDATE kuume_inventory SET CONTENT=REPLACE( CONTENT,'".mysqli_real_escape_string($conn,$_POST[IID])."','')"."WHERE IID=".mysqli_real_escape_string($conn,$_POST[dings_wo_alt]).";";
         message($query);
@@ -229,6 +234,7 @@ if(checkthis(10) &&  $result[VALUE]!=0){
     }
 
     echo "Prozent:<br> <input type=text value='$result[PERCENT]' name=dings_prozent><br>"; 
+    echo "Soll:<br> <input type=text value='$result[ACTUAL]' name=dings_soll><br>"; 
     echo "<input type=hidden value=$result[IID] name=IID>";
     
     echo "Beinhaltet<br>";
@@ -243,7 +249,7 @@ $b=explode(";", $result[CONTENT]);
     
     $rowrowrow=mysqli_query($conn, "SELECT * FROM kuume_inventory WHERE CONTENT LIKE '%;$result[IID];%'");
     $row=  mysqli_fetch_array($rowrowrow);
-     echo "Ist in:<br> <input type=text value='$row[IID]' name=dings_wo style='width: 100px;'><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
+     echo "Ist in:<br> <input type=text value='$row[IID]' name=dings_wo><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
      ?>
     <br>
 <input type="submit" value="Go!">
