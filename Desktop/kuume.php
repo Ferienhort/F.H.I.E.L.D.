@@ -96,17 +96,7 @@ if(isset($_POST[ichbinfaul])){
         $i++;
     }
     $i=0;
-    foreach($time as $cat){
-        $temp="time".$i;
-            if($_POST[time]==$i){
-                $select_time[$i]=1;
-            }
-            else{
-                $select_time[$i]=0;
-            }
-        $i++;
-    }
-    $i=0;
+
     foreach($label as $cat){
         $temp="label".$i;
         $select_label[$i]=$_POST[$temp];
@@ -225,7 +215,13 @@ if(isset($_POST[ichbinfaul])){
             }
         echo "> Details<br>";
         }
-        
+        if(checkthis(26)){
+            echo "<input type=checkbox name=bestellt value=TRUE";
+            if($_POST[bestellt]==TRUE){
+                echo " checked";
+            }
+            echo "> Nachbestellung<br>";
+        }
         ?><br>
           
         </td>

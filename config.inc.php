@@ -7,7 +7,7 @@ $displayforadmins = 6;
 
 
 //Namen
-$groups = array("kuume", "Pfeilsport", "Kinder O.H.", "KuBu", "Admin", "FH-IT","Betreuer O.H.","Klettern");
+$groups = array("kuume", "Pfeilsport", "Kinder O.H.", "KuBu", "Admin", "FH-IT","Betreuer O.H.");
 $group_numbers = array(
             array(3000, 3200, "kuume"),
             array(6000, 6500, "Pfeilsport"),
@@ -16,7 +16,6 @@ $group_numbers = array(
             array(0, 100, "Admin"),
             array(5000, 5500, "FH-IT"),
             array(1100, 1600, "Betreuer O.H."),
-            array(1100, 1600, "Klettern")
 );
 
 $group_stickers = array(
@@ -26,8 +25,8 @@ $group_stickers = array(
             array(40000, 40200, "KuBu"),
             array(100100, 100600, "Admin"),
             array(50100, 50200, "FH-IT"),
-            array(10000,10200, "Klettern")
-);
+            array(1100, 1600, "Betreuer O.H."),
+    );
 
 //STATI:
 // Wichtig: Neue Stati müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
@@ -91,7 +90,7 @@ $zugriffanzeige = array(
 
 
 //Versioning 
-$version = "&beta;Alfred";
+$version = "&beta;17.01 \"Alfred\" ";
 
 if (isset($_SESSION[NOW]))
 {

@@ -78,7 +78,10 @@ $buildingquery.=" AND DATETIME_CATALOGED < ";
      {
         $buildingquery.=" str_to_date('$_POST[date]','%Y-%m-%d') + INTERVAL 24 HOUR";   
      }
-          
+ 
+     if($_POST[bestellt]==TRUE){
+         $buildingquery .= "AND REBUY=1 ";
+     }
 $buildingquery  .= " AND OWNER=$_SESSION[NOW] ORDER BY `kuume_inventory`.`CATEGORY` ASC, `kuume_inventory`.`STATUS` ASC, `kuume_inventory`.`NAME` ASC";
     
 $query=$buildingquery;
