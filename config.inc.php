@@ -7,7 +7,7 @@ $displayforadmins = 6;
 
 
 //Namen
-$groups = array("kuume", "Pfeilsport", "Kinder O.H.", "KuBu", "Admin", "FH-IT","Betreuer O.H.");
+$groups = array("kuume", "Pfeilsport", "Kinder O.H.", "KuBu", "Admin", "FH-IT","Betreuer O.H.","Klettern");
 $group_numbers = array(
             array(3000, 3200, "kuume"),
             array(6000, 6500, "Pfeilsport"),
@@ -15,7 +15,8 @@ $group_numbers = array(
             array(4000, 4200, "KuBu"),
             array(0, 100, "Admin"),
             array(5000, 5500, "FH-IT"),
-            array(1100, 1600, "Betreuer O.H.")
+            array(1100, 1600, "Betreuer O.H."),
+            array(1100, 1600, "Klettern")
 );
 
 $group_stickers = array(
@@ -25,11 +26,11 @@ $group_stickers = array(
             array(40000, 40200, "KuBu"),
             array(100100, 100600, "Admin"),
             array(50100, 50200, "FH-IT"),
-            array(10000,10200, "Betreuer O.H.")
+            array(10000,10200, "Klettern")
 );
 
 //STATI:
-// Wichtig: Neue Kategorien müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
+// Wichtig: Neue Stati müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
 $status = array("OK", "Kaputt", "In Reparatur", "Verloren", "Aussortiert");
 //Welche Stati beim einloggen Automatisch aktiviert sind.
 //Wie bei allen kommenden Arrays ist die Reihenfolge der Werte relevant
@@ -89,8 +90,8 @@ $zugriffanzeige = array(
 
 
 
-//Versioning
-$version = "&beta;k2k17";
+//Versioning 
+$version = "&beta;Alfred";
 
 if (isset($_SESSION[NOW]))
 {

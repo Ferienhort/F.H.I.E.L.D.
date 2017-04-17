@@ -36,7 +36,7 @@ $inventory_minimum = 40;
 //Die Userlevel können in der Oberfläche verändert werden, hier kann das Mindestlevel der Funktionen geändert werden
 //Die Zahlen in den eckigen Klammern [] am Ende bitte ignorieren.
 $zugriff = array(
-        9,  // Inventar entfernen [0]
+        9,  // Inventar entfernen [0] 
         10, // Config Datei sehen [1]
         7,  // User Verwaltung - Nur User mit geringeren Levels [2]
         7,  // Kann Inventar Bearbeiten [3]
