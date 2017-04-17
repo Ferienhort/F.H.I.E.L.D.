@@ -112,7 +112,7 @@ if(isset($_POST[IID])){
         }
         $query="UPDATE kuume_inventory SET REBUY=".mysqli_real_escape_string($conn,$_POST[ding_rebuy])." WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";";
         message($query);
-        mysqli_query($conn, $query);
+        mysqli_query($conn, $query);    
         if($_POST[ding_rebuy]==1){
             document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung beantragt", 0, 0);
         }
