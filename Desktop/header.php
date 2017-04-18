@@ -32,8 +32,8 @@
              "FerienHort In Einer Leiwanden Datenbank",
              "FerienHort Ist Ein Logistisches Dillema",
              "FerienHort In Ein Lustiger Datensatz",
-             "FerienHort Intervention, Enforcement and Logistics Division ",
-             "Fhield Hat Immer Einen L&auml;ngeren Datensatz"
+             "FerienHort Intervention, Enforcement and Logistics Division",
+             "FHield Ist Eine Lange Datei"
              );
          
          echo "<title> F.H.I.E.L.D. - ".$easteregg[rand(0,count($easteregg)-1)]."</title>";
