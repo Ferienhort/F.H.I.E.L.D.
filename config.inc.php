@@ -7,7 +7,7 @@ $displayforadmins = 6;
 
 
 //Namen
-$groups = array("kuume", "Pfeilsport", "Kinder O.H.", "KuBu", "Admin", "FH-IT","Betreuer O.H.");
+$groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT");
 $group_numbers = array(
             array(3000, 3200, "kuume"),
             array(6000, 6500, "Pfeilsport"),
@@ -15,7 +15,6 @@ $group_numbers = array(
             array(4000, 4200, "KuBu"),
             array(0, 100, "Admin"),
             array(5000, 5500, "FH-IT"),
-            array(1100, 1600, "Betreuer O.H."),
 );
 
 $group_stickers = array(
@@ -25,7 +24,6 @@ $group_stickers = array(
             array(40000, 40200, "KuBu"),
             array(100100, 100600, "Admin"),
             array(50100, 50200, "FH-IT"),
-            array(1100, 1600, "Betreuer O.H."),
     );
 
 //STATI:
