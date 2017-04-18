@@ -26,8 +26,19 @@
 
          <link rel="stylesheet" type="text/css" href="style.css">
 
-         <title> F.H.I.E.L.D. - FerienHort Inventar Export und Logistik‎ Datenbank</title>
+         <?php 
+         
+         $easteregg = array("FerienHort Inventar, Export und Logistik Division",
+             "FerienHort In Einer Leiwanden Datenbank",
+             "FerienHort Ist Ein Logistisches Dillema",
+             "FerienHort In Ein Lustiger Datensatz",
+             "FerienHort Intervention, Enforcement and Logistics Division ",
+             "Fhield Hat Immer Einen L&auml;ngeren Datensatz"
+             );
+         
+         echo "<title> F.H.I.E.L.D. - ".$easteregg[rand(0,count($easteregg)-1)]."</title>";
         
+         ?>
     </head>
      <script type="text/javascript">
                 function display(bild){
