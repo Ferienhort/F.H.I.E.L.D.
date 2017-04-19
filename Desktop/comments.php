@@ -208,7 +208,7 @@ $img_label=array("star.png");
         
 
        echo "<br><b>Updates</b><br>";     
-    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] AND TEXT NOT LIKE 'Check' AND TEXT NOT LIKE 'Scannt' ORDER BY `kuume_actions`.`TIME` DESC LIMIT 3 ";
+    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] AND TEXT NOT LIKE 'Check' ORDER BY `kuume_actions`.`TIME` DESC LIMIT 3 ";
     $temp=mysqli_query($conn,  $query);
 
     echo "<div id= detaillist>";

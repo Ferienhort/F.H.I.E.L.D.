@@ -9,13 +9,13 @@ $conn =connect();
     
 include 'header.php';
 
+
+ $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND (OWNER LIKE '%$_SESSION[NOW]%')  ORDER BY ADMIN DESC";   
+         message($query);
+        
+
 if($_POST[ichbinfaul]==1){
-        if($_SESSION[TECH]){
-        $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 ORDER BY ADMIN DESC";
-        }
-        else{
-         $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND OWNER=$_SESSION[NOW] ORDER BY ADMIN DESC";   
-        }
+
     $blabla = mysqli_query($conn, $query);
     while($row=mysqli_fetch_array($blabla)){
 
@@ -86,12 +86,7 @@ echo "<form action=users.php method=POST><input type=hidden name=ichbinfaul valu
         
         
         
-        if($_SESSION[TECH]){
-        $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 ORDER BY ADMIN DESC";
-        }
-        else{
-         $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND OWNER=$_SESSION[NOW] ORDER BY ADMIN DESC";   
-        }
+        
         
     $blabla = mysqli_query($conn, $query);
     while($result=mysqli_fetch_array($blabla)){

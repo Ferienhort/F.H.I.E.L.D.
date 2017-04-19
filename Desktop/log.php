@@ -14,7 +14,7 @@ echoifadmin(4);
         <?php
    
         
-    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] ORDER BY `kuume_actions`.`TIME` DESC ";
+    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] AND AID NOT IN (SELECT AID FROM `kuume_actions` WHERE TEXT LIKE 'Check' AND UID=0) ORDER BY `kuume_actions`.`TIME` DESC ";
     $conn=  connect();
     $temp=mysqli_query($conn,  $query);
 
