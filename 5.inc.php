@@ -15,14 +15,6 @@ $select_storage=array(0,0);
 // Wichtig: Neue Kategorien müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
 $status = array("Bereit","In Arbeit","Kaputt", "Triagiert", "Erledigt");
 
-//ZEIT FILTER
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-$time = array("36 Stunden","3 Tage", "1 Woche", "2 Wochen", "1 Monat");
-//Array mit STUNDEN der Zeit
-$time_ms=array(36,3*24, 7*24, 14*24, 30*24);
-$select_time= array(0,0,0,0,0);
-
 //LABELS
 //Für die Auswahl: Hier muss aich alles abgestimmt sein!
 //Selbe Logik wie oben....
@@ -48,11 +40,11 @@ $zugriff = array(
         5, // Kann Inventar Bearbeiten [3]
         5, // Detailansicht [4]
         5,// Debug Infos - Wenn diese aktiviert sind [5]
-        5, // Kann Verleihen, Retournieren [6]
+        15, // Kann Verleihen, Retournieren [6]
         5,// Sieht alle Logs [7]
         5, // Kann Status ändern [8] NICHT AKTIV
-        5,  // Kann exportieren [9]
-        5,  // Sieht Geld (Preis) [10]
+        15,  // Kann exportieren [9]
+        15,  // Sieht Geld (Preis) [10]
         5,  // Kann Labels Bearbeiten [11]
         5,  // Kann IIDs bearbeiten [12]
         5,  // Kann neuen Artikel anlegen [13]
@@ -60,16 +52,16 @@ $zugriff = array(
         5,  // Sieht letztes Backup [15]
         5,  //Sieht Lagerplatz [16]
         5,  //Sieht erweiterete eigenschaften [17]
-        5,  // Kann Schachtelinhalte editieren [18]
-        5,  // Sieht Schachtelinhalte [19]
-        5,  // Kann Mehr Scannen [20]
+        15,  // Kann Schachtelinhalte editieren [18]
+        15,  // Sieht Schachtelinhalte [19]
+        15,  // Kann Mehr Scannen [20]
         5,  // Bekommt Benachrichtigungen [21]
         5,  // Bekommt alerts [22]
-        5,  // Sieht Hilfe [23]
+        15,  // Sieht Hilfe [23]
         3,  // Kann Kommentare sehen [24]
         3,  // Kann Kommentare schreiben [25]
-        5,// Kann nachbestellen [26]
+        15,// Kann nachbestellen [26]
         10, // Sieht entfernte Kommentare [27]
         7,  // Kann Kommentare entfernen [28]
-        3,  // Schnellverleihmodul Aktivieren [29]
+        13,  // Schnellverleihmodul Aktivieren [29]
         );
