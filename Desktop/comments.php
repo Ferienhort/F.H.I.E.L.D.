@@ -6,7 +6,7 @@ include_once '../func.inc.php';
 checkordie();
 $conn=connect();
 
-if($_POST[ding_lender]!=""){
+if($_POST[ding_lender]!="" && isset($_POST[ding_lender])){
           $query= "UPDATE "
             . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER='$_POST[ding_lender]'"
             . " WHERE IID=$_POST[ding_iid]";
