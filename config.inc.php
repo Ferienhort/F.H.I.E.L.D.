@@ -6,7 +6,7 @@ include 'config-mysql.inc.php';
 $displayforadmins = 6;
 
 
-//Ab welchem Userlevel die Skriptsprache global aktiviert wird.
+//Ab welchem Userlevel die Skriptsprache global aktiviert wird. Kann in X.inc.php uberschrieben werden.
 $enablescript=7;
 
 //Namen
@@ -46,7 +46,7 @@ $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
 $mobile_debug = FALSE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$desktop_debug = FALSE;
+$desktop_debug = true;
 
 //BACK UPs
 //BackUp Interval der Datenbank in MINUTEN. Mindestens 10, Nie=0 DEPRECATED!

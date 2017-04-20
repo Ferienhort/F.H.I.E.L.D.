@@ -53,7 +53,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
             $nummern= explode(";", $nummern);
             foreach ($nummern as $value)
             {
-                $query="UPDATE kuume_inventory SET DATETIME_LEND=IF(LENDER NOT LIKE '$_POST[kind]',NOW(),0),DATETIME_EDITED=NOW(), LENDER=IF(LENDER NOT LIKE '$_POST[kind]','$_POST[kind]',0) WHERE IID=$value AND OWNER=$_SESSION[NOW];";
+                $query="UPDATE kuume_inventory SET DATETIME_LEND=IF(LENDER NOT LIKE '$_POST[kind]',IF('$_POST[kind]' LIKE '0',0,NOW()),0),DATETIME_EDITED=NOW(), LENDER=IF(LENDER NOT LIKE '$_POST[kind]','$_POST[kind]',0) WHERE IID=$value AND OWNER=$_SESSION[NOW];";
                 message($query);
                 $result=mysqli_query($conn,$query);
                 message(mysqli_affected_rows($conn)." Reihen geupdatet");
