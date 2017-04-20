@@ -6,6 +6,9 @@ include 'config-mysql.inc.php';
 $displayforadmins = 6;
 
 
+//Ab welchem Userlevel die Skriptsprache global aktiviert wird.
+$enablescript=7;
+
 //Namen
 $groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT");
 $group_numbers = array(

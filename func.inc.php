@@ -252,7 +252,7 @@ function skript($input, $iid){
     $input.=" ";
     $conn=connect();
     $command=FALSE;
-     if($_SESSION[ADMIN]<=7){
+     if($_SESSION[ADMIN]<=$enablescript){
         return $input;
         }
     if(strpos($input,"++move:") !== FALSE){
