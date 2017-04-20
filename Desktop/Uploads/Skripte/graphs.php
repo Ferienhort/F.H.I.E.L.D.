@@ -44,7 +44,21 @@ foreach ($groups as $key)
 
 echo "data.addRows([\n";
  
-    for($i=2016; $i<=  date(Y); $i++){
+    if(isset($_GET[a])){
+        $i=$_GET[a];
+        $ugrenze=$_GET[a];
+    }
+    else{
+        $i=2016;
+        $ugrenze=2016;
+    }
+    if(isset($_GET[b])){
+        $grenze=$_GET[b];
+    }
+    else{
+        $grenze=date(Y);
+    }
+    while( $i<= $grenze){
         $fhtime=fhzeit($i);
  
        foreach($fhtime as $key){
@@ -63,7 +77,9 @@ echo "data.addRows([\n";
                 }
        
        echo "],\n";
-       } 
+       
+       }
+       $i++;
     }
 
 
@@ -92,6 +108,30 @@ echo "     ]);";
         </script>
   </head>
   <body>
+      <form method="GET" action="graphs.php">Start: 
+          <select name="a">
+              <?php
+              for($a=2016; $a<=date(Y); $a++){
+                echo "<option value=$a ";
+                    if($a==$ugrenze){
+                        echo "selected";
+                    }
+                echo ">$a</option>";
+              }
+              ?> </select>Ende: 
+          <select name="b">
+              <?php
+              for($a=2016; $a<=date(Y); $a++){
+                echo "<option value=$a ";
+                    if($a==$grenze){
+                        echo "selected";
+                    }
+                echo ">$a</option>";
+              }
+              ?>
+          </select>
+              <input type="submit" value="go!">
+      </form>
       <div id="linechart_material" style="height: 95%; width: 95%"></div>
   </body>
 </html>
