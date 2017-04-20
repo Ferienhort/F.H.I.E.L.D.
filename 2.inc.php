@@ -3,9 +3,9 @@
 //KATEGORIEN:
 //Gelten die selben Regel wie bei den Stati
 $category = array(
-    "Pfeile",
-    "B&ouml;gen",
-    "Zielscheiben",
+"Pfeile",
+"B&ouml;gen",
+"Zielscheiben",
 "3D-Ziele",
 "Zielauflagen 60cm",
 "Zielauflagen 80cm",
@@ -25,18 +25,11 @@ $storage = array("Leichtathletikh&uuml;tte",
 "Kletterkammerl",
 "Halle",
 "Baseballplatz");
-$select_storage=array(0,0,0,0);
+$select_storage=array(0,0,0,0); 
 
-//ZEIT FILTER
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-$time = array("36 Stunden","3 Tage", "1 Woche", "2 Wochen", "1 Monat");
-//Array mit STUNDEN der Zeit
-$time_ms=array(36,3*24, 7*24, 14*24, 30*24);
-$select_time= array(0,0,0,0,0);
 
 //LABELS
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
+//Für die Auswahl: Hier muss auch alles abgestimmt sein!
 //Selbe Logik wie oben....
 $label = array("Favorit");
 $select_label= array(0,0,0);

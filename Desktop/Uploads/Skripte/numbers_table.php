@@ -12,12 +12,12 @@
         data.addColumn('number', 'Ende');
         data.addColumn('number', 'Belegt');
         data.addColumn('number', 'Frei');
-        data.addColumn('number', 'Auslastung');
+        data.addColumn('number', '%');
         data.addColumn('number', 'Anfang');
         data.addColumn('number', 'Ende');
         data.addColumn('number', 'Belegt');
         data.addColumn('number', 'Frei');
-        data.addColumn('number', 'Auslastung');
+        data.addColumn('number', '%');
         data.addRows([
          <?php
                  include '../../../func.inc.php';
