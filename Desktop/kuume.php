@@ -237,7 +237,7 @@ if(isset($_POST[ichbinfaul])){
         <td>
         </td>
         <td>
-            Filter:  <input type="submit" value="Aktivieren">
+            Filter:  <input type="submit" value="Aktualisieren">
         </td>
         
     </tr>
