@@ -10,23 +10,27 @@ $displayforadmins = 6;
 $enablescript=7;
 
 //Namen
-$groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT");
+$groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT","Abenteuer","Klettern");
 $group_numbers = array(
             array(3000, 3200, "kuume"),
-            array(6000, 6500, "Pfeilsport"),
+            array(1000, 2000, "Pfeilsport"),
             array(300, 950, "O.H."),
             array(4000, 4200, "KuBu"),
             array(0, 100, "Admin"),
             array(5000, 5500, "FH-IT"),
+            array(6000, 6999, "Abenteuer"),
+            array(7000, 7500, "Klettern")
 );
 
 $group_stickers = array(
             array(30000, 30300, "kuume"),
-            array(60000, 60200, "Pfeilsport"),
+            array(10000, 100100, "Pfeilsport"),
             array(80000, 80100, "O.H."),
             array(40000, 40200, "KuBu"),
             array(100100, 100600, "Admin"),
-            array(50100, 50200, "FH-IT"),
+            array(50000, 50100, "FH-IT"),
+            array(60000, 60200, "Abenteuer"),
+            array(70000, 70200, "Klettern")
     );
 
 //STATI:
