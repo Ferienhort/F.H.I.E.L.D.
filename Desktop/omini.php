@@ -28,8 +28,8 @@ else{
 }
 $a=explode(";", $_POST[IID]);
 
-$updatethis=false;
 if(count($a)>1){
+    $updatethis=false;
     foreach ($a as $i){
             if(strpos($i, "::") !== FALSE){
                 $temp=explode("::",$i);
@@ -84,14 +84,23 @@ if(count($a)>1){
              if($updatethis==TRUE){
                 if($res[PERCENT]!=0){
                     $query="UPDATE kuume_inventory SET PERCENT = $temp[1] WHERE IID = $temp[0]";
+                    message($query);
                     echo ", auf $temp[1]% aktualisiert";
                     document($conn, $_SESSION[UID], $res[IID], "Bearbeitet Prozent $res[PERCENT] => $temp[1]",0,0);
                 }
-                if($res[DESIRED]!=0){
+                elseif($res[DESIRED]!=0){
                     $query="UPDATE kuume_inventory SET ACTUAL = $temp[1] WHERE IID = $temp[0]";
+                    message($query);
                      echo ", auf $temp[1] St&uuml;ck aktualisiert";
                      document($conn, $_SESSION[UID], $res[IID], "Bearbeitet Anzahl $res[DESIRED] => $temp[1]",0,0);
                 }
+                else{
+                    $query="UPDATE kuume_inventory SET ACTUAL = $temp[1] WHERE IID = $temp[0]";
+                    message($query);
+                    echo ", auf $temp[1]% St&uuml;ck aktualisiert";
+                    document($conn, $_SESSION[UID], $res[IID], "Bearbeitet Prozent $res[PERCENT] => $temp[1]",0,0);
+                }
+                mysqli_query($conn,$query);
                 }
             echo "<a href=comments.php?IID=$res[IID] target='thatframeyo' ><img class=klein src=img/edit.png></a>";
             if(checkthis(3)){

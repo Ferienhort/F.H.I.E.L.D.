@@ -17,20 +17,20 @@ $group_numbers = array(
             array(300, 950, "O.H."),
             array(4000, 4200, "KuBu"),
             array(0, 100, "Admin"),
-            array(5000, 5500, "FH-IT"),
+            array(2000, 2200, "FH-IT"),
             array(6000, 6999, "Abenteuer"),
-            array(7000, 7500, "Klettern")
+            array(5000, 5500, "Klettern")
 );
 
 $group_stickers = array(
             array(30000, 30300, "kuume"),
-            array(10000, 100100, "Pfeilsport"),
+            array(10000, 10100, "Pfeilsport"),
             array(80000, 80100, "O.H."),
             array(40000, 40200, "KuBu"),
             array(100100, 100600, "Admin"),
-            array(50000, 50100, "FH-IT"),
+            array(20000, 20200, "FH-IT"),
             array(60000, 60200, "Abenteuer"),
-            array(70000, 70200, "Klettern")
+            array(50000, 50100, "Klettern")
     );
 
 //STATI:
