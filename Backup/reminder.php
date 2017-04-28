@@ -1,5 +1,11 @@
 <?php
 require '../func.inc.php';
+require 'PHPMailer-master/PHPMailerAutoload.php';
+
+
+$mail = new PHPMailer;
+    
+    
 include '../config-email.inc.php';
 
 

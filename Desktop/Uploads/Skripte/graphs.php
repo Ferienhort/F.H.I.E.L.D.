@@ -30,7 +30,7 @@ function fhzeit($year){
     $fhtime[12]=array("August $year (Woche 4)","BETWEEN '$year-08-29 00:00:00' AND '$year-09-05 23:59:59'");
     $fhtime[13]=array("Sept $year","BETWEEN '$year-09-06 00:00:00' AND '$year-09-30 23:59:59'");
     $fhtime[14]=array("Okt-Dez $year","BETWEEN '$year-10-01 00:00:00' AND '$year-12-31 23:59:59'");
-    
+        
     return $fhtime;
     
 }   

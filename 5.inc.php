@@ -12,7 +12,7 @@ $select_storage=array(0,0);
 
  
 //STATI:
-// Wichtig: Neue Kategorien müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
+// Wichtig: Ueberschreibe Statuse, da diese fuer einen Bugtracker mehr Sinn machen
 $status = array("Bereit","In Arbeit","Kaputt", "Triagiert", "Erledigt");
 
 //LABELS
