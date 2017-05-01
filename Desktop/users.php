@@ -25,7 +25,7 @@ if($_POST[ichbinfaul]==1){
                         die("Fehler! Der PIN ist viel zu einfach oder vorhersehbar! Bitte klicke erneut auf 'Benutzer'");
                     }
                     mysqli_query($conn, "UPDATE kuume_user SET PIN=$_POST[$temp] WHERE UID=$row[UID]");
-                    document($conn, $_SESSION[UID],0,"Pin von UID: $row[UID] aktualisiert:", 0, 0);
+                    document($conn, $_SESSION[UID],0,"Pin von UID: $row[UID] aktualisiert.", 0, 0);
             }
             $temp = "usernmame".$row[UID];
             if($_POST[$temp] != $row[NAME]){
