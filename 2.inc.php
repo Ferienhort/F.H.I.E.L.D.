@@ -76,5 +76,6 @@ $zugriff = array(
         7,   // Kann Nachbestellen [26]
         10, // Sieht entfernte Kommentare [27]
         7,  // Kann Kommentare entfernen [28]
-        11,  // Schnellverleihmodul Aktivieren [29]
+        7, // Detailansicht [29]
+        11,  // Schnellverleihmodul Aktivieren [30]
         );

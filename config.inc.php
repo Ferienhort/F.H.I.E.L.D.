@@ -64,7 +64,7 @@ $zugriffanzeige = array(
     "Config Datei sehen",
     "User Verwaltung - Nur User mit geringeren Levels",
     "Kann Inventar Bearbeiten",
-    "Detailansicht",
+    "Inventurverlauf",
     "Debug Infos - Wenn diese aktiviert sind",
     "Kann Verleihen, Retournieren",
     "Sieht alle Logs",
@@ -89,6 +89,7 @@ $zugriffanzeige = array(
     "Kann nachbestellen",
     "Kann Kommentare entfernen",
     "Kann entfernte Kommentare sehen",
+    "Detailansicht",
     "Schnellverleihmodul Aktivieren"
 );
 

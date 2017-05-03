@@ -38,7 +38,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
      
      echo "</table></div>";
         
-         if(checkthis(29))
+         if(checkthis(30))
     {
         if(isset($_POST[nummern])){
             if(($_POST[kind]=="")){
