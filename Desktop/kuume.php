@@ -46,16 +46,7 @@ else{
     echo "</span>";
 }
 echo "</span>";
-echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">';
 
-if(checkthis(20)){
-    echo 'Scan<input type="checkbox" name="Check" value="1">';
-}
-
-if(checkthis(24)){
-    echo 'inkl. Kommentare<input type="checkbox" name="kom" value="1">';
-}
-    echo '</form>';
 echo "<span id=usermenu>";
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";
@@ -365,5 +356,19 @@ echo "</div>";
 </div>
 </div>
 
+
+<?php
+echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="omniIID"><input type="submit" value="Go!">   ';
+
+if(checkthis(20)){
+    echo 'Scan<input type="checkbox" name="Check" value="1">';
+}
+
+if(checkthis(24)){
+    echo 'inkl. Kommentare<input type="checkbox" name="kom" value="1">';
+}
+    echo '</form>';
+
+?>
 <iframe id="thatframeyo" name="thatframeyo" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="cockpit.php">  
 </iframe>

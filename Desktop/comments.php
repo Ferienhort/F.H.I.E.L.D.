@@ -119,7 +119,14 @@ $img_label=array("star.png");
             echo "<a href=delete.php?IID=$result[IID] target=thatframeyo><img class=klein src=img/delete.png></a>";
         }
     echo "<br>";
-    echo "<a href=cockpit.php><img src=img/left.png class=klein></a> Name: <b>$result[NAME]</b>";
+    if(isset($_GET[slink]))
+    {  
+        echo "<a href=omini.php?S=1><img src=img/left.png class=klein></a>";
+    }
+    else{
+        echo "<a href=cockpit.php><img src=img/left.png class=klein></a>";
+    }
+    echo "Name: <b>$result[NAME]</b>";
     if(checkthis(17)){
         echo "<a href=more.php?IID=$result[IID]><img src=img/right.png class=klein></a>";
     }

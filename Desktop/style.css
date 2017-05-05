@@ -6,12 +6,11 @@ td{
 }
 
 .menu{
-    position: fixed;
     padding: 20px;
     border-radius: 15px;
     position: absolute;
-    left: 3%;
-    width: 94%;
+    left: 5%;
+    width: 90%;
 }
 
 #list{
@@ -27,14 +26,17 @@ textarea{
 
 .headline{
     padding-top: 3px;
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 18px;
     position: relative;
     top: 0px;
+    margin-bottom: 10px;
     
 }
 
 .cattitle{
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 25px;
 }
 
 .item{
@@ -88,20 +90,7 @@ textarea{
     color: black;
 }
 
-#quick{
-    position: relative;
-    text-align: right;
-    border: none;
-    background-color: rgba(230,230,230,1);
-    border-radius: 15px;
-    padding: 7px;
-    margin: 0;
-    width: 350px;
-    display: inline;
-    margin-right: 40px;
-    margin-left: 40px;
-    color: black;
-}
+
 
 #usermenu{
     text-align: right;
@@ -139,13 +128,26 @@ textarea{
 #thatframeyo{
     position: fixed;
     left: 50%;
-    top: 100px;
+    top: 180px;
     height: 75%;
     width: 45%;
     border: none;
     background-color: rgba(230,230,230,1);
     border-radius: 15px;
     padding: 20px;
+}
+#quick{
+    position: fixed;
+    left: 50%;
+    top: 100px;
+    height: 20px;
+    width: 45%;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    
 }
 
 #leftcontainer{
@@ -193,6 +195,8 @@ textarea{
 
 body{
     padding: 0px;
+    font-family: 'Slabo 27px', serif;
+    font-size: 16px;
 }
 
 a:link, a:visited, a:hover, a:active{

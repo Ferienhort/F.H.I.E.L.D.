@@ -40,7 +40,7 @@
         
     
     ?>
-    <input type="hidden" name="ding_iid" value=<?php echo "$_GET[IID]"; ?>><input type="submit" value="GO!">
+    <input type="hidden" name="ding_iid" value=<?php echo "$_GET[IID]"; ?>><input type="submit" value="Speichern!">
         </form>
         </body>
 </html>

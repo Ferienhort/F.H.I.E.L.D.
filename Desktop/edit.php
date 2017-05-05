@@ -92,7 +92,7 @@ if(isset($_POST[IID])){
     echo "Lagerplatz:<br>";
    printStorage($result[STORAGE]);
    echo "<br>";
-       echo "<input type=submit value=AUF!>";
+       echo "<input type=submit value=Speichern!>";
     
     
 ?>

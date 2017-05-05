@@ -23,6 +23,6 @@
     Status:<br> <?php printStati(0);?> <br>
     Kategorie:<br> <?php printKat(0);?> <br>
     Lagerplatz:<br> <?php printStorage(0);?> <br>
-    <input type="hidden" name="ding_iid" value=<?php echo "$_GET[IID]"; ?>><input type="submit" value="GO!">
+    <input type="hidden" name="ding_iid" value=<?php echo "$_GET[IID]"; ?>><input type="submit" value="Speichern!">
     </form>
     

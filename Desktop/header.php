@@ -23,10 +23,14 @@
 <meta name="msapplication-config" content="Icon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1 "/>
-
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
          <link rel="stylesheet" type="text/css" href="style.css">
 
          <?php 
+         
+
+         
          
          $easteregg = array("FerienHort Inventar, Export und Logistik Division",
              "FerienHort In Einer Leiwanden Datenbank",
@@ -66,3 +70,12 @@ include_once '../func.inc.php';
      $a=  mysqli_real_escape_string($connect,$a);
  }
  
+ if(isset($_POST[omniIID])){
+             $_POST[IID]=$_POST[omniIID];
+             $_SESSION[omni]=$_POST;
+         }
+if(isset($_GET[S])){
+             $_POST=$_SESSION[omni];
+         }
+
+               
