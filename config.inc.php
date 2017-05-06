@@ -96,7 +96,7 @@ $zugriffanzeige = array(
 
 
 //Versioning 
-$version = "&beta;17.01 \"Alfred\" ";
+$version = "&beta;17.02 \"Hans\" ";
 
 if (isset($_SESSION[NOW]))
 {
