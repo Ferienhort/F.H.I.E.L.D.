@@ -173,7 +173,7 @@ function document($conn, $UID, $IID, $text, $old, $new){
     message($query);
 }
 
-function primary_color($a){
+function primary_color($a){ /*
     if($a>=10){
         echo 'background-color: rgba(0,0,0,1); color: white; ';
     }
@@ -185,7 +185,7 @@ function primary_color($a){
     }
     else{
         echo 'background-color: rgb(255,255,153);';
-    }
+    }*/
 }
 
 function draw_label($a){

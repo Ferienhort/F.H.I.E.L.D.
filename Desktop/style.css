@@ -11,6 +11,9 @@ td{
     position: absolute;
     left: 5%;
     width: 90%;
+    background-image: url(http://www.ferienhort.at/wp-content/themes/fh2016/img/wasserfarben-header.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 #list{
@@ -31,6 +34,7 @@ textarea{
     position: relative;
     top: 0px;
     margin-bottom: 10px;
+    
     
 }
 
@@ -200,7 +204,7 @@ body{
 }
 
 a:link, a:visited, a:hover, a:active{
-    color: rgba(255,0,0,1);
+    color: rgba(120,120,120,1);
 }
 
 .gallerypic{
