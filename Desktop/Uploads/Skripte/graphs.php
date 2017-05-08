@@ -92,7 +92,14 @@ echo "     ]);";
       var options = {
         chart: {
           title: 'Userhandlungen in Ferienhort Zeit',
+           hAxis: {
+                showTextEvery: 1,
+                slantedText: true,
+                slantedTextAngle: 45
+            }
         }
+       
+
 
             
 
