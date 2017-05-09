@@ -226,7 +226,7 @@ while ($row = mysqli_fetch_array($temp)) {
         if(checkthis(0)){
             echo "<a href=delete.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/delete.png></a>";
         }
-        if(($_POST[not]=="TRUE" && $_POST[date]==0) && $row[STATUS]==0){
+        if(($_POST[not]=="TRUE" && $_POST[date]==0) && ($row[STATUS]==0 OR $row[STATUS]==1)){
             echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png></a>";
         }
         echo "</span>";
