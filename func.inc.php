@@ -201,7 +201,7 @@ function document_alert($text,$user,$level,$output){
     $query="INSERT INTO kuume_alerts (`LEVEL`, `MESSAGE`, `DATETIME_IT_HAPPENED`, `BY`, `OUTPUT`) VALUES($level,'".mysqli_real_escape_string(connect(),$text)."', NOW(),'$user','".mysqli_real_escape_string(connect(),$output)."')";
     mysqli_query(connect(),$query);
     if($level>3){
-    mailto("LEVEL $level Alert von $user  \r\n $text");
+    mailto("LEVEL $level Alert von $user  \r\n $text \r\n[$output]");
     }
 }
 

@@ -57,7 +57,7 @@ $zugriff = array(
         5,  // Kann Schachtelinhalte editieren [18]
         1,  // Sieht Schachtelinhalte [19]
         2,  // Kann Mehr Scannen [20]
-        8, // Bekommt Benachrichtigungen [21]
+        10, // Bekommt Benachrichtigungen [21]
         9, // Bekommt alerts [22]
         7,  // Sieht Hilfe [23]
         4,  // Kann Kommentare sehen [24]
