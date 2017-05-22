@@ -18,7 +18,7 @@ if(count($_SESSION[OWNER])==1){
     echo $groups[$_SESSION[NOW]-1];
     }
 else{
-    echo "<form method=post action=switch.php id=switchthis name=wechsel><select name=wechsel>";
+    echo "<form method=post action=switch.php id=switchthis name=wechsel ><select name=wechsel onchange='this.form.submit()'>";
         foreach($_SESSION[OWNER] as $i){
             echo "<option value=".$i." ";
                 if($i==$_SESSION[NOW]){
@@ -27,7 +27,7 @@ else{
             echo ">".$groups[$i-1]."</option>";
         }
     echo "</select>";
-    echo "<input type=submit value=Wechsel></form>";
+    echo "</form>";
 }
     echo "  V.:$version ";
     if(checkthis(15)){
