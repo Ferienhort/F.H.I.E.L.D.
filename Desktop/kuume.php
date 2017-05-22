@@ -198,17 +198,18 @@ $oldrow=-1;
 while ($row = mysqli_fetch_array($temp)) {
     if($oldrow!=$row[CATEGORY]){
         $oldrow=$row[CATEGORY];
+        
         echo "<p class=cattitle> ".$category[$row[CATEGORY]]."</p>";
     }
-        echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class= klein><span class=itemtitle> ";
+        echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class=klein title='".$status[$row[STATUS]]."'><span class=itemtitle> ";
                 if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
-                echo "<img class=klein src=img/comment.png>";
+                echo "<img class=klein src=img/comment.png title=Kommentar>";
             }
         if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
-                echo "<img class=klein src=img/".draw_label($row[IID]).">";
+                echo "<img class=klein src=img/".draw_label($row[IID])." title=Favorit>";
             }    
          if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
-                echo "<img class=klein src=img/time.png>";
+                echo "<img class=klein src=img/time.png title=Verliehen!>";
             } 
        // echo " <b>$row[IID]</b>";
         if($row[LENDER]!="0"){
@@ -216,18 +217,18 @@ while ($row = mysqli_fetch_array($temp)) {
         }
         echo ($row[NAME])."</span> </span>";
         echo "<span class=itemlinks>";
-        echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png></a>";
+        echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png title=Detailansicht></a>";
          if(checkthis(3)){
-            echo "<a href=edit.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit_all.png></a>";
+            echo "<a href=edit.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit_all.png title=Editieren></a>";
         }
         if(checkthis(4)){
-            echo "<a href=log.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/log.png></a>";
+            echo "<a href=log.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/log.png title=Log></a>";
         }
         if(checkthis(0)){
-            echo "<a href=delete.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/delete.png></a>";
+            echo "<a href=delete.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/delete.png title=Entfernen></a>";
         }
         if(($_POST[not]=="TRUE" && $_POST[date]==0) && ($row[STATUS]==0 OR $row[STATUS]==1)){
-            echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png></a>";
+            echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png title=Checken></a>";
         }
         echo "</span>";
         echo "</p>";
