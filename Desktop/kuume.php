@@ -36,6 +36,7 @@ if(isset($_POST[ichbinfaul])){
 ?>
 
 <div id="leftcontainer">
+
 <div id="top">
     <form action="index.php" method="post" name="suchfilter">
         <input type="hidden" name="ichbinfaul" value="TRUE" >
@@ -136,7 +137,7 @@ if(isset($_POST[ichbinfaul])){
         }
         }
          if(checkthis(9)){
-        echo "<input type=checkbox name=export value=TRUE> Export<br>";
+        echo "<input type=hidden name=export value=FALSE id=eee>";
         }
         if(checkthis(29)){
         echo "<input type=checkbox name=detail value=TRUE";
@@ -154,6 +155,8 @@ if(isset($_POST[ichbinfaul])){
         }
         ?><br>
           
+             <input type="button" value="Export" onclick="eexport()">
+            <input type="submit" value="Aktualisieren">
         </td>
     </tr>
     <tr>
@@ -167,7 +170,7 @@ if(isset($_POST[ichbinfaul])){
         <td>
         </td>
         <td>
-            Filter:  <input type="submit" value="Aktualisieren">
+           
         </td>
         
     </tr>

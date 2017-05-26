@@ -2,7 +2,7 @@
 
 session_start();
 
- if($_POST[export]==TRUE){
+ if($_POST[export]=="TRUE"){
         include 'export.php';
         die();
     }

@@ -45,6 +45,8 @@
          ?>
     </head>
      <script type="text/javascript">
+
+ 
                 function display(bild){
                     if(bild==0){
                        document.getElementById("content").innerHTML = "";
@@ -55,6 +57,12 @@
                         document.getElementById("content").innerHTML = "<a href='javascript:display(0)'><img width=100% src=Uploads/"+bild+"></a>";
                     }
             }
+                    function eexport(){
+            var e = document.getElementById("eee");
+            e.value="TRUE";
+            document.suchfilter.submit();
+            e.value="FALSE";
+        }
          </script>
     <body>
         
