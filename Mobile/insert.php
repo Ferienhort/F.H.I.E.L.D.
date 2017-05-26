@@ -10,6 +10,8 @@ session_start();
          $_SESSION[NOW]=$_POST[ding_bereich];
      }
      
+     $_POST[ding_preis]= str_replace(",", ".", $_POST[ding_preis]);
+     
     $query = "INSERT INTO kuume_inventory (LENDER,IID, NAME, YEAR_PURCHASED, DATETIME_CATALOGED, STATUS, VALUE, STORAGE, OWNER, CATEGORY)";
     $query.= " VALUES(0,".  mysqli_real_escape_string($conn, $_POST[ding_iid]).",'";
     $query.= mysqli_real_escape_string($conn, $_POST[ding_name])."','";

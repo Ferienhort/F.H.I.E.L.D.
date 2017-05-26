@@ -46,6 +46,7 @@ if(isset($_POST[IID])){
                document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Lagerplatz: $result[STORAGE] => $_POST[ding_platz]", 0, 0);
                $message=1;
         }
+        $_POST[dingspreis]=str_replace(",", ".",$_POST[dingspreis]);
         if($_POST[dingspreis]!=$result[VALUE]){
                $query= "UPDATE kuume_inventory SET VALUE=".mysqli_real_escape_string($conn,$_POST[dingspreis]).", DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]);
                mysqli_query($conn,$query);

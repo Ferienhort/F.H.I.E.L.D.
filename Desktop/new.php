@@ -19,7 +19,7 @@
     Jahr d. Anschaffung:<br>
     <input type="number" name=ding_jahr size="4"><br>
     Preis:<br>
-    <input type="number" name=ding_geld size="4"><br>
+    <input type="text" name=ding_geld size="4"><br>
     Status:<br> <?php printStati(0);?> <br>
     Kategorie:<br> <?php printKat(0);?> <br>
     Lagerplatz:<br> <?php printStorage(0);?> <br>

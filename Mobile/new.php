@@ -20,7 +20,7 @@
     Jahr d. Anschaffung:<br>
     <input type="number" name=ding_jahr size="4" pattern="[0-9]*" inputmode="numeric"><br>
     Anschaffungspreis:<br>
-    <input type="number" name=ding_preis size="4" pattern="[0-9]*" inputmode="numeric"><br>
+    <input type="number" name=ding_preis size="4" pattern="^[-+]?[0-9]*\.?[0-9]+$" inputmode="numeric"><br>
     Status:<br> <?php printStati(0);?> <br>
     Kategorie:<br> <?php printKat(0);?> <br>
     Platz: <br> <?php printStorage(0);?> <br>
