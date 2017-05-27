@@ -29,7 +29,6 @@ else{
     echo "</select>";
     echo "</form>";
 }
-    echo "  V.:$version ";
     if(checkthis(15)){
    echo "<span class=backup>";
    $dir=scandir("../Backup/Backups/Data",1);
