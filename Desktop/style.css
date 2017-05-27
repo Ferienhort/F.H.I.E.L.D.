@@ -133,7 +133,8 @@ textarea{
     position: fixed;
     left: 50%;
     top: 180px;
-    height: 75%;
+    bottom: 150px;
+    height: 70%;
     width: 45%;
     border: none;
     background-color: rgba(230,230,230,1);
@@ -159,6 +160,7 @@ textarea{
     left: 5%;
     top: 100px;
     width: 41%;
+    padding-bottom: 20px;
 }
 
 #login{
