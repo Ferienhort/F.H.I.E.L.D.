@@ -1,7 +1,8 @@
 <?php
-session_start();
 
 include_once '../func.inc.php';
+
+kuume_session();
 
 echoifadmin(4);
 ?>

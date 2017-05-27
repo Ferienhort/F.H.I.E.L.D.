@@ -1,13 +1,14 @@
 <?php
-session_start();
-include_once '../func.inc.php';
 
+include_once '../func.inc.php';
+kuume_session();
 $conn=connect();
 
 if(isset($_POST[PIN])){
         eastereggs($_POST[PIN]);
         $query= "SELECT * FROM kuume_user WHERE PIN=".mysqli_real_escape_string($conn, $_POST[PIN])." AND AKTIV=1";
         $result=mysqli_query($conn,  $query);
+        kuume_session();
         
         if(mysqli_num_rows($result)>0){
             $resultat =  mysqli_fetch_array($result);

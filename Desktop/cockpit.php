@@ -1,7 +1,9 @@
 <?php
-session_start();
 include_once '../func.inc.php';
+kuume_session();
 include 'header.php';
+include '../config.inc.php'
+
 ?>
 
 <html>

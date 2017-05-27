@@ -1,7 +1,10 @@
 <?php
 
-
 include_once '../func.inc.php';
+
+kuume_session();
+include_once 'config.inc.php';
+
 checkordie();
 
 if($_POST[time]=="TEST"){
@@ -311,7 +314,6 @@ if(checkthis(24)){
     echo '<input type="checkbox" name="kom" value="1"> inkl. Kommentare';
 }
     echo '</form>';
-
 ?>
 <iframe id="thatframeyo" name="thatframeyo" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="cockpit.php">  
 </iframe>

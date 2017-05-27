@@ -1,4 +1,7 @@
-
+<?php
+include_once '../func.inc.php'; 
+kuume_session();
+?>
 
 <html>
     <head>
@@ -26,12 +29,7 @@
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
          <link rel="stylesheet" type="text/css" href="style.css">
-
-         <?php 
-         
-
-         
-         
+         <?php
          $easteregg = array("FerienHort Inventar, Export und Logistik Division",
              "FerienHort In Einer Leiwanden Datenbank",
              "FerienHort Ist Ein Logistisches Dillema",

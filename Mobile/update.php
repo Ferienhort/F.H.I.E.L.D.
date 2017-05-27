@@ -1,4 +1,4 @@
-<?php session_start();
+<?php kuume_session();
 
 include_once "../func.inc.php";
 checkordie();

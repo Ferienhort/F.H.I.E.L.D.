@@ -1,5 +1,5 @@
 <?php
-session_start();
+kuume_session();
 include_once '../func.inc.php';
 
 $conn=connect();

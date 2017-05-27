@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+kuume_session();
 
 
 /* 

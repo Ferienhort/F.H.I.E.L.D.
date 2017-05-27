@@ -1,6 +1,13 @@
 <?php
-
 include_once 'config.inc.php';
+    
+function kuume_session(){
+    ini_set('session.cookie_lifetime', 3600*24);
+    ini_set('session.gc_maxlifetime', 3600*24);
+    session_set_cookie_params(3600*24);
+    session_start(); 
+    include_once 'config.inc.php';
+}
 
 function connect(){
     include 'config.inc.php'; 

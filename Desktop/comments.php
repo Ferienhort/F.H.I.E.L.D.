@@ -1,7 +1,7 @@
 <?php
-session_start();
-include 'header.php';
 include_once '../func.inc.php';
+kuume_session();
+include 'header.php';
 
 checkordie();
 $conn=connect();

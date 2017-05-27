@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
  if($_POST[export]=="TRUE"){
         include 'export.php';
@@ -10,6 +9,8 @@ session_start();
 include 'header.php';
 //Debug Screen
 include_once "../func.inc.php";
+kuume_session();
+include '../config.inc.php';
 
 if(isset($_SESSION[UID]))
     {

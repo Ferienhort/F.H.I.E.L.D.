@@ -1,8 +1,9 @@
 <?php
-
-session_start();
-
 include_once '../func.inc.php';
+kuume_session();
+
+include '../config.inc.php';
+
 
 checkordie();
 $conn =connect();

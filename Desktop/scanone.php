@@ -2,7 +2,7 @@
 
 include_once 'func.inc.php';
 
-session_start();
+kuume_session();
 
 document(connect(), $_SESSION[UID], $_GET[IID], "Scannt per Klick", 0,0);
 
