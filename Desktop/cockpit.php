@@ -154,9 +154,10 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT 
        echo "</ul></p></div>";
     }
     }
-    
-    echo "<div class=cockpit-half><p class=quick>Folgende Zahlen stehen noch f&uuml;r handschriftliche Beschriftung zur Verf&uuml;gung<ul class=quicklist>";
-    $a=$_SESSION[NOW]-1;
+        $a=$_SESSION[NOW]-1;
+    echo "<div class=cockpit-half><p class=quick>Es sind alle Sticker von <b>".$group_stickers[$a][0]."</b> bis <b>".$group_stickers[$a][1]."</b> f&uuml;r euch reserviert </p>"
+    . "<p class=quick>Folgende Zahlen stehen noch f&uuml;r handschriftliche Beschriftung zur Verf&uuml;gung<ul class=quicklist>";
+
     
     $query="SELECT * FROM kuume_inventory WHERE IID BETWEEN ".$group_numbers[$a][0]." AND ".$group_numbers[$a][1]." ORDER BY IID ASC";
     $result=  mysqli_query(connect(), $query);
