@@ -1,6 +1,7 @@
 <?php
-kuume_session();
+
 include_once '../func.inc.php';
+kuume_session();
 echoifadmin(17);
 ?>
 

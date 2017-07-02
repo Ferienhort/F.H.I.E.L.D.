@@ -1,4 +1,5 @@
-<?php kuume_session();  ?> 
+<?php     include_once "../func.inc.php";
+kuume_session();  ?> 
 <html>
     <head> <link rel="apple-touch-icon" sizes="57x57" href="../Icon/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../Icon/apple-touch-icon-60x60.png">

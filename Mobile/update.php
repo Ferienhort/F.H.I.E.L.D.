@@ -1,6 +1,7 @@
-<?php kuume_session();
+<?php 
 
 include_once "../func.inc.php";
+kuume_session();
 checkordie();
 
 echo_mobile_debug($mobile_debug);
