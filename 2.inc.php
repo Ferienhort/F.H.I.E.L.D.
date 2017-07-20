@@ -50,7 +50,7 @@ $zugriff = array(
         9,  // Inventar entfernen [0]
         10, // Config Datei sehen [1]
         8,  // User Verwaltung - Nur User mit geringeren Levels [2]
-        9,  // Kann Inventar Bearbeiten [3]
+        8,  // Kann Inventar Bearbeiten [3]
         9,  // Detailansicht [4]
         11, // Debug Infos - Wenn diese aktiviert sind [5]
         11, // Kann Verleihen, Retournieren [6]

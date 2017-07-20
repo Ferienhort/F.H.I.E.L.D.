@@ -1,8 +1,15 @@
 <?php
+session_start();
+
+if (isset($_SESSION[NOW]))
+{
+    include '../'.$_SESSION[NOW] . '.inc.php';
+} 
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename='.date("M-j-H-i").'.csv');
 
 include_once '../func.inc.php';
+
 echoifadmin(9);
 
 $conn=connect();

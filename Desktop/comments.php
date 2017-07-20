@@ -3,6 +3,12 @@ include_once '../func.inc.php';
 kuume_session();
 include 'header.php';
 
+
+
+if (isset($_SESSION[NOW]))
+{
+    include $_SESSION[NOW] . '.inc.php';
+}
 checkordie();
 $conn=connect();
 
@@ -130,9 +136,11 @@ $img_label=array("star.png");
     if(checkthis(17)){
         echo "<a href=more.php?IID=$result[IID]><img src=img/right.png class=klein></a>";
     }
-    echo "<br>Kategorie: ".$category[$result[CATEGORY]]."<br><input type=hidden value=$result[STATUS] name=ding_status_alt>";
- if(checkthis(16)){
-    echo "Lagerplatz: ". $storage[$result[STORAGE]]."<br>";
+    $a=$result[CATEGORY];
+    echo "<br>Kategorie: ".$category[$a]."<br><input type=hidden value=$result[STATUS] name=ding_status_alt>";
+    if(checkthis(16)){
+    $a=$result[STORAGE];
+    echo "Lagerplatz: ". $storage[$a]." <br>";
     }
     if($result[PERCENT]!="0"){
     echo 'Prozent: '.$result[PERCENT]."%<br>";

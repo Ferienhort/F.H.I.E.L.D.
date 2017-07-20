@@ -13,8 +13,7 @@ $groups_email=array(
 
     "kuume" => array(1,"kuume@ferienhort.at",'bot@kuume.at'),
     "OH" => array(3,"allround-camp@ferienhort.at", "christoph.mrkvicka@ferienhort.at","oh@kuume.at",'bot@kuume.at')
-
-);
+    );
 
 foreach ($groups_email as $key)
 {

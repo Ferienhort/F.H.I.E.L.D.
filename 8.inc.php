@@ -10,16 +10,7 @@ $select_category=array(1,1,1,1,1,0);
 //Gelten die selben Regel wie bei den Kategorien
 $storage = array("Kletterkammerl", "Altes Molo", "Meixner Hohe","Leichtathletik","Villa");
 $select_storage=array(0,0,0,0);
-
-
-//LABELS
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-//DIESES FEATURE WURDE NIE FERTIG GESTELLT. ES GIBT NUR 1 LABEL, DAS SICH HIER BEARBETIEN LAeSST
-$label = array("Favorit");
-$select_label= array(0,0,0);
-$img_label=array("star.png","star_red.png","star_green.png");
-
+ 
 //$hours ist die Zeint in Stunden, wie lange etwas verborgt sein muss bevor eine Warnung aufleuchtet
 $hours=16;
 

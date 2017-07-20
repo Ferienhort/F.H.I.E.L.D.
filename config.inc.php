@@ -1,5 +1,4 @@
 <?php
-
 include 'config-mysql.inc.php';
 
 //Zeile ab Welcher dieses Dokument im Admin Panel angezeigt wird
@@ -57,6 +56,15 @@ $desktop_debug = FALSE;
 $backupdata = 60;
 //TAGE wie lange die Backups gespeichert werden. Mindestens 3, Ewig=0
 $backupdatadays = 7;
+
+
+//LABELS
+//Für die Auswahl: Hier muss aich alles abgestimmt sein!
+//Selbe Logik wie oben....
+//DIESES FEATURE WURDE NIE FERTIG GESTELLT. ES GIBT NUR 1 LABEL, DAS SICH HIER BEARBETIEN LAeSST
+$label = array("Favorit");
+$select_label= array(0,0,0);
+$img_label=array("star.png","star_red.png","star_green.png");
 
 
 $zugriffanzeige = array(

@@ -62,7 +62,7 @@ if(count($a)>1){
        else{
            
          echo"<img src=img/".drawstatus($res[STATUS])." class= klein><span class=itemtitle> ";
-         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$res[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
+         if(@mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$res[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
                 echo "<img class=klein src=img/time.png>";
             }
         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$res[IID] AND VISABLE=1"))>0){

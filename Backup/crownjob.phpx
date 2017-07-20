@@ -1,6 +1,8 @@
 <?php
 $start=time();
-
+$maxfile=50;
+        
+        
 include_once '../func.inc.php';
 $dir=scandir("Backups/Data",1);
 $dir[0]="Backups/Data/".$dir[0];
@@ -20,8 +22,8 @@ if(filesize($sql_file)<filesize($dir[0])){
     document_alert("Neues Backup ist kleiner als Altes!", "Alice", 5,filesize($sql_file)."<".filesize($dir[0]));
     }
 
-if(filesize($sql_file)>1024*1024*25){
-    document_alert("DB Backup mehr als 25 MB ", "Alice", 5,round(filesize($sql_file)/(1024*1024),2). " MB");
+if(filesize($sql_file)>1024*1024*$maxfile){
+    document_alert("DB Backup mehr als $maxfile MB ", "Alice", 5,round(filesize($sql_file)/(1024*1024),2). " MB");
     }
 else{
     document_alert("DB schlank genug ", "Alice", 1,round(filesize($sql_file)/(1024*1024),2). " MB");

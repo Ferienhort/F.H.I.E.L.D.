@@ -1,5 +1,7 @@
 <?php
 
+
+
 //KATEGORIEN:
 // Wichtig: Neue Kategorien müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
 $category = array("Foto","Audio", "Licht", "Computer","Anderes","Privat");

@@ -1,5 +1,10 @@
 <?php
 
+
+if (isset($_SESSION[NOW]))
+{
+    include $_SESSION[NOW] . '.inc.php';
+}
     $query= "SELECT * FROM kuume_inventory WHERE IID=$_GET[IID]";
     if(!isset($_GET[ANON])){
     document($conn, $_SESSION[UID], $_GET[IID],"Scannt", "0", "0");
