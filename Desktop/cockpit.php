@@ -86,7 +86,11 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT 
          echo "<ul class=quicklist>";
     }
     while($row=  mysqli_fetch_array($result)){
-            echo "<li><img src=img/".drawstatus($row[STATUS])." class=klein><b>[$row[LENDER]]</b> $row[NAME]<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+            echo "<li><img src=img/".drawstatus($row[STATUS])." class=klein>";
+            if(mysqli_num_rows(mysqli_query(connect(), "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
+                echo "<img class=klein src=img/time.png title=Verliehen!>";
+            } 
+            echo "<b>[$row[LENDER]]</b>$row[NAME]<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
     }
     if(mysqli_num_rows($result)>0){
          echo "</ul></p></div>";
