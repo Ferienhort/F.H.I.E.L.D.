@@ -7,7 +7,6 @@
  */
 
 
-
 echo "<div style='";
 echo primary_color($_SESSION[ADMIN]);
 echo "' class=menu>";
@@ -29,6 +28,10 @@ else{
     echo "</select>";
     echo "</form>";
 }
+
+    if($desktop_debug){
+        echo("<font color=red><b>Die Seite befindet sich in Wartungsmodus!</b></font>");
+    }
     if(checkthis(15)){
    echo "<span class=backup>";
    $dir=scandir("../Backup/Backups/Data",1);

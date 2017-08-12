@@ -15,6 +15,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
     while($row=  mysqli_fetch_array($result)){
         if($row[SCANNS]>=$inventory_minimum){
             echo "<div class=cockpit-full><p class=quick>Willkommen $_SESSION[NAME]! <br>Die letzte Inventur der ".$groups[$_SESSION[NOW]-1]." war am $row[INVENTUR_ZEIT].</p>";
+            echo "Das letzte Update erfolge am 12. August um 14:32. Sollten Probleme eintretten, bitte an gregor@kuume.at melden!";
              echo "</div>";
             break;
             }
@@ -80,9 +81,9 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
      
      
      
-$result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW]");
+$result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0");
     if(mysqli_num_rows($result)>0){
-         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen";
+         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> <i>Neu: Es werden hier nur mehr Dinge angezeigt, die Status 'OK' sind</i></font>";
          echo "<ul class=quicklist>";
     }
     while($row=  mysqli_fetch_array($result)){
@@ -96,12 +97,26 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT 
          echo "</ul></p></div>";
     }
     
-    
-    
+    $query="SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS!=0 AND IID IN (SELECT IID FROM kuume_actions WHERE kuume_actions.TEXT LIKE '%Status%' AND kuume_actions.TIME > NOW() - INTERVAL 10 DAY)";
+    message($query);
+    $result=mysqli_query(connect(),$query);
+    if(mysqli_num_rows($result)>0){
+         echo "<div class=cockpit-half><p class=quick>".(mysqli_num_rows($result))." Artikel sind innerhalb der letzten 10 Tage kaputt oder verlohren gegangen <br><i><font color=grey>Neu: Hier wird gelistet, was nicht oder besch&auml;digt zur&uuml;ck kam. Das Zeitlimit fungiert als eine Art Spamschutz.</i></font>";
+         echo "<ul class=quicklist>";
+    }
+    while($row=  mysqli_fetch_array($result)){
+            echo "<li><img src=img/".drawstatus($row[STATUS])." class=klein>";
+            echo "<b>[$row[LENDER]]</b>$row[NAME]<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+    }
+    if(mysqli_num_rows($result)>0){
+         echo "</ul></p></div>";
+    }
 
+    
+    
   $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE PERCENT BETWEEN 1 AND 50 AND OWNER=$_SESSION[NOW] UNION SELECT * FROM kuume_inventory WHERE ACTUAL <= (DESIRED/2) AND DESIRED != 0  AND OWNER=$_SESSION[NOW]");
     if(mysqli_num_rows($result)>0 && checkthis(17)){
-         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel unter 50%";
+         echo "<p> Im Moment sind ".(mysqli_num_rows($result))." Artikel unter 50%";
          echo "<ul class=quicklist>";
     }
     while(($row=mysqli_fetch_array($result)) && checkthis(17) ){

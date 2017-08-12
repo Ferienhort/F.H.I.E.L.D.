@@ -200,13 +200,25 @@ echo "<form method=POST action=more.php id=formular enctype=multipart/form-data>
         echo '<br>Betreuerverleih: <br><input type="text" name="ding_lender"><br>'; 
         }
     elseif($result[LENDER]!="0"){
-        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+        
+        if($result[STATUS]==0){
+            echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
-                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]><br>";
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
-            else {
-                echo "<br>";
+        }
+        elseif($result[STATUS]==4 or $result[STATUS]==3){
+            echo "Verlohren von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
+        }
+        elseif($result[STATUS]==1 or $result[STATUS]==2){
+            echo "Kaput gemacht von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Repariert: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
         }
     
     

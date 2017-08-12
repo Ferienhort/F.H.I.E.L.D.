@@ -1,7 +1,7 @@
 <?php
 
 if($_POST[verliehen]==TRUE){
-    $buildingquery.=" LENDER NOT LIKE '0' AND ";
+    $buildingquery.=" LENDER NOT LIKE '0' AND STATUS=0 AND ";
 }
 
 $buildingquery.= " CATEGORY IN(";

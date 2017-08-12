@@ -1,11 +1,10 @@
 <?php
-
 include_once '../func.inc.php';
-
 kuume_session();
 include_once 'config.inc.php';
 
 checkordie();
+
 
 if($_POST[time]=="TEST"){
     $_POST[egal]="TRUE";
@@ -214,7 +213,7 @@ while ($row = mysqli_fetch_array($temp)) {
         if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
                 echo "<img class=klein src=img/".draw_label($row[IID])." title=Favorit>";
             }    
-         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
+         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0){
                 echo "<img class=klein src=img/time.png title=Verliehen!>";
             } 
        // echo " <b>$row[IID]</b>";
@@ -243,6 +242,13 @@ while ($row = mysqli_fetch_array($temp)) {
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
             if(substr_count($row[CONTENT],";")-1>0){
                 echo "<p class=detailsinlist><b>".(substr_count($row[CONTENT],";")-1)." Dinge sind hier verstaut</b></p>";
+                $iid=  explode(";", $row[CONTENT]);
+                foreach ($iid as $value)
+                {
+                    $result = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `kuume_inventory` WHERE UID=$UID"));
+                    
+                }                
+
                         } 
                         
             }
@@ -268,9 +274,10 @@ while ($row = mysqli_fetch_array($temp)) {
         
       if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
-                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND TEXT LIKE '%verliehen%' AND TIME >= ".date(Y);
+                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND TEXT LIKE '%verliehen%' AND TIME >= STR_TO_DATE(".date(Y).",'%Y')";
+                        message($query);
                         $temp2=mysqli_query($conn, $query);
-                                    $row2 = mysqli_fetch_array($temp2);
+                        $row2 = mysqli_fetch_array($temp2);
                                      if( $row2[TOTAL]>0){
                                          echo "<p class=detailsinlist> $row2[TOTAL] Mal verliehen dieses Jahr ";
                                         echo "</p>";   

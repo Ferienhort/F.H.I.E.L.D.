@@ -155,13 +155,30 @@ $img_label=array("star.png");
         }
        echo "<br>";
      if($result[LENDER]=="0" && checkthis(6)){
+         if($result[STATUS]==0){
         echo 'Verleih: <input type="text" name="ding_lender">'; 
+         }
         }
     elseif($result[LENDER]!="0"){
-        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+        
+        if($result[STATUS]==0){
+            echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
+        }
+        elseif($result[STATUS]==4 or $result[STATUS]==3){
+            echo "Verlohren von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
+        elseif($result[STATUS]==1 or $result[STATUS]==2){
+            echo "Kaput gemacht von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Repariert: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
         }
         
        $faulagain=True;

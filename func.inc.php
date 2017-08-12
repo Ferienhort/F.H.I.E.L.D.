@@ -5,9 +5,23 @@ function kuume_session(){
     ini_set('session.cookie_lifetime', 3600*24);
     ini_set('session.gc_maxlifetime', 3600*24);
     session_set_cookie_params(3600*24);
-    session_start(); 
-    include_once 'config.inc.php';
+    session_start();
 }
+
+function wartungsmodus(){
+    include 'config.inc.php';
+    if($desktop_debug===TRUE && $_SESSION[ADMIN]<=8){
+        include_once '../func.inc.php';
+        $conn=connect();
+        document($conn, $_SESSION[UID], 0, "Hat sich ausgeloggt wegen Wartung",0,0);
+        unset($_SESSION[UID]);
+        unset($_SESSION[AKTIV]);
+        unset($_SESSION[ADMIN]);
+        session_destroy();
+        die("Die Seite befindet sich in Wartungsmodus! Wir werden bald wieder online sein!");
+    }
+}
+
 
 function connect(){
     include 'config.inc.php'; 
