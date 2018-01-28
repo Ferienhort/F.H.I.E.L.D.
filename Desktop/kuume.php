@@ -205,22 +205,10 @@ while ($row = mysqli_fetch_array($temp)) {
         $oldrow=$row[CATEGORY];
         
         echo "<p class=cattitle> ".$category[$row[CATEGORY]]."</p>";
-    }
+    }   
+        
         echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class=klein title='".$status[$row[STATUS]]."'><span class=itemtitle> ";
-                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
-                echo "<img class=klein src=img/comment.png title=Kommentar>";
-            }
-        if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
-                echo "<img class=klein src=img/".draw_label($row[IID])." title=Favorit>";
-            }    
-         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0){
-                echo "<img class=klein src=img/time.png title=Verliehen!>";
-            } 
-       // echo " <b>$row[IID]</b>";
-        if($row[LENDER]!="0"){
-            echo "<b>[$row[LENDER]] </b>";
-        }
-        echo ($row[NAME])."</span> </span>";
+        
         echo "<span class=itemlinks>";
         echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png title=Detailansicht></a>";
          if(checkthis(3)){
@@ -236,6 +224,23 @@ while ($row = mysqli_fetch_array($temp)) {
             echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png title=Checken></a>";
         }
         echo "</span>";
+        
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
+                echo "<img class=klein src=img/comment.png title=Kommentar>";
+            }
+            
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
+                echo "<img class=klein src=img/".draw_label($row[IID])." title=Favorit>";
+            }    
+         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0){
+                echo "<img class=klein src=img/time.png title=Verliehen!>";
+            } 
+       // echo " <b>$row[IID]</b>";
+        if($row[LENDER]!="0"){
+            echo "<b>[$row[LENDER]] </b>";
+        }
+        echo ($row[NAME])."</span> </span>";
+        
         echo "</p>";
         
         if(1){
