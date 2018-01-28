@@ -33,9 +33,6 @@ $export_ordnung = array("IID", "CATEGORY", "STATUS", "NAME","YEAR_PURCHASED","VA
 //Abwieviel verschiedenen gescannten Objekten soll der als Inventur wahrgenommen werden
 $inventory_minimum = 40;
 
-//STARTOBERFLÄCHE
-//String = "ADMIN","OH"
-$startscreen = "OH";
 
 //USER LEVEL
 //Userlevels: Jeder Nutzer hat ein Level (zwischen 0-10), fast alle Funktionen erfordern ein Mindestlevel.

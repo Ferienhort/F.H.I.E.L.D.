@@ -149,6 +149,14 @@ if(isset($_POST[IID])){
     }
     
     
+    if($result[EXPIRATION_YEAR]!=$_POST[dings_ablaufjahr]){
+        mysqli_query($conn, "UPDATE kuume_inventory SET EXPIRATION_YEAR='".mysqli_real_escape_string($conn,$_POST[dings_ablaufjahr])."',EXPIRATION_POINT='$_POST[dings_ablaufquartal]' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
+        document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Ablaufdatum: $result[EXPIRATION_POINT]/$result[EXPIRATION_YEAR] =>  $_POST[dings_ablaufquartal] / $_POST[dings_ablaufjahr]", 0, 0);
+        message("UPDATE kuume_inventory SET EXPIRATION_YEAR='".mysqli_real_escape_string($conn,$_POST[dings_ablaufjahr])."',EXPIRATION_POINT='$_POST[dings_ablaufquartal]' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]));
+        
+    }
+    
+    
     if($_POST[ding_lender]!=""){
           $query= "UPDATE "
             . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER='$_POST[ding_lender]'"
@@ -250,6 +258,16 @@ if(checkthis(10) &&  $result[VALUE]!=0){
     echo "Soll:<br> <input type=text value='$result[ACTUAL]' name=dings_soll><br>"; 
     echo "<input type=hidden value=$result[IID] name=IID>";
     
+    echo "Haltbar bis <br> <select name=dings_ablaufquartal>";
+        if($result[EXPIRATION_POINT]==4 || $result[EXPIRATION_POINT]==0){
+            echo " <option value=4 selected>Fr&uuml;hjahr</option> <option value=10>Herbst</option>";
+        }
+        else{
+           echo " <option value=4 >Fr&uuml;hjahr</option> <option value=10 selected>Herbst</option>"; 
+        }
+    echo "<br> Jahr: <input type=text value='$result[EXPIRATION_YEAR]' name=dings_ablaufjahr><br>"; 
+    
+    
     echo "Beinhaltet<br>";
 $b=explode(";", $result[CONTENT]);
     echo "<textarea name=ding_inhalt rows=5>";
@@ -262,7 +280,7 @@ $b=explode(";", $result[CONTENT]);
     
     $rowrowrow=mysqli_query($conn, "SELECT * FROM kuume_inventory WHERE CONTENT LIKE '%;$result[IID];%'");
     $row=  mysqli_fetch_array($rowrowrow);
-     echo "Ist in:<br> <input type=text value='$row[IID]' name=dings_wo><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
+     echo ":<br>Ist in:<br> <input type=text value='$row[IID]' name=dings_wo><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
      ?>
     <br>
 <input type="submit" value="Go!">

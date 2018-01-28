@@ -154,6 +154,21 @@ $img_label=array("star.png");
             echo $status[$result[STATUS]];
         }
        echo "<br>";
+       
+           
+        if($result[EXPIRATION_YEAR]!=0){
+            echo "<br> L&auml;uft"; 
+            if($result[EXPIRATION_POINT]==4){
+                echo " Fr&uuml;jahr ";
+            }
+            else {
+                echo " Herbst ";
+            }
+            echo "$result[EXPIRATION_YEAR] ab <br>";
+                
+        }
+        
+        
      if($result[LENDER]=="0" && checkthis(6)){
          if($result[STATUS]==0){
         echo 'Verleih: <input type="text" name="ding_lender">'; 

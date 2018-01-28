@@ -55,6 +55,18 @@ if (isset($_SESSION[NOW]))
             echo "<br>Status: ";
             echo $status[$result[STATUS]];
         }
+        
+        if($result[EXPIRATION_YEAR]!=0){
+            echo "<br> L&auml;uft"; 
+            if($result[EXPIRATION_POINT]==4){
+                echo " Fr&uuml;jahr ";
+            }
+            else {
+                echo " Herbst ";
+            }
+            echo "$result[EXPIRATION_YEAR] ab <br>";
+                
+        }
     
         if($result[LENDER]=="0" && checkthis(6)){
             if($result[STATUS]==0){

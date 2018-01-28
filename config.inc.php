@@ -47,9 +47,9 @@ $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png
 
 
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$mobile_debug = FALSE;
+$mobile_debug = TRUE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$desktop_debug = FALSE;
+$desktop_debug = TRUE;
 
 
 //BACK UPs
