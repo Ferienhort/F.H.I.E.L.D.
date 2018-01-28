@@ -40,9 +40,8 @@ checkordie();
             mysqli_query($conn, $query );
             document($conn, $_SESSION[UID],  $_POST[drei], "Kommentiert", 0,0);
             message($query);
-       }
-
-        
+        }
+       
         if(isset($_GET[num]) && !isset($_GET[status])){
             $_POST[nummern]=$_GET[num];
             
@@ -68,11 +67,12 @@ checkordie();
                     }
                 }
             }
+            
         echo "<div><form method=POST action=oh.php id=ohvis>Hier Invetarnummern eingeben:";
         echo "<input type=hidden id=eins name=eins> <input type=hidden id=zwei name=zwei><input type=hidden id=drei name=drei> ";
         echo "<br>";
         echo "<textarea name=nummern rows=4 cols=50 style='width=100%'></textarea>";
-        echo "<span style='float: right'>an <input type=text name=kind size=4 required> <input type=submit value=Verleihen></span> ";
+        echo "<span style='float: right'>an <input type=text name=kind size=4> <input type=submit value=Verleihen><br>oder <input type=submit value=Retournieren></span> ";
         echo "</form>";
         echo "</div>";
         }
@@ -80,7 +80,7 @@ checkordie();
      
 $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0");
     if(mysqli_num_rows($result)>0){
-         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
+         echo "<div class=><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
          echo "<ul class=quicklist>";
     }
     while($row=mysqli_fetch_array($result)){
