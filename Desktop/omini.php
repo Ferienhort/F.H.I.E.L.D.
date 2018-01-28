@@ -130,7 +130,6 @@ else{
     while($res=mysqli_fetch_array($result)){
                 
                 echo "<img src=img/".drawstatus($res[STATUS])." class=klein>";
-                echo "$res[NAME] ";
                 echo "<a href=comments.php?IID=$res[IID]&slink=oida target='thatframeyo' ><img class=klein src=img/edit.png></a>";
                 if(checkthis(3)){
                 echo "<a href=edit.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/edit_all.png></a>";
@@ -141,6 +140,7 @@ else{
                 if(checkthis(0)){
                 echo "<a href=delete.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/delete.png></a>";
                 }
+                echo "$res[NAME] ";
                 echo "<br>";
     }
     
