@@ -15,7 +15,6 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
     while($row=  mysqli_fetch_array($result)){
         if($row[SCANNS]>=$inventory_minimum){
             echo "<div class=cockpit-full><p class=quick>Willkommen $_SESSION[NAME]! <br>Die letzte Inventur der ".$groups[$_SESSION[NOW]-1]." war am $row[INVENTUR_ZEIT].</p>";
-            echo "Das letzte Update erfolge am 12. August um 14:32. Sollten Probleme eintretten, bitte an gregor@kuume.at melden!";
              echo "</div>";
             break;
             }
@@ -68,11 +67,10 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
                 }
             }
         }
-        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Schnellverleih";
-        echo "<span style='float:right;'> Nummer: <input type=text name=kind size=4> </span>";
+        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Hier Invetarnummern eingeben:";
         echo "<br>";
         echo "<textarea name=nummern rows=4 cols=50 style='width=100%'></textarea>";
-        echo "<input type=submit value=Senden>";
+        echo "<span style='float: right'><input type=submit value=Retournieren> oder an <input type=text name=kind size=4> <input type=submit value=Verleihen></span> ";
         echo "</form>";
         echo "</div>";
         
@@ -83,7 +81,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
      
 $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0");
     if(mysqli_num_rows($result)>0){
-         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> <i>Neu: Es werden hier nur mehr Dinge angezeigt, die Status 'OK' sind</i></font>";
+         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
          echo "<ul class=quicklist>";
     }
     while($row=  mysqli_fetch_array($result)){
@@ -101,7 +99,7 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT 
     message($query);
     $result=mysqli_query(connect(),$query);
     if(mysqli_num_rows($result)>0){
-         echo "<div class=cockpit-half><p class=quick>".(mysqli_num_rows($result))." Artikel sind innerhalb der letzten 10 Tage kaputt oder verlohren gegangen <br><i><font color=grey>Neu: Hier wird gelistet, was nicht oder besch&auml;digt zur&uuml;ck kam. Das Zeitlimit fungiert als eine Art Spamschutz.</i></font>";
+         echo "<div class=cockpit-half><p class=quick>".(mysqli_num_rows($result))." Artikel sind innerhalb der letzten 10 Tage kaputt oder verlohren gegangen";
          echo "<ul class=quicklist>";
     }
     while($row=  mysqli_fetch_array($result)){

@@ -103,6 +103,12 @@ $zugriffanzeige = array(
 );
 
 
+//Links 
+$desktop_link = "admin.kuume.at";
+$mobile_link = "app.kuume.at";
+
+
+
 
 //Versioning 
 $version = "&beta;17.02 \"Hans\" ";
