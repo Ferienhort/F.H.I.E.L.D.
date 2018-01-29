@@ -168,7 +168,6 @@ $img_label=array("star.png");
                 
         }
         
-        
      if($result[LENDER]=="0" && checkthis(6)){
          if($result[STATUS]==0){
         echo 'Verleih: <input type="text" name="ding_lender">'; 

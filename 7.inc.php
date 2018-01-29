@@ -67,4 +67,5 @@ $zugriff = array(
         9,   // Sieht entfernte Kommentare[28]
         7,  // Detailansicht Aktivieren [29]
         7, // Schnellverleih [30]
+        6 // OH-Modul [31]
         );

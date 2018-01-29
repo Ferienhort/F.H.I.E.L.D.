@@ -47,9 +47,9 @@ $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png
 
 
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$mobile_debug = TRUE;
+$mobile_debug = FALSE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$desktop_debug = TRUE;
+$desktop_debug = FALSE;
 
 
 //BACK UPs
@@ -104,8 +104,8 @@ $zugriffanzeige = array(
 
 
 //Links 
-$desktop_link = "admin.kuume.at";
-$mobile_link = "app.kuume.at";
+$desktop_link = "http://admin.kuume.at";
+$mobile_link = "http://app.kuume.at";
 
 
 

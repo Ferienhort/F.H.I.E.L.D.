@@ -49,6 +49,9 @@ else{
 echo "</span>";
 
 echo "<span id=usermenu>";
+if(checkthis(30)){
+    echo "<a href='oh.php'>OH Ansicht</a> -";
+}
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";
     echo mysqli_num_rows(mysqli_query(connect(),"SELECT * FROM kuume_alerts WHERE LEVEL > 3 AND DATETIME_IT_HAPPENED > NOW() - INTERVAL 72 HOUR ORDER BY DATETIME_IT_HAPPENED DESC "));

@@ -10,13 +10,29 @@ checkordie();
 <head>
     <script>
         function lost(a,b){
-            var kommentar = prompt("Bitte eine kurze Beschreibung","Beschreibung");
-            document.getElementById("eins").value=kommentar;
-            document.getElementById("zwei").value=a;
-            document.getElementById("drei").value=b;
-            document.getElementById("ohvis").submit();
+            var kommentar = prompt("Bitte eine kurze Beschreibung","");
+            if(komentar!=null){
+                document.getElementById("eins").value=kommentar;
+                document.getElementById("zwei").value=a;
+                document.getElementById("drei").value=b;
+                document.getElementById("ohvis").submit();
+            }
         }
     </script>
+    <style>
+        
+        .floaty{
+            float: left;
+            margin: 10px;
+            padding: 10px;
+            width: 350px;
+        }
+        
+        body{
+        }
+    </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
 </head>
 
 <div>
@@ -67,29 +83,40 @@ checkordie();
                     }
                 }
             }
+       
+   
             
-        echo "<div><form method=POST action=oh.php id=ohvis>Hier Invetarnummern eingeben:";
+        $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0 ORDER BY NAME");
+            if(mysqli_num_rows($result)>0){
+                echo "<div class=floaty style='background-color: rgba(255, 0, 0, 0.2);'><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
+            }
+            else {
+                echo "<div class=floaty style='background-color: rgba(255, 0, 0, 0.2);'>Im Moment sind keine Artikel verliehen";
+            }
+                echo "<br> <a href=$desktop_link>Zur Desktop Ansicht wechseln </a>";
+                echo "<br> <a href=$mobile_link>Zur Web App wechseln </a><br><br>";
+                echo "Unbedingt kontrollieren ob JavaScript erlaubt ist :D!</div>";
+    
+        $i=0;
+            
+        echo "<div class=floaty style='background-color: rgba(0, 0, 255, 0.2);'><form method=POST action=oh.php id=ohvis>Hier Inventarnummern eingeben:";
         echo "<input type=hidden id=eins name=eins> <input type=hidden id=zwei name=zwei><input type=hidden id=drei name=drei> ";
         echo "<br>";
-        echo "<textarea name=nummern rows=4 cols=50 style='width=100%'></textarea>";
-        echo "<span style='float: right'>an <input type=text name=kind size=4> <input type=submit value=Verleihen><br>oder <input type=submit value=Retournieren></span> ";
+        echo "<textarea name=nummern rows=4 style='width=100%'></textarea><br>";
+        echo "an <input type=text name=kind size=4> <input type=submit value=Verleihen> oder <span style='float: right'><input type=submit value=Retournieren></span> ";
         echo "</form>";
         echo "</div>";
         }
- echo "<div>";
      
-$result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0");
-    if(mysqli_num_rows($result)>0){
-         echo "<div class=><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
-         echo "<ul class=quicklist>";
-    }
     while($row=mysqli_fetch_array($result)){
-            echo "<li>";
-            if(@mysqli_num_rows(mysqli_query(connect(), "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
-                echo "<img class=klein src=img/time.png title=Verliehen!>";
-            } 
-            echo "<b>[$row[LENDER]]</b>$row[NAME]<a href=oh.php?num=$row[IID]> Retour</a> - <a href=javascript:lost(1,$row[IID]);>Kaputt</a> - <a href=javascript:lost(3,$row[IID]);> Verlohren</a>";
-    }
-    if(mysqli_num_rows($result)>0){
-         echo "</ul></p></div>";
-    }
+        if($i==0){
+            echo "<div class=floaty style='background-color: rgba(0, 255, 0, 0.2);'>";
+        }
+        echo "<span class=lendstuff><b>[$row[LENDER]] $row[NAME] </b><br><i>IID: $row[IID]</i> <a href=oh.php?num=$row[IID]> Retour</a> - <a href=javascript:lost(1,$row[IID]);>Kaputt</a> - <a href=javascript:lost(3,$row[IID]);> Verlohren</a><br></span>";
+        $i++;
+        if($i==4){
+            echo "</div>";
+            $i=0;
+        }
+        
+        }
