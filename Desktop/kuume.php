@@ -155,6 +155,22 @@ if(isset($_POST[ichbinfaul])){
             }
             echo "> Nachbestellung<br>";
         }
+        
+        if(checkthis(31)){
+            echo "<input type=checkbox name=lauftbald value=TRUE";
+            if($_POST[lauftbald]==TRUE){
+                echo " checked";
+            }
+            echo "> L&auml;uft bald ab<br>";
+        }
+        
+        if(checkthis(31)){
+            echo "<input type=checkbox name=abgelaufen value=TRUE";
+            if($_POST[abgelaufen]==TRUE){
+                echo " checked";
+            }
+            echo "> Abgelaufen<br>";
+        }
         ?><br>
           
              <input type="button" value="Export" onclick="eexport()">

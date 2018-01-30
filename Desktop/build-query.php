@@ -82,6 +82,32 @@ $buildingquery.=" AND DATETIME_CATALOGED < ";
      if($_POST[bestellt]==TRUE){
          $buildingquery .= "AND REBUY=1 ";
      }
+     
+    if($_POST[lauftbald]==TRUE){
+        
+        if(date("n") <= 4){
+                $buildingquery .= "AND (EXPIRATION_POINT=4 AND EXPIRATION_YEAR=".date("Y").")";
+        }
+        else if(date("n") <= 10){
+                $buildingquery .= "AND (EXPIRATION_POINT=10 AND EXPIRATION_YEAR=".date("Y").")";
+        }
+        else {
+            $buildingquery .= "AND (EXPIRATION_POINT=4 AND EXPIRATION_YEAR=1+".date("Y").")";
+        }
+         
+        }
+        
+        if($_POST[abgelaufen]==TRUE){
+            if($_POST[lauftbald]==TRUE){
+                $buildingquery .= "OR";
+            }
+            else {
+                $buildingquery .= "AND";
+            }
+            $buildingquery .= "(EXPIRATION_YEAR!=0 AND (EXPIRATION_YEAR<".date("Y")." OR (EXPIRATION_YEAR=".date("Y")." AND EXPIRATION_POINT<=".date("n").")))";
+        }
+        
+        
 $buildingquery  .= " AND OWNER=$_SESSION[NOW] ORDER BY `kuume_inventory`.`CATEGORY` ASC, `kuume_inventory`.`STATUS` ASC, `kuume_inventory`.`NAME` ASC";
     
 $query=$buildingquery;

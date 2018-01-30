@@ -4,7 +4,6 @@ kuume_session();
 
 checkordie();
 
-
 ?>
 
 <head>

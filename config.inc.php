@@ -9,7 +9,7 @@ $displayforadmins = 6;
 $enablescript=7;
 
 //Namen
-$groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT","Abenteuer","Klettern");
+$groups = array("kuume", "Pfeilsport", "O.H.", "KuBu", "Admin", "FH-IT","Abenteuer","Klettern","RaBu");
 $group_numbers = array(
             array(3000, 3200, "kuume"),
             array(1000, 2000, "Pfeilsport"),
@@ -29,15 +29,16 @@ $group_stickers = array(
             array(100100, 100600, "Admin"),
             array(20000, 20100, "FH-IT"),
             array(50000, 50100, "Abenteuer"),
-            array(60000, 60200, "Klettern")
+            array(60000, 60200, "Klettern"),
+            array(30000, 30300, "RaBu")
     );
 
 //STATI:
 // Wichtig: Neue Stati müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
-$status = array("OK", "Kaputt", "In Reparatur", "Verloren", "Aussortiert");
+$status = array("OK", "Kaputt", "In Reparatur", "Unauffindbar", "Ausgegliedert");
 //Welche Stati beim einloggen Automatisch aktiviert sind.
 //Wie bei allen kommenden Arrays ist die Reihenfolge der Werte relevant
-$select_status = array(1, 1, 1, 1, 0);
+$select_status = array(1, 1, 1, 0, 0);
 //Status Icons: Ampeln, ja oder nein. Bei nein müssen anderen Icons verwendet werden!
 $uses_robots = TRUE;
 //Ampeln: 1=Grün, 2=GrünGelb, 3=Gelb. 4=GelbRot, 5=Rot, 6=Durchgestrichen
@@ -47,9 +48,9 @@ $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png
 
 
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$mobile_debug = FALSE;
+$mobile_debug = TRUE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
-$desktop_debug = FALSE;
+$desktop_debug = TRUE;
 
 
 //BACK UPs
