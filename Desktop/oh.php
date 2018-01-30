@@ -98,7 +98,7 @@ checkordie();
     
         $i=0;
             
-        echo "<div class=floaty style='background-color: rgba(0, 0, 255, 0.2);'><form method=POST action=oh.php id=ohvis>Hier Inventarnummern eingeben:";
+        echo "<div class=floaty style='background-color: rgba(0, 0, 255, 0.2);'><form method=POST action=oh.php id=ohvis><b> Verleih</b><br>Hier Inventarnummern eingeben:";
         echo "<input type=hidden id=eins name=eins> <input type=hidden id=zwei name=zwei><input type=hidden id=drei name=drei> ";
         echo "<br>";
         echo "<textarea name=nummern rows=4 style='width=100%'></textarea><br>";

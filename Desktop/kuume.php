@@ -251,7 +251,7 @@ while ($row = mysqli_fetch_array($temp)) {
          if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0){
                 echo "<img class=klein src=img/time.png title=Verliehen!>";
             }
-        if($row[EXPIRATION_YEAR]!= "0" && (($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] < date("n")) || ($row[EXPIRATION_YEAR] == date("Y")+1 && (date("n") >= 10 && $row[EXPIRATION_POINT] <= 5)))){
+        if($row[EXPIRATION_YEAR]!= "0" && (($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] > date("n")) || ($row[EXPIRATION_YEAR] == date("Y")+1 && (date("n") >= 10 && $row[EXPIRATION_POINT] <= 5)))){
                 echo "<img class=klein src=img/callsign_yellow.png title='Bald Abgelaufen!'>";
         }
         if($row[EXPIRATION_YEAR]!= "0" && ($row[EXPIRATION_YEAR] < date("Y") || ($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] <= date("n")))){

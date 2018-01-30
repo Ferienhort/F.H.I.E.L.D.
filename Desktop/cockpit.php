@@ -67,7 +67,7 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
                 }
             }
         }
-        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Hier Invetarnummern eingeben:";
+        echo "<div class=cockpit-half><form method=POST action=cockpit.php>Schnellverleih: <br> Inventar Nummern eingeben:";
         echo "<br>";
         echo "<textarea name=nummern rows=4 cols=50 style='width=100%'></textarea>";
         echo "<span style='float: right'><input type=submit value=Retournieren> oder an <input type=text name=kind size=4> <input type=submit value=Verleihen></span> ";
