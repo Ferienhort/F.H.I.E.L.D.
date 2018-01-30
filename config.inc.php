@@ -116,5 +116,5 @@ $version = "&beta;17.02 \"Hans\" ";
 
 if (isset($_SESSION[NOW]))
 {
-    include $_SESSION[NOW] . '.inc.php';
+    include "ConfigFiles/".$_SESSION[NOW] . '.inc.php';
 }
