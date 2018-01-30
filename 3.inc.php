@@ -72,5 +72,6 @@ $zugriff = array(
         3, // Detailansicht
         3,  // Schnellverleihmodul Aktivieren [29]
         7, // Schnellverleih [30]
-        6 // OH-Modul [31]
+        6,  // OH-Modul [31]
+        10 // Ablaufdatum [32]
         );

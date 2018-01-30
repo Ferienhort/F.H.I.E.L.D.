@@ -156,7 +156,7 @@ if(isset($_POST[ichbinfaul])){
             echo "> Nachbestellung<br>";
         }
         
-        if(checkthis(31)){
+        if(checkthis(32)){
             echo "<input type=checkbox name=lauftbald value=TRUE";
             if($_POST[lauftbald]==TRUE){
                 echo " checked";
@@ -164,7 +164,7 @@ if(isset($_POST[ichbinfaul])){
             echo "> L&auml;uft bald ab<br>";
         }
         
-        if(checkthis(31)){
+        if(checkthis(32)){
             echo "<input type=checkbox name=abgelaufen value=TRUE";
             if($_POST[abgelaufen]==TRUE){
                 echo " checked";
@@ -250,7 +250,14 @@ while ($row = mysqli_fetch_array($temp)) {
             }    
          if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0){
                 echo "<img class=klein src=img/time.png title=Verliehen!>";
-            } 
+            }
+        if($row[EXPIRATION_YEAR]!= "0" && (($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] > date("n")) || ($row[EXPIRATION_YEAR] == date("Y")+1 && (date("n") >= 10 && $row[EXPIRATION_POINT] <= 5)))){
+                echo "<img class=klein src=img/callsign_yellow.png title=Abgelaufen!>";
+        }
+        if($row[EXPIRATION_YEAR]!= "0" && ($row[EXPIRATION_YEAR] < date("Y") || ($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] <= date("n")))){
+                echo "<img class=klein src=img/callsign_red.png title=Abgelaufen!>";
+        }
+            
        // echo " <b>$row[IID]</b>";
         if($row[LENDER]!="0"){
             echo "<b>[$row[LENDER]] </b>";
