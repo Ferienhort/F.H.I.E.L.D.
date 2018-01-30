@@ -328,8 +328,8 @@ function skript($input, $iid){
         $build="";
             for($i=1; $i<=$times; $i++){
                 $temp=$i+$iid;
-                $query="INSERT INTO kuume_inventory (IID,NAME,YEAR_PURCHASED,DATETIME_CATALOGED,DATETIME_EDITED,CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY) "
-                        ." (SELECT $temp,NAME, YEAR_PURCHASED,NOW(),NOW(),CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY FROM kuume_inventory WHERE IID=$iid)";
+                $query="INSERT INTO kuume_inventory (IID,NAME,YEAR_PURCHASED,DATETIME_CATALOGED,DATETIME_EDITED,CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY, ACTUAL, DESIRED, EXPIRATION_POINT, EXPIRATION_POINT) "
+                        ." (SELECT $temp, NAME, YEAR_PURCHASED,NOW(),NOW(),CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY, ACTUAL, DESIRED, EXPIRATION_POINT, EXPIRATION_POINT) FROM kuume_inventory WHERE IID=$iid)";
                 mysqli_query($conn, $query);
                 $build=$build+";"+$temp;
                 document($conn, $_SESSION[UID],$temp,"Katalogisierte erstmalig (Klon von $iid)", 0, 0);
