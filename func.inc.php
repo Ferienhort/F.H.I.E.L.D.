@@ -283,7 +283,7 @@ function skript($input, $iid){
         $moveto=$temp[0];
         
         if(!is_numeric($temp[0])){
-            die("Fehler: Kann zahl nicht lesen!");
+            die("Fehler: Kann Zahl nicht lesen!");
         }
         $query= "UPDATE kuume_inventory SET IID='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
         mysqli_query($conn,$query);
@@ -312,7 +312,7 @@ function skript($input, $iid){
         $temp=explode("++group:", $input);
         $temp=explode(" ",$temp[1]);
         if(!is_numeric($temp[0])){
-            die("Fehler: Kann zahl nicht lesen!");
+            die("Fehler: Kann Zahl nicht lesen!");
         }
         $moveto=$temp[0];
         $query= "UPDATE kuume_inventory SET OWNER='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
@@ -326,7 +326,7 @@ function skript($input, $iid){
         $temp=explode(" ",$temp[1]);
         
         if(!is_numeric($temp[0])){
-            die("Fehler: Kann zahl nicht lesen!");
+            die("Fehler: Kann Zahl nicht lesen!");
         }
         
         $times=$temp[0];
@@ -368,7 +368,7 @@ function skript($input, $iid){
         $temp=explode(" ",$temp[1]);
         $needle=$temp[0];
         if(!is_numeric($temp[0])){
-            die("Fehler: Kann zahl nicht lesen!");
+            die("Fehler: Kann Zahl nicht lesen!");
         }
         if(!$dir=scandir("../Backup/Backups/Data",1)){
             echo "Kein Backup gefunden!";
