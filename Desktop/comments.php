@@ -78,7 +78,7 @@ if(isset($_POST[ding_status]) && $_POST[ding_status]!=$_POST[ding_status_alt]){
         die();
     }
     if($result[OWNER]!=$_SESSION[NOW]){
-        die("Dieser Sticker ist bereits einer anderen Abteilung zugeordnet");
+        die("Dieser Sticker ist bereits einer anderen Abteilung zugeordnet: ".$groups[$result[OWNER]-1]);
     }
     echo '<form method="post" action="comments.php">';
     if(isset($_GET[Check]) && $_GET[Check]==1){
