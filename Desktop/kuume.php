@@ -121,12 +121,14 @@ if(isset($_POST[ichbinfaul])){
         </td>
         <td><span class="headline">
                 Weitere Optionen
-            </span><br>
-             <input type=checkbox name=verliehen value=TRUE <?php
+            </span><br><?php
+    if(checkthis(6)){
+        echo "<input type=checkbox name=verliehen value=TRUE";
     if($_POST[verliehen]==TRUE){
     echo "checked";
 }
     echo "> Verliehen<br>";
+    }
              $i=0;
         if(checkthis(11)){
             foreach($label as $cat){

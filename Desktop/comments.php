@@ -281,7 +281,7 @@ $img_label=array("star.png");
         die("Fehler");
     }
     
-    
+    echo '<input type="submit" value="Senden"> <br>';
     
     if(checkthis(24)){
     $query="SELECT * FROM `kuume_comments` WHERE IID=$_GET[IID] ORDER BY DATETIME DESC ";
@@ -310,7 +310,7 @@ $img_label=array("star.png");
         ?><br>            
             
  
-            <input type="submit">
+            
         </form>
         <i>Keine weiteren Kommentare</i></div>
     </body>

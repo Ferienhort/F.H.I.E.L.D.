@@ -61,6 +61,13 @@ $backupdata = 60;
 //TAGE wie lange die Backups gespeichert werden. Mindestens 3, Ewig=0
 $backupdatadays = 7;
 
+//LABELS
+//Für die Auswahl: Hier muss aich alles abgestimmt sein!
+//Selbe Logik wie oben....
+$label = array("Favorit");
+$select_label= array(0,0,0);
+$img_label=array("star.png","star_red.png","star_green.png");
+
 
 //LABELS
 //Für die Auswahl: Hier muss aich alles abgestimmt sein!
@@ -89,10 +96,10 @@ $zugriffanzeige = array(
     "Sieht diese Info im Usermenue",
     "Sieht letztes Backup ",
     "Sieht Lagerplatz",
-    "Sieht erweiterete eigenschaften",
+    "Sieht erweiterete Eigenschaften",
     "Kann Schachtelinhalte editieren",
     "Sieht Schachtelinhalte",
-    "Kann Mehr Scannen",
+    "Kann MultiScannen",
     "Bekommt Benachrichtigungen",
     "Bekommt Alerts",
     "Sieht Hilfe",
@@ -102,7 +109,9 @@ $zugriffanzeige = array(
     "Kann Kommentare entfernen",
     "Kann entfernte Kommentare sehen",
     "Detailansicht",
-    "Schnellverleihmodul Aktivieren"
+    "Schnellverleihmodul Aktivieren",
+    "OH-Modul Aktivieren",
+    "Ablaufdaten"
 );
 
 
