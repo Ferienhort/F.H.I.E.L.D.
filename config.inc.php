@@ -18,7 +18,9 @@ $group_numbers = array(
             array(0, 100, "Admin"),
             array(2000, 2200, "FH-IT"),
             array(5000, 5999, "Abenteuer"),
-            array(6000, 6500, "Klettern")
+            array(6000, 6500, "Klettern"),
+            array(3000, 3200, "RaBu")
+
 );
 
 $group_stickers = array(

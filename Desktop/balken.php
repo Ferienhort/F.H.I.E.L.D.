@@ -49,8 +49,8 @@ else{
 echo "</span>";
 
 echo "<span id=usermenu>";
-if(checkthis(30)){
-    echo "<a href='oh.php'>OH Ansicht</a> -";
+if(checkthis(31)){
+    echo "<a href='oh.php'>OH Ansicht</a> - ";
 }
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";

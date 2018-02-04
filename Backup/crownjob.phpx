@@ -1,6 +1,6 @@
 <?php
 $start=time();
-$maxfile=50;
+$maxfile=100;
         
         
 include_once '../func.inc.php';

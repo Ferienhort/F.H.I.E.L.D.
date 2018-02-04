@@ -10,7 +10,7 @@ checkordie();
     <script>
         function lost(a,b){
             var kommentar = prompt("Bitte eine kurze Beschreibung","");
-            if(komentar!=null){
+            if(kommentar!=null){
                 document.getElementById("eins").value=kommentar;
                 document.getElementById("zwei").value=a;
                 document.getElementById("drei").value=b;
@@ -20,7 +20,7 @@ checkordie();
     </script>
     <style>
         
-        .floaty{
+        .floaty{ 
             float: left;
             margin: 10px;
             padding: 10px;
@@ -41,9 +41,9 @@ checkordie();
     {
         $conn= connect();
         
-       if(isset($_POST[eins])){
+       if(isset($_POST[zwei])){
             $query="UPDATE "
-            . "kuume_inventory  SET DATETIME_EDITED=NOW(), STATUS= $_POST[zwei]"
+            . "kuume_inventory  SET DATETIME_EDITED=NOW(), STATUS=$_POST[zwei]"
             . " WHERE IID=$_POST[drei]";
             document($conn, $_SESSION[UID],  $_POST[drei], "Status Update", 0, $_POST[zwei]);
             mysqli_query($conn,$query);
@@ -111,7 +111,7 @@ checkordie();
         if($i==0){
             echo "<div class=floaty style='background-color: rgba(0, 255, 0, 0.2);'>";
         }
-        echo "<span class=lendstuff><b>[$row[LENDER]] $row[NAME] </b><br><i>IID: $row[IID]</i> <a href=oh.php?num=$row[IID]> Retour</a> - <a href=javascript:lost(1,$row[IID]);>Kaputt</a> - <a href=javascript:lost(3,$row[IID]);> Verlohren</a><br></span>";
+        echo "<span class=lendstuff><b>[$row[LENDER]] $row[NAME] </b><br><i>IID: $row[IID]</i> <a href=oh.php?num=$row[IID]> Retour</a> - <a href=javascript:lost(1,$row[IID]);>Kaputt</a> - <a href=javascript:lost(3,$row[IID]);> Verloren</a><br></span>";
         $i++;
         if($i==4){
             echo "</div>";
