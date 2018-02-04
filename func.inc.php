@@ -281,6 +281,10 @@ function skript($input, $iid){
         $temp=explode("++move:", $input);
         $temp=explode(" ",$temp[1]);
         $moveto=$temp[0];
+        
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann zahl nicht lesen!");
+        }
         $query= "UPDATE kuume_inventory SET IID='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
         mysqli_query($conn,$query);
         $query= "UPDATE kuume_inventory SET CONTENT=REPLACE(CONTENT,';".mysqli_real_escape_string($conn,$iid).";',';".mysqli_real_escape_string($conn,$moveto).";') WHERE CONTENT LIKE '%;".mysqli_real_escape_string($conn,$iid).";%'";
@@ -307,6 +311,9 @@ function skript($input, $iid){
         $command=TRUE;
         $temp=explode("++group:", $input);
         $temp=explode(" ",$temp[1]);
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann zahl nicht lesen!");
+        }
         $moveto=$temp[0];
         $query= "UPDATE kuume_inventory SET OWNER='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
         mysqli_query($conn,$query);
@@ -317,6 +324,11 @@ function skript($input, $iid){
         $command=TRUE;
         $temp=explode("++copy:", $input);
         $temp=explode(" ",$temp[1]);
+        
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann zahl nicht lesen!");
+        }
+        
         $times=$temp[0];
 
         if($times>50){
@@ -355,6 +367,9 @@ function skript($input, $iid){
         $temp=explode("++rollback:", $input);
         $temp=explode(" ",$temp[1]);
         $needle=$temp[0];
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann zahl nicht lesen!");
+        }
         if(!$dir=scandir("../Backup/Backups/Data",1)){
             echo "Kein Backup gefunden!";
         }
