@@ -49,8 +49,8 @@ echo "data.addRows([\n";
         $ugrenze=$_GET[a];
     }
     else{
-        $i=2016;
-        $ugrenze=2016;
+        $i=date(Y);
+        $ugrenze=date(Y);
     }
     if(isset($_GET[b])){
         $grenze=$_GET[b];
