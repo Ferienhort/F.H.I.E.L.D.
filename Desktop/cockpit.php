@@ -11,10 +11,15 @@ include '../config.inc.php'
 
 <?php
 
-$result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCANNS, DATE_FORMAT(kuume_actions.TIME ,'%d.%m.%y') AS INVENTUR_ZEIT FROM kuume_actions WHERE kuume_actions.IID IN(SELECT kuume_inventory.IID FROM kuume_inventory WHERE OWNER=$_SESSION[NOW]) AND kuume_actions.TEXT LIKE '%Scannt%' GROUP BY DATE_FORMAT(kuume_actions.TIME,'%Y%m%d') ORDER BY INVENTUR_ZEIT DESC");
+
+$result=mysqli_query(connect(), "SELECT COUNT(DISTINCT IID) AS ITEMS FROM kuume_inventory WHERE OWNER=$_SESSION[NOW] AND STATUS = 0");
+$row=  mysqli_fetch_array($result);
+$totals=$row[ITEMS];
+
+$result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCANNS, DATE_FORMAT(kuume_actions.TIME + INTERVAL 24 HOUR,'%Y-%m-%d') AS INVENTUR_ZEIT FROM kuume_actions WHERE kuume_actions.IID IN(SELECT kuume_inventory.IID FROM kuume_inventory WHERE OWNER= $_SESSION[NOW]) AND kuume_actions.TEXT LIKE '%Scannt%' GROUP BY DATE_FORMAT(kuume_actions.TIME,'%Y%m%d') ORDER BY INVENTUR_ZEIT DESC ");
     while($row=  mysqli_fetch_array($result)){
         if($row[SCANNS]>=$inventory_minimum){
-            echo "<div class=cockpit-full><p class=quick>Willkommen $_SESSION[NAME]! <br>Die letzte Inventur der ".$groups[$_SESSION[NOW]-1]." war am $row[INVENTUR_ZEIT].</p>";
+            echo "<div class=cockpit-full><p class=quick>Willkommen $_SESSION[NAME]! <br>Die letzte Inventur der ".$groups[$_SESSION[NOW]-1]." war am $row[INVENTUR_ZEIT]. Es wurden $row[SCANNS] von $totals Artikel (".(100*round($row[SCANNS]/$totals,2))."%) des aktuell verf&uuml;gbaren Inventars dokumentiert. </p>";
              echo "</div>";
             break;
             }

@@ -15,7 +15,7 @@ $group_numbers = array(
             array(1000, 2000, "Pfeilsport"),
             array(300, 950, "O.H."),
             array(4000, 4200, "KuBu"),
-            array(0, 100, "Admin"),
+            array(1, 100, "Admin"),
             array(2000, 2200, "FH-IT"),
             array(5000, 5999, "Abenteuer"),
             array(6000, 6500, "Klettern"),
