@@ -54,7 +54,6 @@ $mobile_debug = FALSE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
 $desktop_debug = FALSE;
 
-
 //BACK UPs
 //BackUp Interval der Datenbank in MINUTEN. Mindestens 10, Nie=0 DEPRECATED!
 $backupdata = 60;

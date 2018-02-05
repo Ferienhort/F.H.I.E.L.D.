@@ -385,7 +385,8 @@ function skript($input, $iid){
                    $templine = '';
                 }
             }
-        document($conn, $_SESSION[UID],0,"System Rollback ($needle Stunden)", 0, 0);
+        document($conn, 2 ,0,"System Rollback ($needle Stunden) von $_SESSION[NAME]", 0, 0);
+        document_alert("System Rollback von ".getUser($conn, $_SESSION[UID])."", getUser(connect(),2), 4,"");
         echo "System Rollback ($needle Stunden)<br>";
         }
 
