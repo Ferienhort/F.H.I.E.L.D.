@@ -64,3 +64,6 @@ while ($row = mysqli_fetch_array($result)) {
 
 echo "<br> <br><b>$i  Dinge verschoben!</b>";
 
+document($conn, $_SESSION[UID], 9,"Verschiebt $i Dinge von $_POST[gruppevon] => $_POST[gruppenach]/$_POST[kattegorienach]", 0, 0);
+
+

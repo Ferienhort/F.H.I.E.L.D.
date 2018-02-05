@@ -23,7 +23,7 @@ echo "Namensteil: <input type=text name=namen>";
 echo "<i>Verschiebt Dinge mit diesem Wort im Namen</i><br>";
 echo "In Liste: <input type=text name=liste>";
 echo "<i>IID's mit Beistrich (,) trennen</i><br>";
-echo "<input type=checkbox name=fav value=TRUE> Ist Favorit <br><input type=checkbox name=not value=TRUE> Invertieren <i>also: ist <u>nicht</u> in der Liste, hat das Wort <u>nicht</u>, <u>kein</u> Favorit...</i>";
+echo "<input type=checkbox name=fav value=TRUE> Ist Favorit <br><input type=checkbox name=not value=TRUE> Invertieren <i>(also: ist <u>nicht</u> in der Liste, hat das Wort <u>nicht</u>, <u>kein</u> Favorit...)</i>";
 echo "</form>";
         
 
