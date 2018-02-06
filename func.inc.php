@@ -307,6 +307,38 @@ function skript($input, $iid){
         document($conn, $_SESSION[UID],$iid,"Erledigt Anfrage", 0, 0);
         echo "#'s weg<br>";
     }
+    if(strpos($input,"++allislost") !== FALSE){
+        $command = TRUE;
+        $query = "SELECT IID,NAME FROM kuume_inventory WHERE OWNER=$_SESSION[NOW] AND STATUS=0 AND LENDER NOT LIKE '0'";
+        message($query);
+        $result = mysqli_query($conn,$query);
+        $i=0;
+        while ($row = mysqli_fetch_array($result)) {
+            $query = "UPDATE kuume_inventory SET STATUS=3 WHERE IID=$row[IID]";
+            mysqli_query($conn, $query);
+            message($query);
+            document($conn, $_SESSION[UID],  $row[IID], "Status Update", 0, 3);
+            $i++;
+            echo "$row[NAME] verloren <br>";
+        }
+        echo "$i Statuse geupdated<br>";
+    }
+    if(strpos($input,"++shopping") !== FALSE){
+        $command = TRUE;
+        $query = "SELECT IID,NAME FROM kuume_inventory WHERE OWNER=$_SESSION[NOW] AND REBUY=1";
+        message($query);
+        $result = mysqli_query($conn,$query);
+        $i=0;
+        while ($row = mysqli_fetch_array($result)) {
+            $query = "UPDATE kuume_inventory SET REBUY=0 WHERE IID=$row[IID]";
+            mysqli_query($conn, $query);
+            message($query);
+            document($conn, $_SESSION[UID], $row[IID], "Nachbestellung deaktiviert", 0, 0);
+            $i++;
+            echo "$row[NAME] bearbeitet<br>";
+        }
+        echo "$i Nachbestellungen deaktiviert<br>";
+    }
     if(strpos($input,"++group:") !== FALSE){
         $command=TRUE;
         $temp=explode("++group:", $input);

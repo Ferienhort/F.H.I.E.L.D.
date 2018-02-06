@@ -1,10 +1,6 @@
 <?php
 include 'config-mysql.inc.php';
 
-//Zeile ab Welcher dieses Dokument im Admin Panel angezeigt wird
-$displayforadmins = 6;
-
-
 //Ab welchem Userlevel die Skriptsprache global aktiviert wird. Kann in X.inc.php uberschrieben werden.
 $enablescript=7;
 
@@ -48,25 +44,14 @@ $robot_status = array(1, 3, 4, 5, 6);
 //Icons, wenn nicht ampeln.
 $icon_status = array("eineDateiimordnerIMG.png", "eineAndere.jpg", "weiterso.png");
 
-
 //Mobile Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
 $mobile_debug = FALSE;
 //Desktop Debug Info Ein/Aus. Hilfreich bei der erstellung, ansonsten eher komisch
 $desktop_debug = FALSE;
 
 //BACK UPs
-//BackUp Interval der Datenbank in MINUTEN. Mindestens 10, Nie=0 DEPRECATED!
-$backupdata = 60;
 //TAGE wie lange die Backups gespeichert werden. Mindestens 3, Ewig=0
 $backupdatadays = 7;
-
-//LABELS
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-$label = array("Favorit");
-$select_label= array(0,0,0);
-$img_label=array("star.png","star_red.png","star_green.png");
-
 
 //LABELS
 //Für die Auswahl: Hier muss aich alles abgestimmt sein!
