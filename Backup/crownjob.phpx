@@ -34,7 +34,7 @@ else{
  $sql_file = 'Backups/Data/DB-Backup-'.date("Y-m-d-H-i", time()-24*60*60*$backupdatadays).'.sql';   
  if(file_exists($sql_file)){
     unlink($sql_file);
-    document_alert("Ein Altes Backup vernichtet", "Alice", 3,"");
+    document_alert("Ein Altes Backup vernichtet", "Alice", 2,"");
     } 
 
  }
