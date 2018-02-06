@@ -19,7 +19,7 @@ else{
 
         
 if(filesize($sql_file)<filesize($dir[0])){
-    document_alert("Neues Backup ist kleiner als Altes!", "Alice", 5,filesize($sql_file)."<".filesize($dir[0]));
+    document_alert("Neues Backup ist kleiner als Altes!", "Alice", 5,round(filesize($sql_file)/(1024*1024),2)." MB <".round(filesize(dir[0])/(1024*1024),2)." MB");
     }
 
 if(filesize($sql_file)>1024*1024*$maxfile){

@@ -101,6 +101,7 @@ $zugriffanzeige = array(
 //Links 
 $desktop_link = "http://admin.kuume.at";
 $mobile_link = "http://app.kuume.at";
+$sticker_link = "http://inventar.ferienhort.at";
 
 //LABELS
 //Für die Auswahl: Hier muss aich alles abgestimmt sein!

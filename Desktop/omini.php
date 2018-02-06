@@ -15,7 +15,7 @@ if(is_numeric($_POST[IID])==TRUE){
 $a=explode("#", $_POST[IID]);
 skript($a[0],$a[1]);
 
-$_POST[IID]=  str_replace("http://inventar.ferienhort.at/kuume.php?IID=","", $_POST[IID]);
+$_POST[IID]=  str_replace($sticker_link."/kuume.php?IID=","", $_POST[IID]);
 $_POST[IID]=  str_replace("\r\n",";", $_POST[IID]);
 $_POST[IID]=  str_replace(",",";", $_POST[IID]);
 if(strpos($_POST[IID], "++prefix:") !== FALSE){
@@ -73,16 +73,56 @@ if(count($a)>1){
             }    
            
         // echo " <b>$row[IID]</b>";
-        if($row[LENDER]!=0){
-            echo "<b>[$res[LENDER]] </b>";
-        }
+        echo "<a href=comments.php?IID=$res[IID]&slink=oida target='thatframeyo' ><img class=klein src=img/edit.png></a>";
+            if(($res[LENDER]!="0") && $_POST[Borrowed]){
+                 $query= "UPDATE kuume_inventory  SET LENDER='0', DATETIME_LEND=0 WHERE IID=$res[IID]";
+                mysqli_query($conn, $query);
+                document($conn, $_SESSION[UID], $res[IID],"Retourniert", -1,0);
+                $lend = ", retourniert";
+            }
+            else if($res[LENDER]!="0"){
+                echo "<b>[$res[LENDER]] </b>";
+                $lend = "";
+            }
+            else{
+                $lend = "";
+            }
+            
             if(isset($_POST[Check]) && $_POST[Check]==1){
                 echo "$i $res[NAME] gescannt";
             }
             else{
-                echo "$i $res[NAME] ";
+                echo "$i $res[NAME]";
             }
-             if($updatethis==TRUE){
+            
+            if($res[STATUS]==3 && $_POST[Lost]==TRUE){
+                $query="UPDATE kuume_inventory SET STATUS = 0 WHERE IID = $res[IID]";
+                mysqli_query($conn, $query);
+                message($query);
+                echo ", Status geupdated <img class=klein src=img/". drawstatus(0).">";
+                document($conn, $_SESSION[UID],  $res[IID], "Status Update",$res[STATUS],0);
+            }
+            if($res[STATUS]==4 && $_POST[FUCK]==TRUE){
+                $query="UPDATE kuume_inventory SET STATUS = 0 WHERE IID = $res[IID]";
+                mysqli_query($conn, $query);
+                message($query);
+                echo ", Status geupdated <img class=klein src=img/". drawstatus(0).">";
+                document($conn, $_SESSION[UID],  $res[IID], "Status Update",$res[STATUS],0);
+            }
+            if(($res[STATUS]==2 || $res[STATUS]==1) && $_POST[Broken]==TRUE){
+                $query="UPDATE kuume_inventory SET STATUS = 0 WHERE IID = $res[IID]";
+                mysqli_query($conn, $query);
+                message($query);
+                echo ", Status geupdated <img class=klein src=img/". drawstatus(0).">";
+                document($conn, $_SESSION[UID],  $res[IID], "Status Update",$res[STATUS],0);
+            }
+            
+            echo $lend;
+            
+            if(checkthis(3)){
+                echo "<a href=edit.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/right.png></a>";
+            }
+            if($updatethis==TRUE){
                 if($res[PERCENT]!=0){
                     $query="UPDATE kuume_inventory SET PERCENT = $temp[1] WHERE IID = $temp[0]";
                     message($query);
@@ -103,16 +143,7 @@ if(count($a)>1){
                 }
                 mysqli_query($conn,$query);
                 }
-            echo "<a href=comments.php?IID=$res[IID]&slink=oida target='thatframeyo' ><img class=klein src=img/edit.png></a>";
-            if(checkthis(3)){
-                echo "<a href=edit.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/edit_all.png></a>";
-                }
-                if(checkthis(4)){
-                echo "<a href=log.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/log.png></a>";
-                }
-                if(checkthis(0)){
-                echo "<a href=delete.php?IID=$res[IID] target=thatframeyo><img class=klein src=img/delete.png></a>";
-                }
+            
                 echo "<br>";
                 $updatethis=false;
            

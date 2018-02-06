@@ -66,7 +66,7 @@ if(checkthis(31)){
     echo "<a href='oh.php'>OH Ansicht</a> - ";
 }
 if(checkthis(20)){
-    echo "<a href=scann.php target='thatframeyo'>Multiscan</a> - ";
+    echo "<a href=scann.php target='thatframeyo'>MultiScan</a> - ";
 }
 if(checkthis(7)){
     echo "<a href=spy.php target='thatframeyo'>Log</a> - ";
