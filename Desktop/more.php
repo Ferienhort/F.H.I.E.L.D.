@@ -130,7 +130,7 @@ if(isset($_POST[IID])){
             document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung beantragt", 0, 0);
         }
         else {
-            document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung abgebrochen", 0, 0);
+            document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung deaktiviert", 0, 0);
         }
     }
     if($result[PERCENT]!=$_POST[dings_prozent]){

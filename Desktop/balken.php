@@ -49,9 +49,6 @@ else{
 echo "</span>";
 
 echo "<span id=usermenu>";
-if(checkthis(31)){
-    echo "<a href='oh.php'>OH Ansicht</a> - ";
-}
 if(checkthis(22)){
     echo "<span id=alert><a href=alert.php target=thatframeyo>";
     echo mysqli_num_rows(mysqli_query(connect(),"SELECT * FROM kuume_alerts WHERE LEVEL > 3 AND DATETIME_IT_HAPPENED > NOW() - INTERVAL 72 HOUR ORDER BY DATETIME_IT_HAPPENED DESC "));
@@ -62,10 +59,12 @@ if(checkthis(21)){
     echo mysqli_num_rows(mysqli_query(connect(),"SELECT IID FROM  `kuume_comments` WHERE `COMMENT` LIKE  '%#%' AND IID IN(SELECT IID FROM kuume_inventory WHERE OWNER=$_SESSION[NOW])"));
     echo "</a> - </span>";
 }
-echo "<a href=cockpit.php target='thatframeyo'> $_SESSION[NAME]'s &Uuml;bersicht </a>- ";
+echo "<a href=cockpit.php target='thatframeyo'> $_SESSION[NAME]'s &Uuml;bersicht </a> - ";
 if(checkthis(23)){
 }
-
+if(checkthis(31)){
+    echo "<a href='oh.php'>OH Ansicht</a> - ";
+}
 if(checkthis(20)){
     echo "<a href=scann.php target='thatframeyo'>Multiscan</a> - ";
 }
