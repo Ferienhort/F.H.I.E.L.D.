@@ -113,12 +113,17 @@ $zugriffanzeige = array(
     "Ablaufdaten"
 );
 
-
 //Links 
 $desktop_link = "http://admin.kuume.at";
 $mobile_link = "http://app.kuume.at";
 
-
+//LABELS
+//Für die Auswahl: Hier muss aich alles abgestimmt sein!
+//Selbe Logik wie oben....
+//DIESES FEATURE WURDE NIE FERTIG GESTELLT. ES GIBT NUR 1 LABEL, DAS SICH HIER BEARBETIEN LAeSST
+$label = array("Favorit");
+$select_label= array(0,0,0);
+$img_label=array("star.png","star_red.png","star_green.png");
 
 
 //Versioning 
