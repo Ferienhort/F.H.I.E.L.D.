@@ -1,6 +1,27 @@
 <?php
-
 include_once 'config.inc.php';
+    
+function kuume_session(){
+    ini_set('session.cookie_lifetime', 3600*24);
+    ini_set('session.gc_maxlifetime', 3600*24);
+    session_set_cookie_params(3600*24);
+    session_start();
+}
+
+function wartungsmodus(){
+    include 'config.inc.php';
+    if($desktop_debug===TRUE && $_SESSION[ADMIN]<=8){
+        include_once '../func.inc.php';
+        $conn=connect();
+        document($conn, $_SESSION[UID], 0, "Hat sich ausgeloggt wegen Wartung",0,0);
+        unset($_SESSION[UID]);
+        unset($_SESSION[AKTIV]);
+        unset($_SESSION[ADMIN]);
+        session_destroy();
+        die("Die Seite befindet sich in Wartungsmodus! Wir werden bald wieder online sein!");
+    }
+}
+
 
 function connect(){
     include 'config.inc.php'; 
@@ -173,7 +194,7 @@ function document($conn, $UID, $IID, $text, $old, $new){
     message($query);
 }
 
-function primary_color($a){
+function primary_color($a){ 
     if($a>=10){
         echo 'background-color: rgba(0,0,0,1); color: white; ';
     }
@@ -201,7 +222,7 @@ function document_alert($text,$user,$level,$output){
     $query="INSERT INTO kuume_alerts (`LEVEL`, `MESSAGE`, `DATETIME_IT_HAPPENED`, `BY`, `OUTPUT`) VALUES($level,'".mysqli_real_escape_string(connect(),$text)."', NOW(),'$user','".mysqli_real_escape_string(connect(),$output)."')";
     mysqli_query(connect(),$query);
     if($level>3){
-    mailto("LEVEL $level Alert von $user  \r\n $text");
+    mailto("LEVEL $level Alert von $user  \r\n $text \r\n[$output]");
     }
 }
 
@@ -252,7 +273,7 @@ function skript($input, $iid){
     $input.=" ";
     $conn=connect();
     $command=FALSE;
-     if($_SESSION[ADMIN]<=7){
+     if($_SESSION[ADMIN]<=$enablescript){
         return $input;
         }
     if(strpos($input,"++move:") !== FALSE){
@@ -260,6 +281,10 @@ function skript($input, $iid){
         $temp=explode("++move:", $input);
         $temp=explode(" ",$temp[1]);
         $moveto=$temp[0];
+        
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann Zahl nicht lesen!");
+        }
         $query= "UPDATE kuume_inventory SET IID='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
         mysqli_query($conn,$query);
         $query= "UPDATE kuume_inventory SET CONTENT=REPLACE(CONTENT,';".mysqli_real_escape_string($conn,$iid).";',';".mysqli_real_escape_string($conn,$moveto).";') WHERE CONTENT LIKE '%;".mysqli_real_escape_string($conn,$iid).";%'";
@@ -282,10 +307,45 @@ function skript($input, $iid){
         document($conn, $_SESSION[UID],$iid,"Erledigt Anfrage", 0, 0);
         echo "#'s weg<br>";
     }
+    if(strpos($input,"++allislost") !== FALSE){
+        $command = TRUE;
+        $query = "SELECT IID,NAME FROM kuume_inventory WHERE OWNER=$_SESSION[NOW] AND STATUS=0 AND LENDER NOT LIKE '0'";
+        message($query);
+        $result = mysqli_query($conn,$query);
+        $i=0;
+        while ($row = mysqli_fetch_array($result)) {
+            $query = "UPDATE kuume_inventory SET STATUS=3 WHERE IID=$row[IID]";
+            mysqli_query($conn, $query);
+            message($query);
+            document($conn, $_SESSION[UID],  $row[IID], "Status Update", 0, 3);
+            $i++;
+            echo "$row[NAME] verloren <br>";
+        }
+        echo "$i Statuse geupdated<br>";
+    }
+    if(strpos($input,"++shopping") !== FALSE){
+        $command = TRUE;
+        $query = "SELECT IID,NAME FROM kuume_inventory WHERE OWNER=$_SESSION[NOW] AND REBUY=1";
+        message($query);
+        $result = mysqli_query($conn,$query);
+        $i=0;
+        while ($row = mysqli_fetch_array($result)) {
+            $query = "UPDATE kuume_inventory SET REBUY=0 WHERE IID=$row[IID]";
+            mysqli_query($conn, $query);
+            message($query);
+            document($conn, $_SESSION[UID], $row[IID], "Nachbestellung deaktiviert", 0, 0);
+            $i++;
+            echo "$row[NAME] bearbeitet<br>";
+        }
+        echo "$i Nachbestellungen deaktiviert<br>";
+    }
     if(strpos($input,"++group:") !== FALSE){
         $command=TRUE;
         $temp=explode("++group:", $input);
         $temp=explode(" ",$temp[1]);
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann Zahl nicht lesen!");
+        }
         $moveto=$temp[0];
         $query= "UPDATE kuume_inventory SET OWNER='".mysqli_real_escape_string($conn,$moveto)."', DATETIME_EDITED=NOW() WHERE IID=".mysqli_real_escape_string($conn,$iid);
         mysqli_query($conn,$query);
@@ -296,6 +356,11 @@ function skript($input, $iid){
         $command=TRUE;
         $temp=explode("++copy:", $input);
         $temp=explode(" ",$temp[1]);
+        
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann Zahl nicht lesen!");
+        }
+        
         $times=$temp[0];
 
         if($times>50){
@@ -307,8 +372,8 @@ function skript($input, $iid){
         $build="";
             for($i=1; $i<=$times; $i++){
                 $temp=$i+$iid;
-                $query="INSERT INTO kuume_inventory (IID,NAME,YEAR_PURCHASED,DATETIME_CATALOGED,DATETIME_EDITED,CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY) "
-                        ." (SELECT $temp,NAME, YEAR_PURCHASED,NOW(),NOW(),CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY FROM kuume_inventory WHERE IID=$iid)";
+                $query="INSERT INTO kuume_inventory (IID,NAME,YEAR_PURCHASED,DATETIME_CATALOGED,DATETIME_EDITED,CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY, ACTUAL, DESIRED, EXPIRATION_POINT, EXPIRATION_POINT) "
+                        ." (SELECT $temp, NAME, YEAR_PURCHASED,NOW(),NOW(),CATEGORY,SUBCAT,STATUS,VALUE,LABEL,STORAGE,PERCENT,CONTENT,OWNER,REBUY, ACTUAL, DESIRED, EXPIRATION_POINT, EXPIRATION_POINT) FROM kuume_inventory WHERE IID=$iid)";
                 mysqli_query($conn, $query);
                 $build=$build+";"+$temp;
                 document($conn, $_SESSION[UID],$temp,"Katalogisierte erstmalig (Klon von $iid)", 0, 0);
@@ -334,6 +399,9 @@ function skript($input, $iid){
         $temp=explode("++rollback:", $input);
         $temp=explode(" ",$temp[1]);
         $needle=$temp[0];
+        if(!is_numeric($temp[0])){
+            die("Fehler: Kann Zahl nicht lesen!");
+        }
         if(!$dir=scandir("../Backup/Backups/Data",1)){
             echo "Kein Backup gefunden!";
         }
@@ -349,7 +417,8 @@ function skript($input, $iid){
                    $templine = '';
                 }
             }
-        document($conn, $_SESSION[UID],0,"System Rollback ($needle Stunden)", 0, 0);
+        document($conn, 2 ,0,"System Rollback ($needle Stunden) von $_SESSION[NAME]", 0, 0);
+        document_alert("System Rollback von ".getUser($conn, $_SESSION[UID])."", getUser(connect(),2), 4,"");
         echo "System Rollback ($needle Stunden)<br>";
         }
 

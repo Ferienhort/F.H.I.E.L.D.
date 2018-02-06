@@ -1,4 +1,7 @@
-
+<?php
+include_once '../func.inc.php'; 
+kuume_session();
+?>
 
 <html>
     <head>
@@ -23,13 +26,25 @@
 <meta name="msapplication-config" content="Icon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1 "/>
-
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
          <link rel="stylesheet" type="text/css" href="style.css">
-
-         <title> F.H.I.E.L.D. - FerienHort Inventar Export und Logistik‎ Datenbank</title>
+         <?php
+         $easteregg = array("FerienHort Inventar, Export und Logistik Division",
+             "FerienHort In Einer Leiwanden Datenbank",
+             "FerienHort Ist Ein Logistisches Dillema",
+             "FerienHort In Ein Lustiger Datensatz",
+             "FerienHort Intervention, Enforcement and Logistics Division",
+             "FHield Ist Eine Lange Datei"
+             );
+         
+         echo "<title> F.H.I.E.L.D. - ".$easteregg[rand(0,count($easteregg)-1)]."</title>";
         
+         ?>
     </head>
      <script type="text/javascript">
+
+ 
                 function display(bild){
                     if(bild==0){
                        document.getElementById("content").innerHTML = "";
@@ -40,6 +55,12 @@
                         document.getElementById("content").innerHTML = "<a href='javascript:display(0)'><img width=100% src=Uploads/"+bild+"></a>";
                     }
             }
+                    function eexport(){
+            var e = document.getElementById("eee");
+            e.value="TRUE";
+            document.suchfilter.submit();
+            e.value="FALSE";
+        }
          </script>
     <body>
         
@@ -55,3 +76,12 @@ include_once '../func.inc.php';
      $a=  mysqli_real_escape_string($connect,$a);
  }
  
+ if(isset($_POST[omniIID])){
+             $_POST[IID]=$_POST[omniIID];
+             $_SESSION[omni]=$_POST;
+         }
+if(isset($_GET[S])){
+             $_POST=$_SESSION[omni];
+         }
+
+               

@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 
 /* 
  Like a rock,
@@ -34,6 +32,9 @@ it's the generator
 
 $start=time();
 include '../../../func.inc.php';
+
+
+kuume_session();
 
 if(!isset($_POST['IamPissedThatIExist'])){
     die("Fehler.");

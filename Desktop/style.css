@@ -6,12 +6,14 @@ td{
 }
 
 .menu{
-    position: fixed;
     padding: 20px;
     border-radius: 15px;
     position: absolute;
-    left: 3%;
-    width: 94%;
+    left: 5%;
+    width: 90%;
+    background-image: url(img/wasserfarben-header.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 #list{
@@ -27,14 +29,18 @@ textarea{
 
 .headline{
     padding-top: 3px;
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 18px;
     position: relative;
     top: 0px;
+    margin-bottom: 10px;
+    
     
 }
 
 .cattitle{
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 25px;
 }
 
 .item{
@@ -88,20 +94,7 @@ textarea{
     color: black;
 }
 
-#quick{
-    position: relative;
-    text-align: right;
-    border: none;
-    background-color: rgba(230,230,230,1);
-    border-radius: 15px;
-    padding: 7px;
-    margin: 0;
-    width: 350px;
-    display: inline;
-    margin-right: 40px;
-    margin-left: 40px;
-    color: black;
-}
+
 
 #usermenu{
     text-align: right;
@@ -139,13 +132,27 @@ textarea{
 #thatframeyo{
     position: fixed;
     left: 50%;
-    top: 100px;
-    height: 75%;
+    top: 180px;
+    bottom: 150px;
+    height: 70%;
     width: 45%;
     border: none;
     background-color: rgba(230,230,230,1);
     border-radius: 15px;
     padding: 20px;
+}
+#quick{
+    position: fixed;
+    left: 50%;
+    top: 100px;
+    height: 20px;
+    width: 45%;
+    border: none;
+    background-color: rgba(230,230,230,1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    
 }
 
 #leftcontainer{
@@ -153,6 +160,7 @@ textarea{
     left: 5%;
     top: 100px;
     width: 41%;
+    padding-bottom: 20px;
 }
 
 #login{
@@ -193,10 +201,12 @@ textarea{
 
 body{
     padding: 0px;
+    font-family: 'Slabo 27px', serif;
+    font-size: 16px;
 }
 
 a:link, a:visited, a:hover, a:active{
-    color: rgba(255,0,0,1);
+    color: rgba(120,120,120,1);
 }
 
 .gallerypic{
@@ -229,7 +239,7 @@ a:link, a:visited, a:hover, a:active{
 }
 
 .cockpit-half{
-    width: 45%;
+    width: 40%;
     float: left;
     padding: 10px;
     padding-top: 5px;

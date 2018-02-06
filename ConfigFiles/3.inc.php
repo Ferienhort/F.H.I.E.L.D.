@@ -30,7 +30,7 @@ $hours=16;
 //EXPORT
 //Welche Daten Felder in welcher Reihenfolge Ausgeben werden
 
-$export_ordnung = array("LENDER", "NAME", "IID", "VALUE");
+$export_ordnung = array("LENDER", "NAME", "IID", "VALUE","STATUS");
 
 
 //INVENTUR
@@ -69,5 +69,9 @@ $zugriff = array(
         4,  // Kann Kommentare schreiben [25]
         7,   // Kann Nachbestellen [26]
         7,  // Kann Kommentare entfernen [28]
+        3, // Detailansicht
         3,  // Schnellverleihmodul Aktivieren [29]
+        7, // Schnellverleih [30]
+        6,  // OH-Modul [31]
+        10 // Ablaufdatum [32]
         );

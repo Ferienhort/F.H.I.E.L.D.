@@ -1,5 +1,10 @@
 <?php
 
+
+if (isset($_SESSION[NOW]))
+{
+        include "../ConfigFiles/".$_SESSION[NOW] . '.inc.php';
+}
     $query= "SELECT * FROM kuume_inventory WHERE IID=$_GET[IID]";
     if(!isset($_GET[ANON])){
     document($conn, $_SESSION[UID], $_GET[IID],"Scannt", "0", "0");
@@ -50,18 +55,44 @@
             echo "<br>Status: ";
             echo $status[$result[STATUS]];
         }
+        
+        if($result[EXPIRATION_YEAR]!=0){
+            echo "<br> L&auml;uft"; 
+            if($result[EXPIRATION_POINT]==4){
+                echo " Fr&uuml;jahr ";
+            }
+            else {
+                echo " Herbst ";
+            }
+            echo "$result[EXPIRATION_YEAR] ab <br>";
+                
+        }
     
         if($result[LENDER]=="0" && checkthis(6)){
-        echo '<br>Verleih: <br><input type="text" name="ding_lender">'; 
+            if($result[STATUS]==0){
+                echo '<br>Verleih: <br><input type="text" name="ding_lender">'; 
+            }
         }
-        elseif($result[LENDER]!="0"){
-        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+elseif($result[LENDER]!="0"){
+        
+        if($result[STATUS]==0){
+            echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
-            else {
-                echo "<br>";
+        }
+        elseif($result[STATUS]==4 or $result[STATUS]==3){
+            echo "Verlohren von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
+        }
+        elseif($result[STATUS]==1 or $result[STATUS]==2){
+            echo "Kaput gemacht von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Repariert: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
         }
      $faulagain=True;
         $dings=explode(";", $result[CONTENT]);

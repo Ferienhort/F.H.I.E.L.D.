@@ -1,20 +1,20 @@
 <?php
-session_start();
+ 
 include_once '../func.inc.php';
-
+kuume_session();
 $conn=connect();
-
 if(isset($_POST[PIN])){
         eastereggs($_POST[PIN]);
         $query= "SELECT * FROM kuume_user WHERE PIN=".mysqli_real_escape_string($conn, $_POST[PIN])." AND AKTIV=1";
         $result=mysqli_query($conn,  $query);
-        
+
         if(mysqli_num_rows($result)>0){
             $resultat =  mysqli_fetch_array($result);
             $_SESSION[UID]=$resultat[UID];
             $_SESSION[NAME]=$resultat[NAME];
             $_SESSION[AKTIV]=$resultat[AKTIV];
             $_SESSION[ADMIN]=$resultat[ADMIN];
+            wartungsmodus();
             $i=substr($resultat[OWNER],0,1);
             if($i=="0"){
                 $_SESSION[TECH]=TRUE;
@@ -42,6 +42,8 @@ if(isset($_POST[PIN])){
             document($conn, $_SESSION[UID], 0, "Hat sich eingeloggt (Desktop)",0,0);
             $_GET[IID]=$_POST[geheim];
             echo $_POST[IID];
+            
+            
             include 'config.inc.php';
             include "index.php";
         }

@@ -2,8 +2,8 @@
 
 //KATEGORIEN:
 //Gelten die selben Regel wie bei den Stati
-$category = array("Werkzeug","Testreihe 1", "Testreihe 2", "Testreihe 3");
-$select_category=array(1,1,1,1);
+$category = array("Perlen","Kasten", "Farben", "Werkzeug", "Material","Zubeh&ouml;r");
+$select_category=array(1,1,1,1,1);
 
 //Ablegestelle:
 //Gelten die selben Regel wie bei den Stati
@@ -41,7 +41,7 @@ $zugriff = array(
         9,  // Inventar entfernen [0]
         10, // Config Datei sehen [1]
         8,  // User Verwaltung - Nur User mit geringeren Levels [2]
-        9,  // Kann Inventar Bearbeiten [3]
+        8,  // Kann Inventar Bearbeiten [3]
         9,  // Detailansicht [4]
         11, // Debug Infos - Wenn diese aktiviert sind [5]
         11, // Kann Verleihen, Retournieren [6]
@@ -67,5 +67,9 @@ $zugriff = array(
         7,   // Kann nachbestellen [26]
         10, // Sieht entfernte Kommentare [27]
         7,  // Kann Kommentare entfernen [28]
+        7, // Detailansicht
         11,  // Schnellverleihmodul Aktivieren [29]
+        7, // Schnellverleih [30]
+        6,  // OH-Modul [31]
+        10 // Ablaufdatum [32]
         );

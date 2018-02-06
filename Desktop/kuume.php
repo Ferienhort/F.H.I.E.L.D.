@@ -1,86 +1,18 @@
 <?php
-
-
 include_once '../func.inc.php';
+kuume_session();
+include_once 'config.inc.php';
+
 checkordie();
+
 
 if($_POST[time]=="TEST"){
     $_POST[egal]="TRUE";
 }
 
 
-echo "<div style='";
-echo primary_color($_SESSION[ADMIN]);
-echo "' class=menu>";
+include 'balken.php';
 
-
-echo "<span id=links>  <b>F.H.I.E.L.D.</b>  ";
-if(count($_SESSION[OWNER])==1){
-    echo $groups[$_SESSION[NOW]-1];
-    }
-else{
-    echo "<form method=post action=switch.php id=switchthis name=wechsel><select name=wechsel>";
-        foreach($_SESSION[OWNER] as $i){
-            echo "<option value=".$i." ";
-                if($i==$_SESSION[NOW]){
-                    echo "selected";
-                }
-            echo ">".$groups[$i-1]."</option>";
-        }
-    echo "</select>";
-    echo "<input type=submit value=Wechsel></form>";
-}
-    echo "  V.:$version ";
-    if(checkthis(15)){
-   echo "<span class=backup>";
-   $dir=scandir("../Backup/Backups/Data",1);
-   
-    if(!is_array($dir)){
-        echo "Kein Backup gefunden!";
-    }
-    else{
-        $dir=$dir[1];
-         $dir=explode("-", $dir);
-    echo "<b>Letztes DB Backup:</b> $dir[4].$dir[3].$dir[2] um $dir[5]:".substr($dir[6],0,2);
-    }
-    echo "</span>";
-}
-echo "</span>";
-echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="IID"><input type="submit" value="Go!">';
-
-if(checkthis(20)){
-    echo 'Scan<input type="checkbox" name="Check" value="1">';
-}
-
-if(checkthis(24)){
-    echo 'inkl. Kommentare<input type="checkbox" name="kom" value="1">';
-}
-    echo '</form>';
-echo "<span id=usermenu>";
-if(checkthis(22)){
-    echo "<span id=alert><a href=alert.php target=thatframeyo>";
-    echo mysqli_num_rows(mysqli_query(connect(),"SELECT * FROM kuume_alerts WHERE LEVEL > 3 AND DATETIME_IT_HAPPENED > NOW() - INTERVAL 72 HOUR ORDER BY DATETIME_IT_HAPPENED DESC "));
-    echo " Alerts</a> - </span>";
-}
-if(checkthis(21)){
-    echo "<span id=hash><a href=hashtag.php target=thatframeyo># ";
-    echo mysqli_num_rows(mysqli_query(connect(),"SELECT IID FROM  `kuume_comments` WHERE `COMMENT` LIKE  '%#%' AND IID IN(SELECT IID FROM kuume_inventory WHERE OWNER=$_SESSION[NOW])"));
-    echo "</a> - </span>";
-}
-echo "<a href=cockpit.php target='thatframeyo'> $_SESSION[NAME]'s &Uuml;bersicht </a>- ";
-if(checkthis(23)){
-}
-
-if(checkthis(20)){
-    echo "<a href=scann.php target='thatframeyo'>Multiscan</a> - ";
-}
-if(checkthis(7)){
-    echo "<a href=spy.php target='thatframeyo'>Log</a> - ";
-}
-if(checkthis(2)){
-    echo "<a href=users.php target='thatframeyo'>Benutzer</a> - ";
-}
-echo '<a href=logout.php>Log Out</a></span></div>';
 
 if(isset($_POST[ichbinfaul])){
     $i=0;
@@ -106,6 +38,7 @@ if(isset($_POST[ichbinfaul])){
 ?>
 
 <div id="leftcontainer">
+
 <div id="top">
     <form action="index.php" method="post" name="suchfilter">
         <input type="hidden" name="ichbinfaul" value="TRUE" >
@@ -188,12 +121,14 @@ if(isset($_POST[ichbinfaul])){
         </td>
         <td><span class="headline">
                 Weitere Optionen
-            </span><br>
-             <input type=checkbox name=verliehen value=TRUE <?php
+            </span><br><?php
+    if(checkthis(6)){
+        echo "<input type=checkbox name=verliehen value=TRUE";
     if($_POST[verliehen]==TRUE){
     echo "checked";
 }
     echo "> Verliehen<br>";
+    }
              $i=0;
         if(checkthis(11)){
             foreach($label as $cat){
@@ -206,7 +141,7 @@ if(isset($_POST[ichbinfaul])){
         }
         }
          if(checkthis(9)){
-        echo "<input type=checkbox name=export value=TRUE> Export<br>";
+        echo "<input type=hidden name=export value=FALSE id=eee>";
         }
         if(checkthis(29)){
         echo "<input type=checkbox name=detail value=TRUE";
@@ -222,8 +157,26 @@ if(isset($_POST[ichbinfaul])){
             }
             echo "> Nachbestellung<br>";
         }
+        
+        if(checkthis(32)){
+            echo "<input type=checkbox name=lauftbald value=TRUE";
+            if($_POST[lauftbald]==TRUE){
+                echo " checked";
+            }
+            echo "> L&auml;uft bald ab<br>";
+        }
+        
+        if(checkthis(32)){
+            echo "<input type=checkbox name=abgelaufen value=TRUE";
+            if($_POST[abgelaufen]==TRUE){
+                echo " checked";
+            }
+            echo "> Abgelaufen<br>";
+        }
         ?><br>
           
+             <input type="button" value="Export" onclick="eexport()">
+            <input type="submit" value="Aktualisieren">
         </td>
     </tr>
     <tr>
@@ -237,7 +190,7 @@ if(isset($_POST[ichbinfaul])){
         <td>
         </td>
         <td>
-            Filter:  <input type="submit" value="Aktivieren">
+           
         </td>
         
     </tr>
@@ -268,44 +221,64 @@ $oldrow=-1;
 while ($row = mysqli_fetch_array($temp)) {
     if($oldrow!=$row[CATEGORY]){
         $oldrow=$row[CATEGORY];
+        
         echo "<p class=cattitle> ".$category[$row[CATEGORY]]."</p>";
-    }
-        echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class= klein><span class=itemtitle> ";
-                if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
-                echo "<img class=klein src=img/comment.png>";
+    }   
+        
+        echo"<p class=item><img src=img/".drawstatus($row[STATUS])." class=klein title='".$status[$row[STATUS]]."'><span class=itemtitle> ";
+        
+        echo "<span class=itemlinks>";
+        echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png title=Detailansicht></a>";
+         if(checkthis(3)){
+            echo "<a href=edit.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit_all.png title=Editieren></a>";
+        }
+        if(checkthis(4)){
+            echo "<a href=log.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/log.png title=Log></a>";
+        }
+        if(checkthis(0)){
+            echo "<a href=delete.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/delete.png title=Entfernen></a>";
+        }
+        if(($_POST[not]=="TRUE" && $_POST[date]==0) && ($row[STATUS]==0 OR $row[STATUS]==1)){
+            echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png title=Checken></a>";
+        }
+        echo "</span>";
+        
+        if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_comments` WHERE IID=$row[IID] AND VISABLE=1"))>0 AND checkthis(24)){
+                echo "<img class=klein src=img/comment.png title=Kommentar>";
             }
+            
         if(mysqli_num_rows(mysqli_query($conn, "SELECT LABEL  FROM  `kuume_inventory` WHERE LABEL>0 AND IID=$row[IID]"))>0){
-                echo "<img class=klein src=img/".draw_label($row[IID]).">";
+                echo "<img class=klein src=img/".draw_label($row[IID])." title=Favorit>";
             }    
-         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
-                echo "<img class=klein src=img/time.png>";
-            } 
+         if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0 AND STATUS=0"))>0 && $row[STATUS]==0){
+                echo "<img class=klein src=img/time.png title=Verliehen!>";
+            }
+        if($row[EXPIRATION_YEAR]!= "0" && (($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] > date("n")) || ($row[EXPIRATION_YEAR] == date("Y")+1 && (date("n") >= 10 && $row[EXPIRATION_POINT] <= 5)))){
+                echo "<img class=klein src=img/callsign_yellow.png title='Bald Abgelaufen!'>";
+        }
+        if($row[EXPIRATION_YEAR]!= "0" && ($row[EXPIRATION_YEAR] < date("Y") || ($row[EXPIRATION_YEAR] == date("Y") && $row[EXPIRATION_POINT] <= date("n")))){
+                echo "<img class=klein src=img/callsign_red.png title=Abgelaufen!>";
+        }
+            
        // echo " <b>$row[IID]</b>";
         if($row[LENDER]!="0"){
             echo "<b>[$row[LENDER]] </b>";
         }
         echo ($row[NAME])."</span> </span>";
-        echo "<span class=itemlinks>";
-        echo "<a href=comments.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit.png></a>";
-         if(checkthis(3)){
-            echo "<a href=edit.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/edit_all.png></a>";
-        }
-        if(checkthis(4)){
-            echo "<a href=log.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/log.png></a>";
-        }
-        if(checkthis(0)){
-            echo "<a href=delete.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/delete.png></a>";
-        }
-        if($_POST[not]=="TRUE" && $_POST[date]==0){
-            echo "<a href=scanone.php?IID=$row[IID] target='thatframeyo' ><img class=klein src=img/checkmark.png></a>";
-        }
-        echo "</span>";
+        
         echo "</p>";
         
         if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
             if(substr_count($row[CONTENT],";")-1>0){
                 echo "<p class=detailsinlist><b>".(substr_count($row[CONTENT],";")-1)." Dinge sind hier verstaut</b></p>";
+                $iid=  explode(";", $row[CONTENT]);
+                foreach ($iid as $value)
+                {
+                    $result = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `kuume_inventory` WHERE UID=$UID"));
+                    
+                }                
+
                         } 
                         
             }
@@ -331,9 +304,10 @@ while ($row = mysqli_fetch_array($temp)) {
         
       if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
-                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND TEXT LIKE '%verliehen%' AND TIME >= ".date(Y);
+                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND TEXT LIKE '%verliehen%' AND TIME >= STR_TO_DATE(".date(Y).",'%Y')";
+                        message($query);
                         $temp2=mysqli_query($conn, $query);
-                                    $row2 = mysqli_fetch_array($temp2);
+                        $row2 = mysqli_fetch_array($temp2);
                                      if( $row2[TOTAL]>0){
                                          echo "<p class=detailsinlist> $row2[TOTAL] Mal verliehen dieses Jahr ";
                                         echo "</p>";   
@@ -365,5 +339,18 @@ echo "</div>";
 </div>
 </div>
 
+
+<?php
+echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="omniIID"><input type="submit" value="Go!">   ';
+
+if(checkthis(20)){
+    echo '<input type="checkbox" name="Check" value="1"> Scan';
+}
+
+if(checkthis(24)){
+    echo '<input type="checkbox" name="kom" value="1"> inkl. Kommentare';
+}
+    echo '</form>';
+?>
 <iframe id="thatframeyo" name="thatframeyo" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="cockpit.php">  
 </iframe>

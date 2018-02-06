@@ -1,6 +1,7 @@
 <?php
-session_start();
+
 include_once '../func.inc.php';
+kuume_session();
 echoifadmin(17);
 ?>
 
@@ -112,7 +113,7 @@ if(isset($_POST[IID])){
         }
         $query="UPDATE kuume_inventory SET REBUY=".mysqli_real_escape_string($conn,$_POST[ding_rebuy])." WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";";
         message($query);
-        mysqli_query($conn, $query);    
+        mysqli_query($conn, $query);
         if($_POST[ding_rebuy]==1){
             document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung beantragt", 0, 0);
         }
@@ -145,6 +146,14 @@ if(isset($_POST[IID])){
         message($query);
         mysqli_query($conn,$query );
         document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Lagerstelle: $_POST[dings_wo_alt] => $_POST[dings_wo]", 0, 0);
+    }
+    
+    
+    if($result[EXPIRATION_YEAR]!=$_POST[dings_ablaufjahr]){
+        mysqli_query($conn, "UPDATE kuume_inventory SET EXPIRATION_YEAR='".mysqli_real_escape_string($conn,$_POST[dings_ablaufjahr])."',EXPIRATION_POINT='$_POST[dings_ablaufquartal]' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
+        document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Ablaufdatum: $result[EXPIRATION_POINT]/$result[EXPIRATION_YEAR] =>  $_POST[dings_ablaufquartal] / $_POST[dings_ablaufjahr]", 0, 0);
+        message("UPDATE kuume_inventory SET EXPIRATION_YEAR='".mysqli_real_escape_string($conn,$_POST[dings_ablaufjahr])."',EXPIRATION_POINT='$_POST[dings_ablaufquartal]' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]));
+        
     }
     
     
@@ -199,13 +208,25 @@ echo "<form method=POST action=more.php id=formular enctype=multipart/form-data>
         echo '<br>Betreuerverleih: <br><input type="text" name="ding_lender"><br>'; 
         }
     elseif($result[LENDER]!="0"){
-        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+        
+        if($result[STATUS]==0){
+            echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
-                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]><br>";
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
-            else {
-                echo "<br>";
+        }
+        elseif($result[STATUS]==4 or $result[STATUS]==3){
+            echo "Verlohren von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
+        }
+        elseif($result[STATUS]==1 or $result[STATUS]==2){
+            echo "Kaput gemacht von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Repariert: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
         }
     
     
@@ -237,6 +258,16 @@ if(checkthis(10) &&  $result[VALUE]!=0){
     echo "Soll:<br> <input type=text value='$result[ACTUAL]' name=dings_soll><br>"; 
     echo "<input type=hidden value=$result[IID] name=IID>";
     
+    echo "Haltbar bis <br> <select name=dings_ablaufquartal>";
+        if($result[EXPIRATION_POINT]==4 || $result[EXPIRATION_POINT]==0){
+            echo " <option value=4 selected>Fr&uuml;hjahr</option> <option value=10>Herbst</option>";
+        }
+        else{
+           echo " <option value=4 >Fr&uuml;hjahr</option> <option value=10 selected>Herbst</option>"; 
+        }
+    echo "<br> Jahr: <input type=text value='$result[EXPIRATION_YEAR]' name=dings_ablaufjahr><br>"; 
+    
+    
     echo "Beinhaltet<br>";
 $b=explode(";", $result[CONTENT]);
     echo "<textarea name=ding_inhalt rows=5>";
@@ -249,7 +280,7 @@ $b=explode(";", $result[CONTENT]);
     
     $rowrowrow=mysqli_query($conn, "SELECT * FROM kuume_inventory WHERE CONTENT LIKE '%;$result[IID];%'");
     $row=  mysqli_fetch_array($rowrowrow);
-     echo "Ist in:<br> <input type=text value='$row[IID]' name=dings_wo><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
+     echo ":<br>Ist in:<br> <input type=text value='$row[IID]' name=dings_wo><input type=hidden name=dings_wo_alt value='$row[IID]'> <br>"; 
      ?>
     <br>
 <input type="submit" value="Go!">

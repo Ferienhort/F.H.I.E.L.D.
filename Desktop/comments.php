@@ -1,12 +1,18 @@
 <?php
-session_start();
-include 'header.php';
 include_once '../func.inc.php';
+kuume_session();
+include 'header.php';
 
+
+
+if (isset($_SESSION[NOW]))
+{
+        include "../ConfigFiles/".$_SESSION[NOW] . '.inc.php';
+}
 checkordie();
 $conn=connect();
 
-if($_POST[ding_lender]!=""){
+if($_POST[ding_lender]!="" && isset($_POST[ding_lender])){
           $query= "UPDATE "
             . "kuume_inventory  SET DATETIME_EDITED=NOW(), DATETIME_LEND=NOW(), LENDER='$_POST[ding_lender]'"
             . " WHERE IID=$_POST[ding_iid]";
@@ -72,7 +78,7 @@ if(isset($_POST[ding_status]) && $_POST[ding_status]!=$_POST[ding_status_alt]){
         die();
     }
     if($result[OWNER]!=$_SESSION[NOW]){
-        die("Dieser Sticker ist bereits einer anderen Abteilung zugeordnet");
+        die("Dieser Sticker ist bereits einer anderen Abteilung zugeordnet: ".$groups[$result[OWNER]-1]);
     }
     echo '<form method="post" action="comments.php">';
     if(isset($_GET[Check]) && $_GET[Check]==1){
@@ -119,13 +125,22 @@ $img_label=array("star.png");
             echo "<a href=delete.php?IID=$result[IID] target=thatframeyo><img class=klein src=img/delete.png></a>";
         }
     echo "<br>";
-    echo "<a href=cockpit.php><img src=img/left.png class=klein></a> Name: <b>$result[NAME]</b>";
+    if(isset($_GET[slink]))
+    {  
+        echo "<a href=omini.php?S=1><img src=img/left.png class=klein></a>";
+    }
+    else{
+        echo "<a href=cockpit.php><img src=img/left.png class=klein></a>";
+    }
+    echo "Name: <b>$result[NAME]</b>";
     if(checkthis(17)){
         echo "<a href=more.php?IID=$result[IID]><img src=img/right.png class=klein></a>";
     }
-    echo "<br>Kategorie: ".$category[$result[CATEGORY]]."<br><input type=hidden value=$result[STATUS] name=ding_status_alt>";
- if(checkthis(16)){
-    echo "Lagerplatz: ". $storage[$result[STORAGE]]."<br>";
+    $a=$result[CATEGORY];
+    echo "<br>Kategorie: ".$category[$a]."<br><input type=hidden value=$result[STATUS] name=ding_status_alt>";
+    if(checkthis(16)){
+    $a=$result[STORAGE];
+    echo "Lagerplatz: ". $storage[$a]." <br>";
     }
     if($result[PERCENT]!="0"){
     echo 'Prozent: '.$result[PERCENT]."%<br>";
@@ -139,14 +154,45 @@ $img_label=array("star.png");
             echo $status[$result[STATUS]];
         }
        echo "<br>";
+       
+           
+        if($result[EXPIRATION_YEAR]!=0){
+            echo "<br> L&auml;uft"; 
+            if($result[EXPIRATION_POINT]==4){
+                echo " Fr&uuml;jahr ";
+            }
+            else {
+                echo " Herbst ";
+            }
+            echo "$result[EXPIRATION_YEAR] ab <br>";
+                
+        }
+        
      if($result[LENDER]=="0" && checkthis(6)){
+         if($result[STATUS]==0){
         echo 'Verleih: <input type="text" name="ding_lender">'; 
+         }
         }
     elseif($result[LENDER]!="0"){
-        echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
+        
+        if($result[STATUS]==0){
+            echo "verliehen an $result[LENDER] am $result[DATETIME_LEND]";
             if(checkthis(6)){
                 echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
             }
+        }
+        elseif($result[STATUS]==4 or $result[STATUS]==3){
+            echo "Verlohren von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Wieder da: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
+        elseif($result[STATUS]==1 or $result[STATUS]==2){
+            echo "Kaput gemacht von $result[LENDER] am $result[DATETIME_LEND]";
+            if(checkthis(6)){
+                echo "<br> Repariert: <input type=checkbox name=ding_lender_old value=$result[LENDER]>";
+            }
+        }
         }
         
        $faulagain=True;
@@ -208,7 +254,7 @@ $img_label=array("star.png");
         
 
        echo "<br><b>Updates</b><br>";     
-    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] AND TEXT NOT LIKE 'Check' AND TEXT NOT LIKE 'Scannt' ORDER BY `kuume_actions`.`TIME` DESC LIMIT 3 ";
+    $query="SELECT * FROM `kuume_actions` WHERE IID=$_GET[IID] AND TEXT NOT LIKE 'Check' ORDER BY `kuume_actions`.`TIME` DESC LIMIT 3 ";
     $temp=mysqli_query($conn,  $query);
 
     echo "<div id= detaillist>";
@@ -235,7 +281,7 @@ $img_label=array("star.png");
         die("Fehler");
     }
     
-    
+    echo '<input type="submit" value="Senden"> <br>';
     
     if(checkthis(24)){
     $query="SELECT * FROM `kuume_comments` WHERE IID=$_GET[IID] ORDER BY DATETIME DESC ";
@@ -264,7 +310,7 @@ $img_label=array("star.png");
         ?><br>            
             
  
-            <input type="submit">
+            
         </form>
         <i>Keine weiteren Kommentare</i></div>
     </body>

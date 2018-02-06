@@ -1,6 +1,8 @@
 <?php
 $start=time();
-
+$maxfile=100;
+        
+        
 include_once '../func.inc.php';
 $dir=scandir("Backups/Data",1);
 $dir[0]="Backups/Data/".$dir[0];
@@ -17,11 +19,11 @@ else{
 
         
 if(filesize($sql_file)<filesize($dir[0])){
-    document_alert("Neues Backup ist kleiner als Altes!", "Alice", 5,filesize($sql_file)."<".filesize($dir[0]));
+    document_alert("Neues Backup ist kleiner als Altes!", "Alice", 5,round(filesize($sql_file)/(1024*1024),2)." MB <".round(filesize(dir[0])/(1024*1024),2)." MB");
     }
 
-if(filesize($sql_file)>1024*1024*10){
-    document_alert("DB Backup mehr als 10 MB ", "Alice", 5,round(filesize($sql_file)/(1024*1024),2). " MB");
+if(filesize($sql_file)>1024*1024*$maxfile){
+    document_alert("DB Backup mehr als $maxfile MB ", "Alice", 5,round(filesize($sql_file)/(1024*1024),2). " MB");
     }
 else{
     document_alert("DB schlank genug ", "Alice", 1,round(filesize($sql_file)/(1024*1024),2). " MB");
@@ -32,7 +34,7 @@ else{
  $sql_file = 'Backups/Data/DB-Backup-'.date("Y-m-d-H-i", time()-24*60*60*$backupdatadays).'.sql';   
  if(file_exists($sql_file)){
     unlink($sql_file);
-    document_alert("Ein Altes Backup vernichtet", "Alice", 3,"");
+    document_alert("Ein Altes Backup vernichtet", "Alice", 2,"");
     } 
 
  }

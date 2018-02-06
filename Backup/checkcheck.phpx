@@ -35,8 +35,8 @@ if($count==0){
 $size=GetDirectorySize("../");
 $size=$size/1024;
 $size=$size/1024;
-if($size>=2*1024){
-    document_alert("Root Verzeichnis hat mehr als 2 GB! ", "Charlie", 5,round($size,2)." MB");
+if($size>=15*1024){
+    document_alert("Root Verzeichnis hat mehr als 15 GB! ", "Charlie", 5,round($size,2)." MB");
 }
 else{
     document_alert("Root Verzeichnis OK ", "Charlie", 1,round($size,2)." MB");   

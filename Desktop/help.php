@@ -1,6 +1,8 @@
 <?php
-session_start();
+
 include_once 'func.inc.php';
+kuume_session();
+
 include 'header.php';
 document(connect(), $_SESSION[UID], 0, "Klickt Hilfe", 0,0);
 ?>

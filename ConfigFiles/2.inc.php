@@ -3,9 +3,9 @@
 //KATEGORIEN:
 //Gelten die selben Regel wie bei den Stati
 $category = array(
-    "Pfeile",
-    "B&ouml;gen",
-    "Zielscheiben",
+"Pfeile",
+"B&ouml;gen",
+"Zielscheiben",
 "3D-Ziele",
 "Zielauflagen 60cm",
 "Zielauflagen 80cm",
@@ -25,18 +25,11 @@ $storage = array("Leichtathletikh&uuml;tte",
 "Kletterkammerl",
 "Halle",
 "Baseballplatz");
-$select_storage=array(0,0,0,0);
+$select_storage=array(0,0,0,0); 
 
-//ZEIT FILTER
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
-//Selbe Logik wie oben....
-$time = array("36 Stunden","3 Tage", "1 Woche", "2 Wochen", "1 Monat");
-//Array mit STUNDEN der Zeit
-$time_ms=array(36,3*24, 7*24, 14*24, 30*24);
-$select_time= array(0,0,0,0,0);
 
 //LABELS
-//Für die Auswahl: Hier muss aich alles abgestimmt sein!
+//Für die Auswahl: Hier muss auch alles abgestimmt sein!
 //Selbe Logik wie oben....
 $label = array("Favorit");
 $select_label= array(0,0,0);
@@ -57,7 +50,7 @@ $zugriff = array(
         9,  // Inventar entfernen [0]
         10, // Config Datei sehen [1]
         8,  // User Verwaltung - Nur User mit geringeren Levels [2]
-        9,  // Kann Inventar Bearbeiten [3]
+        8,  // Kann Inventar Bearbeiten [3]
         9,  // Detailansicht [4]
         11, // Debug Infos - Wenn diese aktiviert sind [5]
         11, // Kann Verleihen, Retournieren [6]
@@ -76,12 +69,16 @@ $zugriff = array(
         1,  // Sieht Schachtelinhalte [19]
         5,  // Kann Mehr Scannen [20]
         10, // Bekommt Benachrichtigungen [21]
-        10, // Bekommt alerts [22]
+        9, // Bekommt alerts [22]
         5,  // Sieht Hilfe [23]
         1,  // Kann Kommentare sehen [24]
         3,   // Kann Kommentare schreiben [25]
         7,   // Kann Nachbestellen [26]
         10, // Sieht entfernte Kommentare [27]
         7,  // Kann Kommentare entfernen [28]
-        11,  // Schnellverleihmodul Aktivieren [29]
+        7, // Detailansicht [29]
+        11,  // Schnellverleihmodul Aktivieren [30]
+        7, // Schnellverleih [30]
+        6,  // OH-Modul [31]
+        10 // Ablaufdatum [32]
         );

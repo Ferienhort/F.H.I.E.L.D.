@@ -1,21 +1,22 @@
 <?php
-
-session_start();
-
 include_once '../func.inc.php';
+kuume_session();
+
+include '../config.inc.php';
+
 
 checkordie();
 $conn =connect();
     
 include 'header.php';
 
+
+ $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND (OWNER LIKE '%$_SESSION[NOW]%')  ORDER BY ADMIN DESC";   
+         message($query);
+        
+
 if($_POST[ichbinfaul]==1){
-        if($_SESSION[TECH]){
-        $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 ORDER BY ADMIN DESC";
-        }
-        else{
-         $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND OWNER=$_SESSION[NOW] ORDER BY ADMIN DESC";   
-        }
+
     $blabla = mysqli_query($conn, $query);
     while($row=mysqli_fetch_array($blabla)){
 
@@ -25,7 +26,7 @@ if($_POST[ichbinfaul]==1){
                         die("Fehler! Der PIN ist viel zu einfach oder vorhersehbar! Bitte klicke erneut auf 'Benutzer'");
                     }
                     mysqli_query($conn, "UPDATE kuume_user SET PIN=$_POST[$temp] WHERE UID=$row[UID]");
-                    document($conn, $_SESSION[UID],0,"Pin von UID: $row[UID] aktualisiert:", 0, 0);
+                    document($conn, $_SESSION[UID],0,"Pin von UID: $row[UID] aktualisiert.", 0, 0);
             }
             $temp = "usernmame".$row[UID];
             if($_POST[$temp] != $row[NAME]){
@@ -86,12 +87,7 @@ echo "<form action=users.php method=POST><input type=hidden name=ichbinfaul valu
         
         
         
-        if($_SESSION[TECH]){
-        $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 ORDER BY ADMIN DESC";
-        }
-        else{
-         $query= "SELECT * FROM kuume_user WHERE AKTIV=1 AND ADMIN <= $_SESSION[ADMIN] AND UID != 0 AND OWNER=$_SESSION[NOW] ORDER BY ADMIN DESC";   
-        }
+        
         
     $blabla = mysqli_query($conn, $query);
     while($result=mysqli_fetch_array($blabla)){

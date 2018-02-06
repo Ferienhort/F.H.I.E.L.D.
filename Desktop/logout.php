@@ -1,6 +1,6 @@
 <?php
 include_once '../func.inc.php';
-session_start();
+kuume_session();
 $conn=connect();
 document($conn, $_SESSION[UID], 0, "Hat sich ausgeloggt",0,0);
 unset($_SESSION[UID]);

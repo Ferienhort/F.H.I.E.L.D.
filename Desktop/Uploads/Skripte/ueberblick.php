@@ -19,7 +19,7 @@ $echothis = FHIELD_pie(array("Gruppe","Anzahl"), $multidim, "Inventar");
 $i=1;
 $multidim = array();
 foreach ($groups as $gruppe) {
-    $query="SELECT COUNT(*) AS VAR FROM kuume_actions WHERE IID IN (SELECT IID AS VAR FROM kuume_inventory WHERE OWNER = $i) AND IID != 0";
+    $query="SELECT COUNT(*) AS VAR FROM kuume_actions WHERE IID IN (SELECT IID AS VAR FROM kuume_inventory WHERE OWNER = $i) AND UID!= 0 AND IID != 0";
     $result= mysqli_query($conn, $query);
     $temp=mysqli_fetch_array($result);
     $multidim[$i]=array($gruppe, (int) $temp["VAR"]);

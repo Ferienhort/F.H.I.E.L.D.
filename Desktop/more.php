@@ -1,6 +1,8 @@
 <?php
-session_start();
+
 include_once 'func.inc.php';
+kuume_session();
+
 include 'header.php';
 echoifadmin(17);
 
@@ -128,7 +130,7 @@ if(isset($_POST[IID])){
             document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung beantragt", 0, 0);
         }
         else {
-            document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung abgebrochen", 0, 0);
+            document($conn, $_SESSION[UID], $_POST[IID],"Nachbestellung deaktiviert", 0, 0);
         }
     }
     if($result[PERCENT]!=$_POST[dings_prozent]){
@@ -146,6 +148,14 @@ if(isset($_POST[IID])){
         document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Soll: $result[DESIRED] => $_POST[dings_soll]", 0, 0);
         message("UPDATE kuume_inventory SET DESIRED='".mysqli_real_escape_string($conn,$_POST[dings_soll])."' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
     }
+    
+    if($result[EXPIRATION_YEAR]!=$_POST[dings_ablaufjahr]){
+        mysqli_query($conn, "UPDATE kuume_inventory SET EXPIRATION_YEAR='".mysqli_real_escape_string($conn,$_POST[dings_ablaufjahr])."',EXPIRATION_POINT='$_POST[dings_ablaufquartal]' WHERE IID=".mysqli_real_escape_string($conn,$_POST[IID]).";");
+        document($conn, $_SESSION[UID], $_POST[IID],"Bearbeitet Ablaufdatum: $result[EXPIRATION_POINT]/$result[EXPIRATION_YEAR] =>  $_POST[dings_ablaufquartal] / $_POST[dings_ablaufjahr]", 0, 0);
+    }
+    
+    
+    
     if($_POST[dings_wo]!=$_POST[dings_wo_alt]){
         $query="UPDATE kuume_inventory SET CONTENT=REPLACE( CONTENT,'".mysqli_real_escape_string($conn,$_POST[IID])."','')"."WHERE IID=".mysqli_real_escape_string($conn,$_POST[dings_wo_alt]).";";
         message($query);
@@ -207,6 +217,17 @@ if(checkthis(26)){
     echo "Prozent:<br> <input type=text value='$result[PERCENT]' name=dings_prozent style='width: 100px;'><br>"; 
     echo "Soll/Haben <br><input type=text value='$result[DESIRED]' name=dings_soll style='width: 50px;'>   "; 
     echo "<input type=text value='$result[ACTUAL]' name=dings_haben style='width: 50px;'><br>"; 
+    
+    echo "Haltbar bis <br> <select name=dings_ablaufquartal>";
+        if($result[EXPIRATION_POINT]==4 || $result[EXPIRATION_POINT]==0){
+            echo " <option value=4 selected>Fr&uuml;hjahr</option> <option value=10>Herbst</option>";
+        }
+        else{
+           echo " <option value=4 >Fr&uuml;hjahr</option> <option value=10 selected>Herbst</option>"; 
+        }
+    echo " Jahr><input type=text value='$result[EXPIRATION_YEAR]' name=dings_ablaufjahr style='width: 50px;'><br>"; 
+    
+    
     echo "<input type=hidden value=$result[IID] name=IID>";
     
     echo "Beinhaltet<br>";
