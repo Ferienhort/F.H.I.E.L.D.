@@ -85,7 +85,7 @@ checkordie();
        
    
             
-        $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0 ORDER BY NAME");
+        $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0 ORDER BY LENDER");
             if(mysqli_num_rows($result)>0){
                 echo "<div class=floaty style='background-color: rgba(255, 0, 0, 0.2);'><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
             }

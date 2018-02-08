@@ -15,10 +15,18 @@ echoifadmin(20);
           <b>Optionen</b>
         <div>
         <input type="checkbox" name="Check" value="1" checked> Diese Nummern f&uuml;r Inventur melden ("scannen")<br>
-        <input type="checkbox" name="Borrowed" value="1" checked> Sollte eine dieser Nummern verliehen sein, automatisch retounieren<br>
-        <input type="checkbox" name="Lost" value="1" checked> Nummern aus dieser Liste, die als "<?php echo $status[3] ?>" gemeldet sind, als "<?php echo $status[0] ?>" markieren <br>
-        <input type="checkbox" name="FUCK" value="1" > Nummern aus dieser Liste, die als "<?php echo $status[4] ?>" gemeldet sind, als "<?php echo $status[0] ?>" markieren <br>
-        <input type="checkbox" name="Broken" value="1" > Keine diese Nummern ist "<?php echo $status[1] ?>" oder "<?php echo $status[2] ?>": Status automatisch auf "<?php echo $status[0] ?>" setzen<br>
+        <?php
+            if(checkthis(6)){
+                echo '<input type="checkbox" name="Borrowed" value="1" checked> Sollte eine dieser Nummern verliehen sein, automatisch retounieren<br>';
+            }
+            
+        
+            if(checkthis(8)){
+                echo '<input type="checkbox" name="Lost" value="1" checked> Nummern aus dieser Liste, die als "'. $status[3].'" gemeldet sind, als "'. $status[0].'" markieren <br>
+                <input type="checkbox" name="FUCK" value="1" > Nummern aus dieser Liste, die als "'. $status[4].'" gemeldet sind, als "'. $status[0].'" markieren <br>
+                <input type="checkbox" name="Broken" value="1" > Nummern aus dieser Liste, die als  "'. $status[2].'" oder "'. $status[1].'": gemeldet sind, als "'. $status[0].'" markieren<br>';
+            }
+        ?>
         <br>
         <input type="submit" value="Go!">
         </div>

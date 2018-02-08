@@ -35,7 +35,10 @@ kuume_session();
              "FerienHort Ist Ein Logistisches Dillema",
              "FerienHort In Ein Lustiger Datensatz",
              "FerienHort Intervention, Enforcement and Logistics Division",
-             "FHield Ist Eine Lange Datei"
+             "FHield Ist Eine Lange Datei",
+             "the Framework of HortsInventar, -Equiment, -Lager und -Daten",
+             "Ferienhort Hat Interne Equipment & Lager Dokumentation",
+             "Fhield Hat Irgendeine Extrem Lustige beDeutung"
              );
          
          echo "<title> F.H.I.E.L.D. - ".$easteregg[rand(0,count($easteregg)-1)]."</title>";

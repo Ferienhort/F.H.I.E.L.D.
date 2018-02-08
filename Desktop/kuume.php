@@ -270,25 +270,17 @@ while ($row = mysqli_fetch_array($temp)) {
         
         if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
-            if(substr_count($row[CONTENT],";")-1>0){
-                echo "<p class=detailsinlist><b>".(substr_count($row[CONTENT],";")-1)." Dinge sind hier verstaut</b></p>";
-                $iid=  explode(";", $row[CONTENT]);
-                foreach ($iid as $value)
-                {
-                    $result = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `kuume_inventory` WHERE UID=$UID"));
-                    
-                }                
-
-                        } 
-                        
+                if(substr_count($row[CONTENT],";")-1>0){
+                    echo "<p class=detailsinlist><b>".(substr_count($row[CONTENT],";")-1)." Dinge sind hier verstaut</b></p>";
+                    }        
+                }
             }
-        }
         
         if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
                 if($row[PERCENT]>0){
-                echo "<p class=detailsinlist><b>$row[PERCENT]</b> Prozent</p>";
-                        } 
+                    echo "<p class=detailsinlist><b>$row[PERCENT]</b> Prozent</p>";
+                } 
                         
             }
         }
@@ -304,7 +296,7 @@ while ($row = mysqli_fetch_array($temp)) {
         
       if(1){
             if(isset($_POST[detail]) && $_POST[detail]=="TRUE"){
-                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND TEXT LIKE '%verliehen%' AND TIME >= STR_TO_DATE(".date(Y).",'%Y')";
+                        $query="SELECT COUNT(IID) AS TOTAL FROM `kuume_actions` WHERE IID=$row[IID] AND kuume_actions.TEXT LIKE '%verliehen%' AND TIME >= STR_TO_DATE(".date(Y).",'%Y')";
                         message($query);
                         $temp2=mysqli_query($conn, $query);
                         $row2 = mysqli_fetch_array($temp2);
