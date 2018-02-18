@@ -55,12 +55,12 @@ if(isset($_POST[PIN])){
             session_destroy();
             document(connect(), 2, 0,"Schlechter PIN",0,0);
             sleep(3);
-            echo "<form action=login.php method=POST> <input type=hidden value=$_POST[geheim] name=geheim><input type=password name=PIN pattern='[0-9]*' inputmode=numeric autocomplete=off>  <input type=submit value=Go!>";
+            echo "<form action=login.php method=POST> <input type=hidden value=$_POST[geheim] name=geheim><input type=password name=PIN pattern='[0-9]*' inputmode=numeric autocomplete=off>  <input type=submit value=Go!> <br> <br> <font color='blue'> PIN Vergessen? Frage deine Bereichsleitung!</font>";
         }
     
 }
 
 else{
-    die("<div id=login><img src=img/kuume.png width=250><br><br>PIN eingeben: <br><form action=login.php method=POST> <input type=hidden value=$_GET[IID] name=geheim><input type=password name=PIN pattern='[0-9]*' inputmode=numeric>  <input type=submit value=Go!>");
+    die("<div id=login><img src=img/kuume.png width=250><br><br>PIN eingeben: <br><form action=login.php method=POST> <input type=hidden value=$_GET[IID] name=geheim><input type=password name=PIN pattern='[0-9]*' inputmode=numeric>  <input type=submit value=Go!> <br> <br> <font color='blue'> PIN Vergessen? Frage deine Bereichsleitung!</font>");
 }?>
 </div>
