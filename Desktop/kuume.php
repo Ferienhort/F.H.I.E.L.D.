@@ -261,7 +261,7 @@ while ($row = mysqli_fetch_array($temp)) {
         }
             
        // echo " <b>$row[IID]</b>";
-        if($row[LENDER]!="0"){
+        if($row[LENDER]!="0" && $row[STATUS]==0){
             echo "<b>[$row[LENDER]] </b>";
         }
         echo ($row[NAME])."</span> </span>";
@@ -334,14 +334,14 @@ echo "</div>";
 
 <?php
 echo '<form action="omini.php" method="POST" target="thatframeyo" id="quick" name=Omni>Suche: <input required type="text" size="10" name="omniIID"><input type="submit" value="Go!">   ';
-
-if(checkthis(20)){
-    echo '<input type="checkbox" name="Check" value="1"> Scan';
-}
-
 if(checkthis(24)){
-    echo '<input type="checkbox" name="kom" value="1"> inkl. Kommentare';
+    echo '<input type="checkbox" name="kom" value="1"> auch Kommentare durchsuchen';
 }
+if(checkthis(20)){
+    echo '<input type="checkbox" name="Check" value="1"> F&uuml;r Inventur melden';
+}
+
+
     echo '</form>';
 ?>
 <iframe id="thatframeyo" name="thatframeyo" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="cockpit.php">  

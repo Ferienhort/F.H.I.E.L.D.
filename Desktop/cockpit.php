@@ -85,24 +85,31 @@ $result=mysqli_query(connect(), "SELECT COUNT(DISTINCT kuume_actions.IID) AS SCA
      
      
 $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS=0");
-    if(mysqli_num_rows($result)>0){
-         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".(mysqli_num_rows($result))." Artikel verliehen <br><font color=grey> </font>";
-         echo "<ul class=quicklist>";
-    }
-    while($row=  mysqli_fetch_array($result)){
-            echo "<li><img src=img/".drawstatus($row[STATUS])." class=klein>";
-            if(mysqli_num_rows(mysqli_query(connect(), "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
-                echo "<img class=klein src=img/time.png title=Verliehen!>";
-            } 
+$abc = mysqli_num_rows($result);
+    if($abc>0){
+         echo "<div class=cockpit-half><p class=quick>Im Moment sind ".($abc)." Artikel verliehen <br><font color=grey> </font>";
+         
+         if($abc<=5){
+             echo "<ul class=quicklist>";
+             while($row=  mysqli_fetch_array($result)){
+                echo "<li><img src=img/".drawstatus($row[STATUS])." class=klein>";
+                if(mysqli_num_rows(mysqli_query(connect(), "SELECT * FROM  `kuume_inventory` WHERE IID=$row[IID] AND DATETIME_LEND <= NOW() - INTERVAL $hours HOUR AND DATETIME_LEND!=0"))>0){
+                    echo "<img class=klein src=img/time.png title=Verliehen!>";
+                } 
             echo "<b>[$row[LENDER]]</b>$row[NAME]<a href=comments.php?IID=$row[IID]><img src=img/right.png class=klein></a>";
+            }
+            echo "</ul>"; 
+         }
+        else {
+            echo "<a href=away.php>Verliehnes Anzeigen!</a>";
+            }
+         echo "</div>"; 
     }
-    if(mysqli_num_rows($result)>0){
-         echo "</ul></p></div>";
-    }
-    
+    /*
     $query="SELECT * FROM kuume_inventory WHERE LENDER NOT LIKE '0' AND OWNER=$_SESSION[NOW] AND STATUS!=0 AND IID IN (SELECT IID FROM kuume_actions WHERE kuume_actions.TEXT LIKE '%Status%' AND kuume_actions.TIME > NOW() - INTERVAL 10 DAY)";
     message($query);
     $result=mysqli_query(connect(),$query);
+    $abc =mysqli_num_rows($result);
     if(mysqli_num_rows($result)>0){
          echo "<div class=cockpit-half><p class=quick>".(mysqli_num_rows($result))." Artikel sind innerhalb der letzten 10 Tage kaputt oder verlohren gegangen";
          echo "<ul class=quicklist>";
@@ -114,7 +121,7 @@ $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE LENDER NOT 
     if(mysqli_num_rows($result)>0){
          echo "</ul></p></div>";
     }
-
+*/
     
     
   $result=mysqli_query(connect(), "SELECT * FROM kuume_inventory WHERE PERCENT BETWEEN 1 AND 50 AND OWNER=$_SESSION[NOW] UNION SELECT * FROM kuume_inventory WHERE ACTUAL <= (DESIRED/2) AND DESIRED != 0  AND OWNER=$_SESSION[NOW]");

@@ -245,3 +245,7 @@ a:link, a:visited, a:hover, a:active{
     padding-top: 5px;
     margin: 0px;
 }
+
+ul {
+    list-style: none;
+}

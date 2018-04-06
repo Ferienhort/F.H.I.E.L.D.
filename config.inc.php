@@ -33,7 +33,7 @@ $group_stickers = array(
 
 //STATI:
 // Wichtig: Neue Stati müssen am Ende des Arrays hinzugefügt werden, sonst explodiert das System!
-$status = array("OK", "Kaputt", "In Reparatur", "Unauffindbar", "Ausgegliedert");
+$status = array("OK", "Kaputt", "In Reparatur", "Unauffindbar", "Ausgemustert");
 //Welche Stati beim einloggen Automatisch aktiviert sind.
 //Wie bei allen kommenden Arrays ist die Reihenfolge der Werte relevant
 $select_status = array(1, 1, 1, 0, 0);
