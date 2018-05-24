@@ -158,7 +158,7 @@ checkordie();
             echo "<div class=floaty style='background-color: rgba(255, 0, 0, 0.1);'>";
         }
         $stat=$row[STATUS];
-        echo "<span class=lendstuff><b>[$row[LENDER]] $row[NAME] </b><i>($status[$stat])</i><br><i>IID: $row[IID]</i> <a href=oh.php?num=$row[IID]> Retour / Repariert</a> <br></span>";
+        echo "<span class=lendstuff><b>[$row[LENDER]] $row[NAME] </b><i>($status[$stat])</i><br><i>IID: $row[IID]</i> <a href=javascript:lost(0,$row[IID]);> Retour / Repariert</a> <br></span>";
         $i++;
         if($i==4){
             echo "</div>";

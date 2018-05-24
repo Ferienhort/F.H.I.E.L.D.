@@ -210,8 +210,7 @@ include 'build-query.php';
 
 $query=$buildingquery;
 message($query);
-document($conn, $_SESSION[UID],0,"Schnuppert: ".$groups[$_SESSION[NOW]-1],0,0);
-$temp=mysqli_query($conn,  $query);
+$temp=mysqli_query($conn, $query);
 
 echo "<div id=list>";
 if($temp==FALSE){

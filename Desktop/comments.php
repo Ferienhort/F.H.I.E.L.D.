@@ -85,7 +85,6 @@ if(isset($_POST[ding_status]) && $_POST[ding_status]!=$_POST[ding_status_alt]){
     document($conn, $_SESSION[UID], $_GET[IID], "Scannt", 0, 0);
     }
     else{
-    document($conn, $_SESSION[UID], $_GET[IID], "Check", 0, 0);
     }
     
     $label = array("Favourit");

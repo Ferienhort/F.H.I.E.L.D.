@@ -6,19 +6,19 @@ $conn=connect();
 $result=mysqli_query($conn,"SELECT UID FROM kuume_user WHERE 1");
 
 while ($row = mysqli_fetch_array($result)) {
-    $query="SELECT COUNT( DISTINCT HOST ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 24 HOUR";
+    $query="SELECT COUNT( DISTINCT HOST ) AS ZAHL FROM `kuume_sec` WHERE UID=$row[UID] AND DATUM > NOW() - INTERVAL 24 HOUR";
     $bla=mysqli_fetch_array(mysqli_query($conn, $query));
     if($bla[ZAHL]>=3){
          echo getUser($conn, $row[UID])." hat $bla[ZAHL] Geolocations";
          document_alert("User $row[UID] (".getUser($conn, $row[UID]).") hat mehr als 3 Geolocations innerhalb von 24 Stunden verwendet", "Bob", 4,"$bla[ZAHL]");       
     }
-    $query="SELECT COUNT( DISTINCT IP ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 24 HOUR";
+    $query="SELECT COUNT( DISTINCT IP ) AS ZAHL FROM `kuume_sec` WHERE UID=$row[UID] AND DATUM > NOW() - INTERVAL 24 HOUR";
     $bla=mysqli_fetch_array(mysqli_query($conn, $query));
     if($bla[ZAHL]>=3){
                  echo getUser($conn, $row[UID])." hat $bla[ZAHL] IPs";
                  document_alert("User $row[UID] (".getUser($conn, $row[UID]).") hat mehr als 3 IPs innerhalb von 24 Stunden verwendet", "Bob", 4,"$bla[ZAHL]");
     }
-    $query="SELECT COUNT( DISTINCT AGENT ) AS ZAHL FROM `kuume_actions` WHERE UID=$row[UID] AND TIME > NOW() - INTERVAL 24 HOUR";
+    $query="SELECT COUNT( DISTINCT AGENT ) AS ZAHL FROM `kuume_sec` WHERE UID=$row[UID] AND DATUM > NOW() - INTERVAL 24 HOUR";
     $bla=mysqli_fetch_array(mysqli_query($conn, $query));
     if($bla[ZAHL]>=5){
                  echo getUser($conn, $row[UID])." hat $bla[ZAHL] Agents";
